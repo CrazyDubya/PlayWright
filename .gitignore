@@ -1,7 +1,38 @@
+# PlayWright Musical Theater Creation Framework
+
 # Temporary files
 tmp_*
 *.tmp
 *.temp
+*~
+*.bak
+*.backup
+*_backup.*
+
+# Personal notes and drafts
+drafts/personal_*
+notes/private_*
+scratch_*
+
+# Audio/video files (use external storage)
+*.mp3
+*.wav
+*.m4a
+*.mp4
+*.mov
+*.avi
+
+# Large documents
+*.pdf
+*.doc
+*.docx
+*.ppt
+*.pptx
+
+# Sensitive research
+**/research/personal_interviews/
+**/research/sensitive_information/
+**/research/private_notes/
 
 # OS generated files
 .DS_Store
@@ -15,13 +46,13 @@ Thumbs.db
 # Editor files
 *.swp
 *.swo
-*~
 .vscode/
 .idea/
 
 # Log files
 *.log
 
-# Backup files
-*.bak
-*.backup
+# Project-specific temp files
+**/drafts/temp_*
+**/projects/*/personal_*
+**/projects/*/private_*
