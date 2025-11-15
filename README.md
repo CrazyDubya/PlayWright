@@ -2,6 +2,27 @@
 
 > **Transform ideas into transcendent Broadway musicals through systematic AI-assisted creation**
 
+## 🎨 **NEW: Modern Web GUI Available!**
+
+**PlayWright now includes a beautiful web-based interface!** No more command-line - create musicals with:
+- ✨ Interactive concept generator with AI
+- 🎨 Visual canvas workspace for story mapping
+- 📊 Project management dashboard
+- 📝 Live template editor with preview
+- ✅ Validation dashboard with quality metrics
+
+**Get Started:**
+```bash
+cd web-app
+npm run install-all
+npm run dev
+# Open http://localhost:3000
+```
+
+📖 [**Full GUI Documentation**](web-app/README.md) | 🎯 [**GUI Features Overview**](GUI_FEATURES.md)
+
+---
+
 ## 🚀 Quick Start
 
 | **New User?** | **Returning Creator?** | **Advanced User?** |
