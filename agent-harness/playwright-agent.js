@@ -73,10 +73,92 @@ const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
 
-// Paths
+// ============================================================================
+// CONFIGURATION CONSTANTS
+// ============================================================================
+
+/** @constant {string} PROJECTS_DIR - Directory path for storing project files */
 const PROJECTS_DIR = path.join(__dirname, '../projects');
+
+/** @constant {string} TEMPLATES_DIR - Directory path for template files */
 const TEMPLATES_DIR = path.join(__dirname, '../templates');
+
+/** @constant {string} STATE_FILE - Path to the agent state file */
 const STATE_FILE = path.join(__dirname, '.agent-state.json');
+
+// ============================================================================
+// EVALUATION SCORE CONSTANTS
+// ============================================================================
+
+/** @constant {Object} SCORES - Evaluation scoring thresholds and values */
+const SCORES = {
+  // Individual criteria scores
+  CULTURAL_SPECIFICITY: 15,
+  INTERNAL_CONTRADICTIONS: 15,
+  PERSONAL_TRAUMA: 15,
+  ECONOMIC_REALITY: 15,
+  COMPLETE_ARC: 20,
+  FOUR_LAYERS: 20,
+  CLEAR_OBJECTIVES: 20,
+  OBSTACLES_PRESENT: 20,
+  CONFLICT_PRESENT: 20,
+  SCENE_CHANGE: 20,
+  THEME_CONNECTION: 20,
+  DRAMATIC_FUNCTION: 20,
+  CHARACTER_VOICE: 20,
+  EMOTIONAL_JOURNEY: 20,
+  ADVANCES_STORY: 20,
+  LYRICS_PRESENT: 20,
+
+  // Thresholds
+  PASSING_SCORE: 70,
+  GRADE_A_THRESHOLD: 90,
+  GRADE_B_THRESHOLD: 80,
+  GRADE_C_THRESHOLD: 70,
+  GRADE_D_THRESHOLD: 60,
+
+  // Minimum lengths for validation
+  MIN_CULTURAL_BACKGROUND_LENGTH: 20,
+  MIN_FIELD_LENGTH: 10,
+
+  // Project progress weights
+  SCENE_WEIGHT: 8,
+  SONG_WEIGHT: 10,
+  CHARACTER_WEIGHT: 5,
+
+  // Content targets
+  MIN_CHARACTERS: 3,
+  TARGET_CHARACTERS: 5,
+  MIN_SCENES: 8,
+  TARGET_SCENES: 10,
+  MIN_SONGS: 6,
+  TARGET_SONGS: 8,
+
+  // Act structure
+  ACT1_SCENES: 4,
+  ACT2A_SCENES: 8,
+  ACT2B_SCENES: 12,
+  ACT1_SONGS: 4,
+  ACT2A_SONGS: 7,
+  ACT2B_SONGS: 10
+};
+
+/** @constant {Object} ERROR_MESSAGES - Standardized error messages */
+const ERROR_MESSAGES = {
+  PROJECT_NOT_FOUND: 'Project not found',
+  PROJECT_EXISTS: 'Project already exists',
+  CHARACTER_NOT_FOUND: 'Character not found',
+  SCENE_NOT_FOUND: 'Scene not found',
+  SONG_NOT_FOUND: 'Song not found',
+  CONCEPT_NOT_FOUND: 'Concept not found',
+  WORKFLOW_NOT_FOUND: 'Workflow state not found',
+  INVALID_JSON: 'Invalid JSON data provided',
+  MISSING_JSON_OPTION: 'The --json option is required for this command',
+  INVALID_ACT_NUMBER: 'Act number must be a positive integer (1-3)',
+  INVALID_SCENE_NUMBER: 'Scene number must be a positive integer',
+  INVALID_PROJECT_NAME: 'Project name must contain only alphanumeric characters, spaces, and underscores',
+  PATH_TRAVERSAL_DETECTED: 'Invalid name: path traversal detected'
+};
 
 // ============================================================================
 // DATA ARRAYS (from original system)
@@ -169,18 +251,180 @@ const DIALOGUE_STARTERS = {
 // UTILITY FUNCTIONS
 // ============================================================================
 
+/**
+ * Selects a random element from an array
+ * @param {Array} array - The array to select from
+ * @returns {*} A randomly selected element
+ */
 const randomElement = (array) => array[Math.floor(Math.random() * array.length)];
+
+/**
+ * Selects multiple random elements from an array without repetition
+ * @param {Array} array - The array to select from
+ * @param {number} count - Number of elements to select
+ * @returns {Array} Array of randomly selected elements
+ */
 const randomElements = (array, count) => {
   const shuffled = [...array].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 };
 
-const sanitizeName = (name) => name.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+/**
+ * Sanitizes a name for use as a filename, preventing path traversal attacks
+ * @param {string} name - The name to sanitize
+ * @returns {string} Sanitized name safe for filesystem use
+ * @throws {Error} If path traversal is detected
+ */
+const sanitizeName = (name) => {
+  if (!name || typeof name !== 'string') {
+    throw new Error(ERROR_MESSAGES.INVALID_PROJECT_NAME);
+  }
 
-const output = (data) => {
-  console.log(JSON.stringify(data, null, 2));
+  // First, decode any URL-encoded characters to catch obfuscated attacks
+  let decoded = name;
+  try {
+    decoded = decodeURIComponent(name);
+  } catch {
+    // If decoding fails, use original string
+    decoded = name;
+  }
+
+  // Check for path traversal patterns before sanitization
+  const pathTraversalPatterns = [
+    /\.\./,           // Parent directory reference
+    /^\//,            // Absolute path
+    /^[a-zA-Z]:\\/,   // Windows absolute path
+    /\0/,             // Null byte injection
+    /[/\\]/           // Forward or backslashes
+  ];
+
+  for (const pattern of pathTraversalPatterns) {
+    if (pattern.test(decoded)) {
+      throw new Error(ERROR_MESSAGES.PATH_TRAVERSAL_DETECTED);
+    }
+  }
+
+  // Sanitize the name: lowercase, replace spaces with underscores, keep only safe chars
+  const sanitized = decoded
+    .toLowerCase()
+    .replace(/\s+/g, '_')
+    .replace(/[^a-z0-9_]/g, '');
+
+  // Ensure the result is not empty
+  if (!sanitized) {
+    throw new Error(ERROR_MESSAGES.INVALID_PROJECT_NAME);
+  }
+
+  return sanitized;
 };
 
+/**
+ * Safely parses JSON with error handling
+ * @param {string} jsonString - The JSON string to parse
+ * @param {string} [errorContext='JSON data'] - Context for error messages
+ * @returns {{success: boolean, data?: any, error?: string}} Parse result
+ */
+const safeJsonParse = (jsonString, errorContext = 'JSON data') => {
+  if (!jsonString || typeof jsonString !== 'string') {
+    return {
+      success: false,
+      error: `${ERROR_MESSAGES.MISSING_JSON_OPTION}: ${errorContext}`
+    };
+  }
+
+  try {
+    const data = JSON.parse(jsonString);
+    return { success: true, data };
+  } catch (parseError) {
+    return {
+      success: false,
+      error: `${ERROR_MESSAGES.INVALID_JSON} for ${errorContext}: ${parseError.message}`
+    };
+  }
+};
+
+/**
+ * Validates that a required --json option is provided
+ * @param {Object} options - Command options object
+ * @param {string} optionName - Name of the option to validate
+ * @returns {{valid: boolean, error?: string}} Validation result
+ */
+const validateRequiredJsonOption = (options, optionName = 'json') => {
+  if (!options[optionName]) {
+    return {
+      valid: false,
+      error: ERROR_MESSAGES.MISSING_JSON_OPTION
+    };
+  }
+  return { valid: true };
+};
+
+/**
+ * Validates act and scene numbers for scene commands
+ * @param {string|number} act - The act number
+ * @param {string|number} num - The scene number
+ * @returns {{valid: boolean, act?: number, num?: number, error?: string}} Validation result
+ */
+const validateActSceneNumbers = (act, num) => {
+  const actNum = parseInt(act, 10);
+  const sceneNum = parseInt(num, 10);
+
+  if (isNaN(actNum) || actNum < 1 || actNum > 3) {
+    return {
+      valid: false,
+      error: ERROR_MESSAGES.INVALID_ACT_NUMBER
+    };
+  }
+
+  if (isNaN(sceneNum) || sceneNum < 1) {
+    return {
+      valid: false,
+      error: ERROR_MESSAGES.INVALID_SCENE_NUMBER
+    };
+  }
+
+  return { valid: true, act: actNum, num: sceneNum };
+};
+
+/**
+ * Validates a project name
+ * @param {string} name - The project name to validate
+ * @returns {{valid: boolean, error?: string}} Validation result
+ */
+const validateProjectName = (name) => {
+  if (!name || typeof name !== 'string') {
+    return { valid: false, error: ERROR_MESSAGES.INVALID_PROJECT_NAME };
+  }
+
+  // Allow alphanumeric, spaces, underscores, and hyphens
+  const validNamePattern = /^[a-zA-Z0-9\s_-]+$/;
+  if (!validNamePattern.test(name)) {
+    return { valid: false, error: ERROR_MESSAGES.INVALID_PROJECT_NAME };
+  }
+
+  return { valid: true };
+};
+
+/**
+ * Outputs data as formatted JSON to stdout
+ * @param {Object} data - The data to output
+ */
+const output = (data) => {
+  process.stdout.write(JSON.stringify(data, null, 2) + '\n');
+};
+
+/**
+ * Outputs an error response with standardized format
+ * @param {string} errorMessage - The error message
+ */
+const outputError = (errorMessage) => {
+  output({ success: false, error: errorMessage });
+};
+
+/**
+ * Gets the current agent state from the state file
+ * @returns {Promise<Object>} The agent state
+ */
 const getState = async () => {
   try {
     return await fs.readJson(STATE_FILE);
@@ -189,12 +433,78 @@ const getState = async () => {
   }
 };
 
+/**
+ * Saves the agent state to the state file
+ * @param {Object} state - The state to save
+ * @returns {Promise<void>}
+ */
 const setState = async (state) => {
   await fs.writeJson(STATE_FILE, state, { spaces: 2 });
 };
 
+/**
+ * Gets the full path to a project directory
+ * @param {string} projectName - The project name
+ * @returns {string} The full project path
+ * @throws {Error} If the project name is invalid
+ */
 const getProjectPath = (projectName) => {
-  return path.join(PROJECTS_DIR, sanitizeName(projectName));
+  const safeName = sanitizeName(projectName);
+  const projectPath = path.join(PROJECTS_DIR, safeName);
+
+  // Verify the path is still within PROJECTS_DIR (defense in depth)
+  const resolvedPath = path.resolve(projectPath);
+  const resolvedProjectsDir = path.resolve(PROJECTS_DIR);
+
+  if (!resolvedPath.startsWith(resolvedProjectsDir + path.sep)) {
+    throw new Error(ERROR_MESSAGES.PATH_TRAVERSAL_DETECTED);
+  }
+
+  return projectPath;
+};
+
+/**
+ * Calculates a letter grade from a score
+ * @param {number} score - The score (0-100)
+ * @returns {string} The letter grade (A, B, C, D, or F)
+ */
+const calculateGrade = (score) => {
+  if (score >= SCORES.GRADE_A_THRESHOLD) return 'A';
+  if (score >= SCORES.GRADE_B_THRESHOLD) return 'B';
+  if (score >= SCORES.GRADE_C_THRESHOLD) return 'C';
+  if (score >= SCORES.GRADE_D_THRESHOLD) return 'D';
+  return 'F';
+};
+
+/**
+ * Adds an evaluation criterion to an evaluation object
+ * @param {Object} evaluation - The evaluation object to update
+ * @param {string} name - The criterion name
+ * @param {boolean} passed - Whether the criterion passed
+ * @param {number} scoreValue - The score value if passed
+ * @param {string} [suggestion] - Suggestion if criterion failed
+ */
+const addEvaluationCriterion = (evaluation, name, passed, scoreValue, suggestion) => {
+  evaluation.criteria.push({
+    name,
+    passed,
+    score: passed ? scoreValue : 0
+  });
+
+  if (passed) {
+    evaluation.score += scoreValue;
+  } else if (suggestion) {
+    evaluation.suggestions.push(suggestion);
+  }
+};
+
+/**
+ * Finalizes an evaluation by calculating pass status and grade
+ * @param {Object} evaluation - The evaluation object to finalize
+ */
+const finalizeEvaluation = (evaluation) => {
+  evaluation.passed = evaluation.score >= SCORES.PASSING_SCORE;
+  evaluation.grade = calculateGrade(evaluation.score);
 };
 
 // ============================================================================
@@ -495,17 +805,28 @@ program
 program
   .command('concept:save <project>')
   .description('Save concept to project')
-  .option('--json <json>', 'Concept JSON data')
+  .requiredOption('--json <json>', 'Concept JSON data (required)')
   .action(async (project, options) => {
     try {
+      // Validate project name
+      const projectValidation = validateProjectName(project);
+      if (!projectValidation.valid) {
+        return outputError(projectValidation.error);
+      }
+
       const projectPath = getProjectPath(project);
 
       if (!await fs.pathExists(projectPath)) {
-        output({ success: false, error: 'Project not found' });
-        return;
+        return outputError(ERROR_MESSAGES.PROJECT_NOT_FOUND);
       }
 
-      const concept = JSON.parse(options.json);
+      // Safely parse JSON
+      const parseResult = safeJsonParse(options.json, 'concept data');
+      if (!parseResult.success) {
+        return outputError(parseResult.error);
+      }
+
+      const concept = parseResult.data;
       concept.savedAt = new Date().toISOString();
 
       await fs.writeJson(path.join(projectPath, 'concept.json'), concept, { spaces: 2 });
@@ -522,7 +843,7 @@ program
 
       output({ success: true, message: 'Concept saved', project });
     } catch (error) {
-      output({ success: false, error: error.message });
+      outputError(error.message);
     }
   });
 
@@ -553,20 +874,38 @@ program
 program
   .command('character:create <project> <name>')
   .description('Create a new character')
-  .option('--json <json>', 'Character JSON data')
+  .option('--json <json>', 'Character JSON data (optional - uses defaults if not provided)')
   .action(async (project, name, options) => {
     try {
+      // Validate project and character names
+      const projectValidation = validateProjectName(project);
+      if (!projectValidation.valid) {
+        return outputError(projectValidation.error);
+      }
+
+      const nameValidation = validateProjectName(name);
+      if (!nameValidation.valid) {
+        return outputError('Invalid character name: ' + nameValidation.error);
+      }
+
       const projectPath = getProjectPath(project);
       const charactersDir = path.join(projectPath, 'characters');
 
       if (!await fs.pathExists(projectPath)) {
-        output({ success: false, error: 'Project not found' });
-        return;
+        return outputError(ERROR_MESSAGES.PROJECT_NOT_FOUND);
       }
 
       await fs.ensureDir(charactersDir);
 
-      const characterData = options.json ? JSON.parse(options.json) : {};
+      // Safely parse JSON if provided
+      let characterData = {};
+      if (options.json) {
+        const parseResult = safeJsonParse(options.json, 'character data');
+        if (!parseResult.success) {
+          return outputError(parseResult.error);
+        }
+        characterData = parseResult.data;
+      }
 
       const character = {
         name,
@@ -664,19 +1003,30 @@ program
 program
   .command('character:update <project> <name>')
   .description('Update character')
-  .option('--json <json>', 'Updated character data (merged with existing)')
+  .requiredOption('--json <json>', 'Updated character data (merged with existing) - required')
   .action(async (project, name, options) => {
     try {
+      // Validate inputs
+      const projectValidation = validateProjectName(project);
+      if (!projectValidation.valid) {
+        return outputError(projectValidation.error);
+      }
+
       const projectPath = getProjectPath(project);
       const characterPath = path.join(projectPath, 'characters', sanitizeName(name) + '.json');
 
       if (!await fs.pathExists(characterPath)) {
-        output({ success: false, error: 'Character not found' });
-        return;
+        return outputError(ERROR_MESSAGES.CHARACTER_NOT_FOUND);
+      }
+
+      // Safely parse JSON
+      const parseResult = safeJsonParse(options.json, 'character update data');
+      if (!parseResult.success) {
+        return outputError(parseResult.error);
       }
 
       const existing = await fs.readJson(characterPath);
-      const updates = JSON.parse(options.json);
+      const updates = parseResult.data;
 
       const updated = {
         ...existing,
@@ -687,7 +1037,7 @@ program
       await fs.writeJson(characterPath, updated, { spaces: 2 });
       output({ success: true, message: 'Character updated', character: name });
     } catch (error) {
-      output({ success: false, error: error.message });
+      outputError(error.message);
     }
   });
 
@@ -696,12 +1046,17 @@ program
   .description('Evaluate character against quality criteria')
   .action(async (project, name) => {
     try {
+      // Validate inputs
+      const projectValidation = validateProjectName(project);
+      if (!projectValidation.valid) {
+        return outputError(projectValidation.error);
+      }
+
       const projectPath = getProjectPath(project);
       const characterPath = path.join(projectPath, 'characters', sanitizeName(name) + '.json');
 
       if (!await fs.pathExists(characterPath)) {
-        output({ success: false, error: 'Character not found' });
-        return;
+        return outputError(ERROR_MESSAGES.CHARACTER_NOT_FOUND);
       }
 
       const character = await fs.readJson(characterPath);
@@ -714,70 +1069,73 @@ program
       };
 
       // Check cultural specificity
-      if (character.culturalBackground && character.culturalBackground.length > 20) {
-        evaluation.criteria.push({ name: 'Cultural Specificity', passed: true, score: 15 });
-        evaluation.score += 15;
-      } else {
-        evaluation.criteria.push({ name: 'Cultural Specificity', passed: false, score: 0 });
-        evaluation.suggestions.push('Add specific cultural background (e.g., "Second-generation Korean-American" not just "Asian")');
-      }
+      const hasCulturalBackground = character.culturalBackground &&
+        character.culturalBackground.length > SCORES.MIN_CULTURAL_BACKGROUND_LENGTH;
+      addEvaluationCriterion(
+        evaluation,
+        'Cultural Specificity',
+        hasCulturalBackground,
+        SCORES.CULTURAL_SPECIFICITY,
+        'Add specific cultural background (e.g., "Second-generation Korean-American" not just "Asian")'
+      );
 
       // Check internal contradictions
       const hasContradictions = character.layers?.psychology?.contradictions?.length > 0;
-      if (hasContradictions) {
-        evaluation.criteria.push({ name: 'Internal Contradictions', passed: true, score: 15 });
-        evaluation.score += 15;
-      } else {
-        evaluation.criteria.push({ name: 'Internal Contradictions', passed: false, score: 0 });
-        evaluation.suggestions.push('Add internal contradictions (public persona vs private reality)');
-      }
+      addEvaluationCriterion(
+        evaluation,
+        'Internal Contradictions',
+        hasContradictions,
+        SCORES.INTERNAL_CONTRADICTIONS,
+        'Add internal contradictions (public persona vs private reality)'
+      );
 
       // Check personal trauma
-      if (character.personalTrauma && character.personalTrauma.length > 10) {
-        evaluation.criteria.push({ name: 'Personal Trauma', passed: true, score: 15 });
-        evaluation.score += 15;
-      } else {
-        evaluation.criteria.push({ name: 'Personal Trauma', passed: false, score: 0 });
-        evaluation.suggestions.push('Add personal trauma that reveals character (not just serves plot)');
-      }
+      const hasPersonalTrauma = character.personalTrauma &&
+        character.personalTrauma.length > SCORES.MIN_FIELD_LENGTH;
+      addEvaluationCriterion(
+        evaluation,
+        'Personal Trauma',
+        hasPersonalTrauma,
+        SCORES.PERSONAL_TRAUMA,
+        'Add personal trauma that reveals character (not just serves plot)'
+      );
 
       // Check economic reality
-      if (character.economicReality && character.economicReality.length > 10) {
-        evaluation.criteria.push({ name: 'Economic Reality', passed: true, score: 15 });
-        evaluation.score += 15;
-      } else {
-        evaluation.criteria.push({ name: 'Economic Reality', passed: false, score: 0 });
-        evaluation.suggestions.push('Add economic pressures affecting decisions');
-      }
+      const hasEconomicReality = character.economicReality &&
+        character.economicReality.length > SCORES.MIN_FIELD_LENGTH;
+      addEvaluationCriterion(
+        evaluation,
+        'Economic Reality',
+        hasEconomicReality,
+        SCORES.ECONOMIC_REALITY,
+        'Add economic pressures affecting decisions'
+      );
 
       // Check character arc
       const hasArc = character.arc?.beginning && character.arc?.catalyst && character.arc?.breakthrough;
-      if (hasArc) {
-        evaluation.criteria.push({ name: 'Complete Character Arc', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Complete Character Arc', passed: false, score: 0 });
-        evaluation.suggestions.push('Complete the character arc (beginning, catalyst, resistance, breakthrough, integration)');
-      }
+      addEvaluationCriterion(
+        evaluation,
+        'Complete Character Arc',
+        hasArc,
+        SCORES.COMPLETE_ARC,
+        'Complete the character arc (beginning, catalyst, resistance, breakthrough, integration)'
+      );
 
       // Check four layers
       const hasLayers = character.layers?.surface && character.layers?.behavior &&
                        character.layers?.psychology && character.layers?.soul;
-      if (hasLayers) {
-        evaluation.criteria.push({ name: 'Four Character Layers', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Four Character Layers', passed: false, score: 0 });
-        evaluation.suggestions.push('Define all four layers (surface, behavior, psychology, soul)');
-      }
+      addEvaluationCriterion(
+        evaluation,
+        'Four Character Layers',
+        hasLayers,
+        SCORES.FOUR_LAYERS,
+        'Define all four layers (surface, behavior, psychology, soul)'
+      );
 
-      evaluation.passed = evaluation.score >= 70;
-      evaluation.grade = evaluation.score >= 90 ? 'A' : evaluation.score >= 80 ? 'B' :
-                        evaluation.score >= 70 ? 'C' : evaluation.score >= 60 ? 'D' : 'F';
-
+      finalizeEvaluation(evaluation);
       output({ success: true, evaluation });
     } catch (error) {
-      output({ success: false, error: error.message });
+      outputError(error.message);
     }
   });
 
@@ -788,24 +1146,43 @@ program
 program
   .command('scene:create <project> <act> <num>')
   .description('Create a new scene')
-  .option('--json <json>', 'Scene JSON data')
+  .option('--json <json>', 'Scene JSON data (optional - uses defaults if not provided)')
   .action(async (project, act, num, options) => {
     try {
+      // Validate project name
+      const projectValidation = validateProjectName(project);
+      if (!projectValidation.valid) {
+        return outputError(projectValidation.error);
+      }
+
+      // Validate act and scene numbers
+      const actSceneValidation = validateActSceneNumbers(act, num);
+      if (!actSceneValidation.valid) {
+        return outputError(actSceneValidation.error);
+      }
+
       const projectPath = getProjectPath(project);
       const scenesDir = path.join(projectPath, 'scenes');
 
       if (!await fs.pathExists(projectPath)) {
-        output({ success: false, error: 'Project not found' });
-        return;
+        return outputError(ERROR_MESSAGES.PROJECT_NOT_FOUND);
       }
 
       await fs.ensureDir(scenesDir);
 
-      const sceneData = options.json ? JSON.parse(options.json) : {};
+      // Safely parse JSON if provided
+      let sceneData = {};
+      if (options.json) {
+        const parseResult = safeJsonParse(options.json, 'scene data');
+        if (!parseResult.success) {
+          return outputError(parseResult.error);
+        }
+        sceneData = parseResult.data;
+      }
 
       const scene = {
-        act: parseInt(act),
-        sceneNumber: parseInt(num),
+        act: actSceneValidation.act,
+        sceneNumber: actSceneValidation.num,
         ...sceneData,
         // Ensure required fields
         title: sceneData.title || `Act ${act} Scene ${num}`,
@@ -904,19 +1281,40 @@ program
 program
   .command('scene:update <project> <act> <num>')
   .description('Update scene')
-  .option('--json <json>', 'Updated scene data')
+  .requiredOption('--json <json>', 'Updated scene data (required)')
   .action(async (project, act, num, options) => {
     try {
+      // Validate project name
+      const projectValidation = validateProjectName(project);
+      if (!projectValidation.valid) {
+        return outputError(projectValidation.error);
+      }
+
+      // Validate act and scene numbers
+      const actSceneValidation = validateActSceneNumbers(act, num);
+      if (!actSceneValidation.valid) {
+        return outputError(actSceneValidation.error);
+      }
+
       const projectPath = getProjectPath(project);
-      const scenePath = path.join(projectPath, 'scenes', `act${act}_scene${num}.json`);
+      const scenePath = path.join(
+        projectPath,
+        'scenes',
+        `act${actSceneValidation.act}_scene${actSceneValidation.num}.json`
+      );
 
       if (!await fs.pathExists(scenePath)) {
-        output({ success: false, error: 'Scene not found' });
-        return;
+        return outputError(ERROR_MESSAGES.SCENE_NOT_FOUND);
+      }
+
+      // Safely parse JSON
+      const parseResult = safeJsonParse(options.json, 'scene update data');
+      if (!parseResult.success) {
+        return outputError(parseResult.error);
       }
 
       const existing = await fs.readJson(scenePath);
-      const updates = JSON.parse(options.json);
+      const updates = parseResult.data;
 
       const updated = {
         ...existing,
@@ -925,9 +1323,13 @@ program
       };
 
       await fs.writeJson(scenePath, updated, { spaces: 2 });
-      output({ success: true, message: 'Scene updated', scene: `Act ${act} Scene ${num}` });
+      output({
+        success: true,
+        message: 'Scene updated',
+        scene: `Act ${actSceneValidation.act} Scene ${actSceneValidation.num}`
+      });
     } catch (error) {
-      output({ success: false, error: error.message });
+      outputError(error.message);
     }
   });
 
@@ -936,17 +1338,31 @@ program
   .description('Evaluate scene against quality criteria')
   .action(async (project, act, num) => {
     try {
+      // Validate inputs
+      const projectValidation = validateProjectName(project);
+      if (!projectValidation.valid) {
+        return outputError(projectValidation.error);
+      }
+
+      const actSceneValidation = validateActSceneNumbers(act, num);
+      if (!actSceneValidation.valid) {
+        return outputError(actSceneValidation.error);
+      }
+
       const projectPath = getProjectPath(project);
-      const scenePath = path.join(projectPath, 'scenes', `act${act}_scene${num}.json`);
+      const scenePath = path.join(
+        projectPath,
+        'scenes',
+        `act${actSceneValidation.act}_scene${actSceneValidation.num}.json`
+      );
 
       if (!await fs.pathExists(scenePath)) {
-        output({ success: false, error: 'Scene not found' });
-        return;
+        return outputError(ERROR_MESSAGES.SCENE_NOT_FOUND);
       }
 
       const scene = await fs.readJson(scenePath);
       const evaluation = {
-        scene: `Act ${act} Scene ${num}`,
+        scene: `Act ${actSceneValidation.act} Scene ${actSceneValidation.num}`,
         criteria: [],
         score: 0,
         maxScore: 100,
@@ -955,61 +1371,58 @@ program
 
       // Check clear objectives
       const hasObjectives = scene.objectives && Object.keys(scene.objectives).length > 0;
-      if (hasObjectives) {
-        evaluation.criteria.push({ name: 'Clear Character Objectives', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Clear Character Objectives', passed: false, score: 0 });
-        evaluation.suggestions.push('Define clear objective for each character in scene');
-      }
+      addEvaluationCriterion(
+        evaluation,
+        'Clear Character Objectives',
+        hasObjectives,
+        SCORES.CLEAR_OBJECTIVES,
+        'Define clear objective for each character in scene'
+      );
 
       // Check obstacles
       const hasObstacles = scene.obstacles && scene.obstacles.length > 0;
-      if (hasObstacles) {
-        evaluation.criteria.push({ name: 'Obstacles Present', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Obstacles Present', passed: false, score: 0 });
-        evaluation.suggestions.push('Add obstacles preventing easy achievement of objectives');
-      }
+      addEvaluationCriterion(
+        evaluation,
+        'Obstacles Present',
+        hasObstacles,
+        SCORES.OBSTACLES_PRESENT,
+        'Add obstacles preventing easy achievement of objectives'
+      );
 
       // Check conflict
       const hasConflict = scene.conflict && scene.conflict.description;
-      if (hasConflict) {
-        evaluation.criteria.push({ name: 'Conflict (Internal/External)', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Conflict (Internal/External)', passed: false, score: 0 });
-        evaluation.suggestions.push('Add clear conflict (internal or external)');
-      }
+      addEvaluationCriterion(
+        evaluation,
+        'Conflict (Internal/External)',
+        hasConflict,
+        SCORES.CONFLICT_PRESENT,
+        'Add clear conflict (internal or external)'
+      );
 
       // Check change
-      const hasChange = scene.change && scene.change.length > 10;
-      if (hasChange) {
-        evaluation.criteria.push({ name: 'Change in Character/Situation', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Change in Character/Situation', passed: false, score: 0 });
-        evaluation.suggestions.push('Define what changes by end of scene');
-      }
+      const hasChange = scene.change && scene.change.length > SCORES.MIN_FIELD_LENGTH;
+      addEvaluationCriterion(
+        evaluation,
+        'Change in Character/Situation',
+        hasChange,
+        SCORES.SCENE_CHANGE,
+        'Define what changes by end of scene'
+      );
 
       // Check theme connection
-      const hasTheme = scene.themeConnection && scene.themeConnection.length > 10;
-      if (hasTheme) {
-        evaluation.criteria.push({ name: 'Theme Connection', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Theme Connection', passed: false, score: 0 });
-        evaluation.suggestions.push('Connect scene to overall story theme');
-      }
+      const hasTheme = scene.themeConnection && scene.themeConnection.length > SCORES.MIN_FIELD_LENGTH;
+      addEvaluationCriterion(
+        evaluation,
+        'Theme Connection',
+        hasTheme,
+        SCORES.THEME_CONNECTION,
+        'Connect scene to overall story theme'
+      );
 
-      evaluation.passed = evaluation.score >= 70;
-      evaluation.grade = evaluation.score >= 90 ? 'A' : evaluation.score >= 80 ? 'B' :
-                        evaluation.score >= 70 ? 'C' : evaluation.score >= 60 ? 'D' : 'F';
-
+      finalizeEvaluation(evaluation);
       output({ success: true, evaluation });
     } catch (error) {
-      output({ success: false, error: error.message });
+      outputError(error.message);
     }
   });
 
@@ -1020,20 +1433,38 @@ program
 program
   .command('song:create <project> <name>')
   .description('Create a new song')
-  .option('--json <json>', 'Song JSON data')
+  .option('--json <json>', 'Song JSON data (optional - uses defaults if not provided)')
   .action(async (project, name, options) => {
     try {
+      // Validate project and song names
+      const projectValidation = validateProjectName(project);
+      if (!projectValidation.valid) {
+        return outputError(projectValidation.error);
+      }
+
+      const nameValidation = validateProjectName(name);
+      if (!nameValidation.valid) {
+        return outputError('Invalid song name: ' + nameValidation.error);
+      }
+
       const projectPath = getProjectPath(project);
       const songsDir = path.join(projectPath, 'songs');
 
       if (!await fs.pathExists(projectPath)) {
-        output({ success: false, error: 'Project not found' });
-        return;
+        return outputError(ERROR_MESSAGES.PROJECT_NOT_FOUND);
       }
 
       await fs.ensureDir(songsDir);
 
-      const songData = options.json ? JSON.parse(options.json) : {};
+      // Safely parse JSON if provided
+      let songData = {};
+      if (options.json) {
+        const parseResult = safeJsonParse(options.json, 'song data');
+        if (!parseResult.success) {
+          return outputError(parseResult.error);
+        }
+        songData = parseResult.data;
+      }
 
       const song = {
         name,
@@ -1132,19 +1563,30 @@ program
 program
   .command('song:update <project> <name>')
   .description('Update song')
-  .option('--json <json>', 'Updated song data')
+  .requiredOption('--json <json>', 'Updated song data (required)')
   .action(async (project, name, options) => {
     try {
+      // Validate inputs
+      const projectValidation = validateProjectName(project);
+      if (!projectValidation.valid) {
+        return outputError(projectValidation.error);
+      }
+
       const projectPath = getProjectPath(project);
       const songPath = path.join(projectPath, 'songs', sanitizeName(name) + '.json');
 
       if (!await fs.pathExists(songPath)) {
-        output({ success: false, error: 'Song not found' });
-        return;
+        return outputError(ERROR_MESSAGES.SONG_NOT_FOUND);
+      }
+
+      // Safely parse JSON
+      const parseResult = safeJsonParse(options.json, 'song update data');
+      if (!parseResult.success) {
+        return outputError(parseResult.error);
       }
 
       const existing = await fs.readJson(songPath);
-      const updates = JSON.parse(options.json);
+      const updates = parseResult.data;
 
       const updated = {
         ...existing,
@@ -1155,7 +1597,7 @@ program
       await fs.writeJson(songPath, updated, { spaces: 2 });
       output({ success: true, message: 'Song updated', song: name });
     } catch (error) {
-      output({ success: false, error: error.message });
+      outputError(error.message);
     }
   });
 
@@ -1164,12 +1606,17 @@ program
   .description('Evaluate song against quality criteria')
   .action(async (project, name) => {
     try {
+      // Validate inputs
+      const projectValidation = validateProjectName(project);
+      if (!projectValidation.valid) {
+        return outputError(projectValidation.error);
+      }
+
       const projectPath = getProjectPath(project);
       const songPath = path.join(projectPath, 'songs', sanitizeName(name) + '.json');
 
       if (!await fs.pathExists(songPath)) {
-        output({ success: false, error: 'Song not found' });
-        return;
+        return outputError(ERROR_MESSAGES.SONG_NOT_FOUND);
       }
 
       const song = await fs.readJson(songPath);
@@ -1183,64 +1630,61 @@ program
 
       // Check dramatic function
       const hasFunction = song.function && song.function.length > 0;
-      if (hasFunction) {
-        evaluation.criteria.push({ name: 'Specific Dramatic Function', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Specific Dramatic Function', passed: false, score: 0 });
-        evaluation.suggestions.push('Define dramatic function (plot-advancing, character-revealing, relationship, world-building)');
-      }
+      addEvaluationCriterion(
+        evaluation,
+        'Specific Dramatic Function',
+        hasFunction,
+        SCORES.DRAMATIC_FUNCTION,
+        'Define dramatic function (plot-advancing, character-revealing, relationship, world-building)'
+      );
 
       // Check character voice
       const hasCharacter = song.character && song.character.length > 0;
-      if (hasCharacter) {
-        evaluation.criteria.push({ name: 'Character Voice', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Character Voice', passed: false, score: 0 });
-        evaluation.suggestions.push('Specify which character sings this song');
-      }
+      addEvaluationCriterion(
+        evaluation,
+        'Character Voice',
+        hasCharacter,
+        SCORES.CHARACTER_VOICE,
+        'Specify which character sings this song'
+      );
 
       // Check emotional journey
       const hasEmotionalJourney = song.emotionalJourney &&
                                   song.emotionalJourney.start &&
                                   song.emotionalJourney.end;
-      if (hasEmotionalJourney) {
-        evaluation.criteria.push({ name: 'Clear Emotional Journey', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Clear Emotional Journey', passed: false, score: 0 });
-        evaluation.suggestions.push('Define emotional journey (start, middle, end)');
-      }
+      addEvaluationCriterion(
+        evaluation,
+        'Clear Emotional Journey',
+        hasEmotionalJourney,
+        SCORES.EMOTIONAL_JOURNEY,
+        'Define emotional journey (start, middle, end)'
+      );
 
       // Check plot/character advancement
-      const advancesStory = (song.plotAdvancement && song.plotAdvancement.length > 10) ||
-                           (song.characterRevelation && song.characterRevelation.length > 10);
-      if (advancesStory) {
-        evaluation.criteria.push({ name: 'Advances Plot or Reveals Character', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Advances Plot or Reveals Character', passed: false, score: 0 });
-        evaluation.suggestions.push('Ensure song advances plot or reveals character significantly');
-      }
+      const advancesStory = (song.plotAdvancement && song.plotAdvancement.length > SCORES.MIN_FIELD_LENGTH) ||
+                           (song.characterRevelation && song.characterRevelation.length > SCORES.MIN_FIELD_LENGTH);
+      addEvaluationCriterion(
+        evaluation,
+        'Advances Plot or Reveals Character',
+        advancesStory,
+        SCORES.ADVANCES_STORY,
+        'Ensure song advances plot or reveals character significantly'
+      );
 
       // Check lyrics exist
       const hasLyrics = song.lyrics && (song.lyrics.verse1 || song.lyrics.chorus);
-      if (hasLyrics) {
-        evaluation.criteria.push({ name: 'Lyrics Present', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Lyrics Present', passed: false, score: 0 });
-        evaluation.suggestions.push('Write lyrics (verse1, chorus, verse2, bridge, finalChorus)');
-      }
+      addEvaluationCriterion(
+        evaluation,
+        'Lyrics Present',
+        hasLyrics,
+        SCORES.LYRICS_PRESENT,
+        'Write lyrics (verse1, chorus, verse2, bridge, finalChorus)'
+      );
 
-      evaluation.passed = evaluation.score >= 70;
-      evaluation.grade = evaluation.score >= 90 ? 'A' : evaluation.score >= 80 ? 'B' :
-                        evaluation.score >= 70 ? 'C' : evaluation.score >= 60 ? 'D' : 'F';
-
+      finalizeEvaluation(evaluation);
       output({ success: true, evaluation });
     } catch (error) {
-      output({ success: false, error: error.message });
+      outputError(error.message);
     }
   });
 
@@ -1251,10 +1695,18 @@ program
 program
   .command('decide:story-direction')
   .description('Get guidance on story direction')
-  .option('--context <json>', 'Context JSON with current situation')
+  .option('--context <json>', 'Context JSON with current situation (optional)')
   .action(async (options) => {
     try {
-      const context = options.context ? JSON.parse(options.context) : {};
+      // Safely parse context JSON if provided
+      let context = {};
+      if (options.context) {
+        const parseResult = safeJsonParse(options.context, 'story direction context');
+        if (!parseResult.success) {
+          return outputError(parseResult.error);
+        }
+        context = parseResult.data;
+      }
 
       const guidance = {
         decisionFramework: [
@@ -1284,10 +1736,18 @@ program
 program
   .command('decide:character-behavior')
   .description('Get guidance on character behavior')
-  .option('--context <json>', 'Context JSON with character and situation')
+  .option('--context <json>', 'Context JSON with character and situation (optional)')
   .action(async (options) => {
     try {
-      const context = options.context ? JSON.parse(options.context) : {};
+      // Safely parse context JSON if provided
+      let context = {};
+      if (options.context) {
+        const parseResult = safeJsonParse(options.context, 'character behavior context');
+        if (!parseResult.success) {
+          return outputError(parseResult.error);
+        }
+        context = parseResult.data;
+      }
 
       const guidance = {
         decisionFramework: [
@@ -1316,10 +1776,18 @@ program
 program
   .command('decide:musical-moment')
   .description('Decide if a moment should be a song')
-  .option('--context <json>', 'Context JSON with scene/moment details')
+  .option('--context <json>', 'Context JSON with scene/moment details (optional)')
   .action(async (options) => {
     try {
-      const context = options.context ? JSON.parse(options.context) : {};
+      // Safely parse context JSON if provided
+      let context = {};
+      if (options.context) {
+        const parseResult = safeJsonParse(options.context, 'musical moment context');
+        if (!parseResult.success) {
+          return outputError(parseResult.error);
+        }
+        context = parseResult.data;
+      }
 
       const guidance = {
         decisionFramework: [
@@ -1923,73 +2391,94 @@ program
   .command('api-reference')
   .description('Show full API reference')
   .action(() => {
-    const reference = `
-PLAYWRIGHT AGENT HARNESS - API REFERENCE
-=========================================
-
-This CLI provides a complete API for an agentic LLM to drive musical creation.
-
-PROJECT MANAGEMENT:
-  project:list                        List all projects with status
-  project:create <name>               Create new project with scaffolding
-  project:status <name>               Get detailed project status
-  project:set-active <name>           Set active project context
-
-CONCEPT GENERATION:
-  concept:generate [options]          Generate story concept
-    --mode <mode>                     random|guided|custom (default: random)
-    --genre <genre>                   Genre for guided mode
-    --setting <setting>               Setting for guided mode
-    --theme <theme>                   Theme for guided mode
-    --conflict <conflict>             Conflict for guided mode
-  concept:save <project> --json       Save concept to project
-  concept:get <project>               Get project's concept
-
-CHARACTER COMMANDS:
-  character:create <project> <name> --json   Create character
-  character:list <project>                    List characters
-  character:get <project> <name>              Get character details
-  character:update <project> <name> --json   Update character
-  character:evaluate <project> <name>         Evaluate character quality
-
-SCENE COMMANDS:
-  scene:create <project> <act> <num> --json  Create scene
-  scene:list <project>                        List scenes
-  scene:get <project> <act> <num>             Get scene details
-  scene:update <project> <act> <num> --json  Update scene
-  scene:evaluate <project> <act> <num>        Evaluate scene quality
-
-SONG COMMANDS:
-  song:create <project> <name> --json        Create song
-  song:list <project>                         List songs
-  song:get <project> <name>                   Get song details
-  song:update <project> <name> --json        Update song
-  song:evaluate <project> <name>              Evaluate song quality
-
-DECISION ENGINE:
-  decide:story-direction --context           Get story direction guidance
-  decide:character-behavior --context        Get character behavior guidance
-  decide:musical-moment --context            Decide if moment needs song
-  decide:resolve-block --type --context      Get creative block resolution
-
-VALIDATION:
-  validate:project <project>                 Full project validation
-  validate:transcendence <project>           Check transcendence criteria
-
-WORKFLOW:
-  workflow:status <project>                  Get current workflow state
-  workflow:next-task <project>               Get next recommended task
-  workflow:complete-task <project> <task>    Mark task complete
-
-GENERATORS:
-  generate:title --genre --theme             Generate title options
-  generate:character-traits                  Get trait suggestions
-  generate:plot-twist                        Get plot twist suggestions
-  generate:dialogue-starter --type           Get dialogue starters
-
-All commands output JSON to stdout for easy parsing by an LLM agent.
-`;
-    console.log(reference);
+    const reference = {
+      title: 'PLAYWRIGHT AGENT HARNESS - API REFERENCE',
+      description: 'This CLI provides a complete API for an agentic LLM to drive musical creation.',
+      categories: {
+        projectManagement: {
+          description: 'Project Management Commands',
+          commands: [
+            { command: 'project:list', description: 'List all projects with status' },
+            { command: 'project:create <name>', description: 'Create new project with scaffolding' },
+            { command: 'project:status <name>', description: 'Get detailed project status' },
+            { command: 'project:set-active <name>', description: 'Set active project context' }
+          ]
+        },
+        conceptGeneration: {
+          description: 'Concept Generation Commands',
+          commands: [
+            { command: 'concept:generate [options]', description: 'Generate story concept', options: ['--mode <mode>', '--genre <genre>', '--setting <setting>', '--theme <theme>', '--conflict <conflict>'] },
+            { command: 'concept:save <project> --json', description: 'Save concept to project (--json required)' },
+            { command: 'concept:get <project>', description: 'Get project concept' }
+          ]
+        },
+        characterCommands: {
+          description: 'Character Commands',
+          commands: [
+            { command: 'character:create <project> <name> --json', description: 'Create character (--json optional)' },
+            { command: 'character:list <project>', description: 'List characters' },
+            { command: 'character:get <project> <name>', description: 'Get character details' },
+            { command: 'character:update <project> <name> --json', description: 'Update character (--json required)' },
+            { command: 'character:evaluate <project> <name>', description: 'Evaluate character quality' }
+          ]
+        },
+        sceneCommands: {
+          description: 'Scene Commands',
+          commands: [
+            { command: 'scene:create <project> <act> <num> --json', description: 'Create scene (--json optional, act must be 1-3)' },
+            { command: 'scene:list <project>', description: 'List scenes' },
+            { command: 'scene:get <project> <act> <num>', description: 'Get scene details' },
+            { command: 'scene:update <project> <act> <num> --json', description: 'Update scene (--json required)' },
+            { command: 'scene:evaluate <project> <act> <num>', description: 'Evaluate scene quality' }
+          ]
+        },
+        songCommands: {
+          description: 'Song Commands',
+          commands: [
+            { command: 'song:create <project> <name> --json', description: 'Create song (--json optional)' },
+            { command: 'song:list <project>', description: 'List songs' },
+            { command: 'song:get <project> <name>', description: 'Get song details' },
+            { command: 'song:update <project> <name> --json', description: 'Update song (--json required)' },
+            { command: 'song:evaluate <project> <name>', description: 'Evaluate song quality' }
+          ]
+        },
+        decisionEngine: {
+          description: 'Decision Engine Commands',
+          commands: [
+            { command: 'decide:story-direction --context', description: 'Get story direction guidance (--context optional)' },
+            { command: 'decide:character-behavior --context', description: 'Get character behavior guidance (--context optional)' },
+            { command: 'decide:musical-moment --context', description: 'Decide if moment needs song (--context optional)' },
+            { command: 'decide:resolve-block --type --context', description: 'Get creative block resolution' }
+          ]
+        },
+        validation: {
+          description: 'Validation Commands',
+          commands: [
+            { command: 'validate:project <project>', description: 'Full project validation' },
+            { command: 'validate:transcendence <project>', description: 'Check transcendence criteria' }
+          ]
+        },
+        workflow: {
+          description: 'Workflow Commands',
+          commands: [
+            { command: 'workflow:status <project>', description: 'Get current workflow state' },
+            { command: 'workflow:next-task <project>', description: 'Get next recommended task' },
+            { command: 'workflow:complete-task <project> <task>', description: 'Mark task complete' }
+          ]
+        },
+        generators: {
+          description: 'Generator Commands',
+          commands: [
+            { command: 'generate:title --genre --theme', description: 'Generate title options' },
+            { command: 'generate:character-traits', description: 'Get trait suggestions' },
+            { command: 'generate:plot-twist', description: 'Get plot twist suggestions' },
+            { command: 'generate:dialogue-starter --type', description: 'Get dialogue starters' }
+          ]
+        }
+      },
+      note: 'All commands output JSON to stdout for easy parsing by an LLM agent.'
+    };
+    output({ success: true, reference });
   });
 
 // Parse arguments
