@@ -178,13 +178,23 @@ const randomElement = (array) => array[Math.floor(Math.random() * array.length)]
 
 /**
  * Get multiple random elements from an array
+ * Uses Fisher-Yates shuffle for proper randomization
  * @param {Array} array - The array to pick from
  * @param {number} count - Number of elements to pick
  * @returns {Array} Array of random elements
  */
 const randomElements = (array, count) => {
-  const shuffled = [...array].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
+  const result = [];
+  const copy = [...array];
+  const n = Math.min(count, copy.length);
+  
+  for (let i = 0; i < n; i++) {
+    const randomIndex = Math.floor(Math.random() * copy.length);
+    result.push(copy[randomIndex]);
+    copy.splice(randomIndex, 1);
+  }
+  
+  return result;
 };
 
 /**
@@ -192,8 +202,21 @@ const randomElements = (array, count) => {
  * Converts to lowercase, replaces spaces with underscores, removes special characters
  * @param {string} name - The name to sanitize
  * @returns {string} Sanitized name safe for file paths
+ * @throws {Error} If name becomes empty after sanitization
  */
-const sanitizeName = (name) => name.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+const sanitizeName = (name) => {
+  if (!name || typeof name !== 'string') {
+    throw new Error('Name must be a non-empty string');
+  }
+  
+  const sanitized = name.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+  
+  if (!sanitized) {
+    throw new Error('Name must contain at least one alphanumeric character');
+  }
+  
+  return sanitized;
+};
 
 /**
  * Output JSON data to console
