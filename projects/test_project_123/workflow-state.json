@@ -1,0 +1,25 @@
+{
+  "phase": 1,
+  "phaseName": "foundation",
+  "currentAct": null,
+  "completedTasks": [],
+  "pendingTasks": [
+    {
+      "id": "concept",
+      "type": "concept",
+      "description": "Generate and save concept"
+    },
+    {
+      "id": "characters",
+      "type": "characters",
+      "description": "Create 3-5 core characters"
+    },
+    {
+      "id": "structure",
+      "type": "structure",
+      "description": "Plan three-act structure"
+    }
+  ],
+  "createdAt": "2025-12-12T03:24:09.383Z",
+  "updatedAt": "2025-12-12T03:24:09.383Z"
+}
