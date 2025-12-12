@@ -79,6 +79,46 @@ const TEMPLATES_DIR = path.join(__dirname, '../templates');
 const STATE_FILE = path.join(__dirname, '.agent-state.json');
 
 // ============================================================================
+// VALIDATION CONSTANTS
+// ============================================================================
+
+const VALIDATION_LIMITS = {
+  MIN_ACT: 1,
+  MAX_ACT: 10,
+  MIN_SCENE: 1,
+  MAX_SCENE: 50,
+  MIN_TEXT_LENGTH: 10,
+  MIN_CULTURAL_LENGTH: 20
+};
+
+const EVALUATION_SCORES = {
+  CULTURAL_SPECIFICITY: 15,
+  INTERNAL_CONTRADICTIONS: 15,
+  PERSONAL_TRAUMA: 15,
+  ECONOMIC_REALITY: 15,
+  CHARACTER_ARC: 20,
+  FOUR_LAYERS: 20,
+  CLEAR_OBJECTIVES: 20,
+  OBSTACLES: 20,
+  CONFLICT: 20,
+  CHANGE: 20,
+  THEME_CONNECTION: 20,
+  DRAMATIC_FUNCTION: 20,
+  CHARACTER_VOICE: 20,
+  EMOTIONAL_JOURNEY: 20,
+  STORY_ADVANCEMENT: 20,
+  LYRICS: 20
+};
+
+const GRADE_THRESHOLDS = {
+  PASSING: 70,
+  A: 90,
+  B: 80,
+  C: 70,
+  D: 60
+};
+
+// ============================================================================
 // DATA ARRAYS (from original system)
 // ============================================================================
 
@@ -226,14 +266,50 @@ const validateActSceneNumbers = (act, num) => {
   const actNum = parseInt(act);
   const sceneNum = parseInt(num);
   
-  if (isNaN(actNum) || actNum < 1 || actNum > 10) {
-    throw new Error('Act number must be between 1 and 10');
+  if (isNaN(actNum) || actNum < VALIDATION_LIMITS.MIN_ACT || actNum > VALIDATION_LIMITS.MAX_ACT) {
+    throw new Error(`Act number must be between ${VALIDATION_LIMITS.MIN_ACT} and ${VALIDATION_LIMITS.MAX_ACT}`);
   }
-  if (isNaN(sceneNum) || sceneNum < 1 || sceneNum > 50) {
-    throw new Error('Scene number must be between 1 and 50');
+  if (isNaN(sceneNum) || sceneNum < VALIDATION_LIMITS.MIN_SCENE || sceneNum > VALIDATION_LIMITS.MAX_SCENE) {
+    throw new Error(`Scene number must be between ${VALIDATION_LIMITS.MIN_SCENE} and ${VALIDATION_LIMITS.MAX_SCENE}`);
   }
   
   return { act: actNum, scene: sceneNum };
+};
+
+const createEvaluation = (itemType, itemName, maxScore = 100) => {
+  return {
+    [itemType]: itemName,
+    criteria: [],
+    score: 0,
+    maxScore,
+    suggestions: [],
+    passed: false,
+    grade: 'F'
+  };
+};
+
+const addCriterion = (evaluation, name, passed, score) => {
+  evaluation.criteria.push({ name, passed, score: passed ? score : 0 });
+  if (passed) {
+    evaluation.score += score;
+  }
+  return passed;
+};
+
+const finalizeEvaluation = (evaluation) => {
+  evaluation.passed = evaluation.score >= GRADE_THRESHOLDS.PASSING;
+  if (evaluation.score >= GRADE_THRESHOLDS.A) {
+    evaluation.grade = 'A';
+  } else if (evaluation.score >= GRADE_THRESHOLDS.B) {
+    evaluation.grade = 'B';
+  } else if (evaluation.score >= GRADE_THRESHOLDS.C) {
+    evaluation.grade = 'C';
+  } else if (evaluation.score >= GRADE_THRESHOLDS.D) {
+    evaluation.grade = 'D';
+  } else {
+    evaluation.grade = 'F';
+  }
+  return evaluation;
 };
 
 // ============================================================================
@@ -744,77 +820,69 @@ program
       }
 
       const character = await fs.readJson(characterPath);
-      const evaluation = {
-        character: name,
-        criteria: [],
-        score: 0,
-        maxScore: 100,
-        suggestions: []
-      };
+      const evaluation = createEvaluation('character', name);
 
       // Check cultural specificity
-      if (character.culturalBackground && character.culturalBackground.length > 20) {
-        evaluation.criteria.push({ name: 'Cultural Specificity', passed: true, score: 15 });
-        evaluation.score += 15;
-      } else {
-        evaluation.criteria.push({ name: 'Cultural Specificity', passed: false, score: 0 });
+      if (!addCriterion(
+        evaluation,
+        'Cultural Specificity',
+        character.culturalBackground && character.culturalBackground.length > VALIDATION_LIMITS.MIN_CULTURAL_LENGTH,
+        EVALUATION_SCORES.CULTURAL_SPECIFICITY
+      )) {
         evaluation.suggestions.push('Add specific cultural background (e.g., "Second-generation Korean-American" not just "Asian")');
       }
 
       // Check internal contradictions
-      const hasContradictions = character.layers?.psychology?.contradictions?.length > 0;
-      if (hasContradictions) {
-        evaluation.criteria.push({ name: 'Internal Contradictions', passed: true, score: 15 });
-        evaluation.score += 15;
-      } else {
-        evaluation.criteria.push({ name: 'Internal Contradictions', passed: false, score: 0 });
+      if (!addCriterion(
+        evaluation,
+        'Internal Contradictions',
+        character.layers?.psychology?.contradictions?.length > 0,
+        EVALUATION_SCORES.INTERNAL_CONTRADICTIONS
+      )) {
         evaluation.suggestions.push('Add internal contradictions (public persona vs private reality)');
       }
 
       // Check personal trauma
-      if (character.personalTrauma && character.personalTrauma.length > 10) {
-        evaluation.criteria.push({ name: 'Personal Trauma', passed: true, score: 15 });
-        evaluation.score += 15;
-      } else {
-        evaluation.criteria.push({ name: 'Personal Trauma', passed: false, score: 0 });
+      if (!addCriterion(
+        evaluation,
+        'Personal Trauma',
+        character.personalTrauma && character.personalTrauma.length > VALIDATION_LIMITS.MIN_TEXT_LENGTH,
+        EVALUATION_SCORES.PERSONAL_TRAUMA
+      )) {
         evaluation.suggestions.push('Add personal trauma that reveals character (not just serves plot)');
       }
 
       // Check economic reality
-      if (character.economicReality && character.economicReality.length > 10) {
-        evaluation.criteria.push({ name: 'Economic Reality', passed: true, score: 15 });
-        evaluation.score += 15;
-      } else {
-        evaluation.criteria.push({ name: 'Economic Reality', passed: false, score: 0 });
+      if (!addCriterion(
+        evaluation,
+        'Economic Reality',
+        character.economicReality && character.economicReality.length > VALIDATION_LIMITS.MIN_TEXT_LENGTH,
+        EVALUATION_SCORES.ECONOMIC_REALITY
+      )) {
         evaluation.suggestions.push('Add economic pressures affecting decisions');
       }
 
       // Check character arc
-      const hasArc = character.arc?.beginning && character.arc?.catalyst && character.arc?.breakthrough;
-      if (hasArc) {
-        evaluation.criteria.push({ name: 'Complete Character Arc', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Complete Character Arc', passed: false, score: 0 });
+      if (!addCriterion(
+        evaluation,
+        'Complete Character Arc',
+        character.arc?.beginning && character.arc?.catalyst && character.arc?.breakthrough,
+        EVALUATION_SCORES.CHARACTER_ARC
+      )) {
         evaluation.suggestions.push('Complete the character arc (beginning, catalyst, resistance, breakthrough, integration)');
       }
 
       // Check four layers
-      const hasLayers = character.layers?.surface && character.layers?.behavior &&
-                       character.layers?.psychology && character.layers?.soul;
-      if (hasLayers) {
-        evaluation.criteria.push({ name: 'Four Character Layers', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Four Character Layers', passed: false, score: 0 });
+      if (!addCriterion(
+        evaluation,
+        'Four Character Layers',
+        character.layers?.surface && character.layers?.behavior && character.layers?.psychology && character.layers?.soul,
+        EVALUATION_SCORES.FOUR_LAYERS
+      )) {
         evaluation.suggestions.push('Define all four layers (surface, behavior, psychology, soul)');
       }
 
-      evaluation.passed = evaluation.score >= 70;
-      evaluation.grade = evaluation.score >= 90 ? 'A' : evaluation.score >= 80 ? 'B' :
-                        evaluation.score >= 70 ? 'C' : evaluation.score >= 60 ? 'D' : 'F';
-
-      output({ success: true, evaluation });
+      output({ success: true, evaluation: finalizeEvaluation(evaluation) });
     } catch (error) {
       output({ success: false, error: error.message });
     }
@@ -996,69 +1064,59 @@ program
       }
 
       const scene = await fs.readJson(scenePath);
-      const evaluation = {
-        scene: `Act ${validated.act} Scene ${validated.scene}`,
-        criteria: [],
-        score: 0,
-        maxScore: 100,
-        suggestions: []
-      };
+      const evaluation = createEvaluation('scene', `Act ${validated.act} Scene ${validated.scene}`);
 
       // Check clear objectives
-      const hasObjectives = scene.objectives && Object.keys(scene.objectives).length > 0;
-      if (hasObjectives) {
-        evaluation.criteria.push({ name: 'Clear Character Objectives', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Clear Character Objectives', passed: false, score: 0 });
+      if (!addCriterion(
+        evaluation,
+        'Clear Character Objectives',
+        scene.objectives && Object.keys(scene.objectives).length > 0,
+        EVALUATION_SCORES.CLEAR_OBJECTIVES
+      )) {
         evaluation.suggestions.push('Define clear objective for each character in scene');
       }
 
       // Check obstacles
-      const hasObstacles = scene.obstacles && scene.obstacles.length > 0;
-      if (hasObstacles) {
-        evaluation.criteria.push({ name: 'Obstacles Present', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Obstacles Present', passed: false, score: 0 });
+      if (!addCriterion(
+        evaluation,
+        'Obstacles Present',
+        scene.obstacles && scene.obstacles.length > 0,
+        EVALUATION_SCORES.OBSTACLES
+      )) {
         evaluation.suggestions.push('Add obstacles preventing easy achievement of objectives');
       }
 
       // Check conflict
-      const hasConflict = scene.conflict && scene.conflict.description;
-      if (hasConflict) {
-        evaluation.criteria.push({ name: 'Conflict (Internal/External)', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Conflict (Internal/External)', passed: false, score: 0 });
+      if (!addCriterion(
+        evaluation,
+        'Conflict (Internal/External)',
+        scene.conflict && scene.conflict.description,
+        EVALUATION_SCORES.CONFLICT
+      )) {
         evaluation.suggestions.push('Add clear conflict (internal or external)');
       }
 
       // Check change
-      const hasChange = scene.change && scene.change.length > 10;
-      if (hasChange) {
-        evaluation.criteria.push({ name: 'Change in Character/Situation', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Change in Character/Situation', passed: false, score: 0 });
+      if (!addCriterion(
+        evaluation,
+        'Change in Character/Situation',
+        scene.change && scene.change.length > VALIDATION_LIMITS.MIN_TEXT_LENGTH,
+        EVALUATION_SCORES.CHANGE
+      )) {
         evaluation.suggestions.push('Define what changes by end of scene');
       }
 
       // Check theme connection
-      const hasTheme = scene.themeConnection && scene.themeConnection.length > 10;
-      if (hasTheme) {
-        evaluation.criteria.push({ name: 'Theme Connection', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Theme Connection', passed: false, score: 0 });
+      if (!addCriterion(
+        evaluation,
+        'Theme Connection',
+        scene.themeConnection && scene.themeConnection.length > VALIDATION_LIMITS.MIN_TEXT_LENGTH,
+        EVALUATION_SCORES.THEME_CONNECTION
+      )) {
         evaluation.suggestions.push('Connect scene to overall story theme');
       }
 
-      evaluation.passed = evaluation.score >= 70;
-      evaluation.grade = evaluation.score >= 90 ? 'A' : evaluation.score >= 80 ? 'B' :
-                        evaluation.score >= 70 ? 'C' : evaluation.score >= 60 ? 'D' : 'F';
-
-      output({ success: true, evaluation });
+      output({ success: true, evaluation: finalizeEvaluation(evaluation) });
     } catch (error) {
       output({ success: false, error: error.message });
     }
@@ -1224,72 +1282,60 @@ program
       }
 
       const song = await fs.readJson(songPath);
-      const evaluation = {
-        song: name,
-        criteria: [],
-        score: 0,
-        maxScore: 100,
-        suggestions: []
-      };
+      const evaluation = createEvaluation('song', name);
 
       // Check dramatic function
-      const hasFunction = song.function && song.function.length > 0;
-      if (hasFunction) {
-        evaluation.criteria.push({ name: 'Specific Dramatic Function', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Specific Dramatic Function', passed: false, score: 0 });
+      if (!addCriterion(
+        evaluation,
+        'Specific Dramatic Function',
+        song.function && song.function.length > 0,
+        EVALUATION_SCORES.DRAMATIC_FUNCTION
+      )) {
         evaluation.suggestions.push('Define dramatic function (plot-advancing, character-revealing, relationship, world-building)');
       }
 
       // Check character voice
-      const hasCharacter = song.character && song.character.length > 0;
-      if (hasCharacter) {
-        evaluation.criteria.push({ name: 'Character Voice', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Character Voice', passed: false, score: 0 });
+      if (!addCriterion(
+        evaluation,
+        'Character Voice',
+        song.character && song.character.length > 0,
+        EVALUATION_SCORES.CHARACTER_VOICE
+      )) {
         evaluation.suggestions.push('Specify which character sings this song');
       }
 
       // Check emotional journey
-      const hasEmotionalJourney = song.emotionalJourney &&
-                                  song.emotionalJourney.start &&
-                                  song.emotionalJourney.end;
-      if (hasEmotionalJourney) {
-        evaluation.criteria.push({ name: 'Clear Emotional Journey', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Clear Emotional Journey', passed: false, score: 0 });
+      if (!addCriterion(
+        evaluation,
+        'Clear Emotional Journey',
+        song.emotionalJourney && song.emotionalJourney.start && song.emotionalJourney.end,
+        EVALUATION_SCORES.EMOTIONAL_JOURNEY
+      )) {
         evaluation.suggestions.push('Define emotional journey (start, middle, end)');
       }
 
       // Check plot/character advancement
-      const advancesStory = (song.plotAdvancement && song.plotAdvancement.length > 10) ||
-                           (song.characterRevelation && song.characterRevelation.length > 10);
-      if (advancesStory) {
-        evaluation.criteria.push({ name: 'Advances Plot or Reveals Character', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Advances Plot or Reveals Character', passed: false, score: 0 });
+      if (!addCriterion(
+        evaluation,
+        'Advances Plot or Reveals Character',
+        (song.plotAdvancement && song.plotAdvancement.length > VALIDATION_LIMITS.MIN_TEXT_LENGTH) ||
+        (song.characterRevelation && song.characterRevelation.length > VALIDATION_LIMITS.MIN_TEXT_LENGTH),
+        EVALUATION_SCORES.STORY_ADVANCEMENT
+      )) {
         evaluation.suggestions.push('Ensure song advances plot or reveals character significantly');
       }
 
       // Check lyrics exist
-      const hasLyrics = song.lyrics && (song.lyrics.verse1 || song.lyrics.chorus);
-      if (hasLyrics) {
-        evaluation.criteria.push({ name: 'Lyrics Present', passed: true, score: 20 });
-        evaluation.score += 20;
-      } else {
-        evaluation.criteria.push({ name: 'Lyrics Present', passed: false, score: 0 });
+      if (!addCriterion(
+        evaluation,
+        'Lyrics Present',
+        song.lyrics && (song.lyrics.verse1 || song.lyrics.chorus),
+        EVALUATION_SCORES.LYRICS
+      )) {
         evaluation.suggestions.push('Write lyrics (verse1, chorus, verse2, bridge, finalChorus)');
       }
 
-      evaluation.passed = evaluation.score >= 70;
-      evaluation.grade = evaluation.score >= 90 ? 'A' : evaluation.score >= 80 ? 'B' :
-                        evaluation.score >= 70 ? 'C' : evaluation.score >= 60 ? 'D' : 'F';
-
-      output({ success: true, evaluation });
+      output({ success: true, evaluation: finalizeEvaluation(evaluation) });
     } catch (error) {
       output({ success: false, error: error.message });
     }
