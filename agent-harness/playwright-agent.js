@@ -194,7 +194,31 @@ const setState = async (state) => {
 };
 
 const getProjectPath = (projectName) => {
-  return path.join(PROJECTS_DIR, sanitizeName(projectName));
+  const sanitized = sanitizeName(projectName);
+  const fullPath = path.join(PROJECTS_DIR, sanitized);
+  
+  // Validate path doesn't escape PROJECTS_DIR
+  const relative = path.relative(PROJECTS_DIR, fullPath);
+  if (relative.startsWith('..') || path.isAbsolute(relative)) {
+    throw new Error('Invalid project name: path traversal detected');
+  }
+  
+  return fullPath;
+};
+
+/**
+ * Validate and parse act/scene numbers
+ * @param {string|number} value - The value to validate
+ * @param {string} fieldName - Name of the field for error messages
+ * @returns {number} Validated number
+ * @throws {Error} If value is not a valid positive integer
+ */
+const validateNumber = (value, fieldName = 'value') => {
+  const num = parseInt(value, 10);
+  if (isNaN(num) || num < 1) {
+    throw new Error(`${fieldName} must be a positive integer`);
+  }
+  return num;
 };
 
 /**
@@ -820,12 +844,15 @@ program
 
       const sceneData = options.json ? safeJsonParse(options.json) : {};
 
+      const actNum = validateNumber(act, 'Act number');
+      const sceneNum = validateNumber(num, 'Scene number');
+
       const scene = {
-        act: parseInt(act),
-        sceneNumber: parseInt(num),
+        act: actNum,
+        sceneNumber: sceneNum,
         ...sceneData,
         // Ensure required fields
-        title: sceneData.title || `Act ${act} Scene ${num}`,
+        title: sceneData.title || `Act ${actNum} Scene ${sceneNum}`,
         location: sceneData.location || '',
         time: sceneData.time || '',
         charactersPresent: sceneData.charactersPresent || [],
@@ -903,8 +930,11 @@ program
   .description('Get scene details')
   .action(async (project, act, num) => {
     try {
+      const actNum = validateNumber(act, 'Act number');
+      const sceneNum = validateNumber(num, 'Scene number');
+      
       const projectPath = getProjectPath(project);
-      const scenePath = path.join(projectPath, 'scenes', `act${act}_scene${num}.json`);
+      const scenePath = path.join(projectPath, 'scenes', `act${actNum}_scene${sceneNum}.json`);
 
       if (!await fs.pathExists(scenePath)) {
         output({ success: false, error: 'Scene not found' });
@@ -924,8 +954,11 @@ program
   .option('--json <json>', 'Updated scene data')
   .action(async (project, act, num, options) => {
     try {
+      const actNum = validateNumber(act, 'Act number');
+      const sceneNum = validateNumber(num, 'Scene number');
+      
       const projectPath = getProjectPath(project);
-      const scenePath = path.join(projectPath, 'scenes', `act${act}_scene${num}.json`);
+      const scenePath = path.join(projectPath, 'scenes', `act${actNum}_scene${sceneNum}.json`);
 
       if (!await fs.pathExists(scenePath)) {
         output({ success: false, error: 'Scene not found' });
@@ -942,7 +975,7 @@ program
       };
 
       await fs.writeJson(scenePath, updated, { spaces: 2 });
-      output({ success: true, message: 'Scene updated', scene: `Act ${act} Scene ${num}` });
+      output({ success: true, message: 'Scene updated', scene: `Act ${actNum} Scene ${sceneNum}` });
     } catch (error) {
       output({ success: false, error: error.message });
     }
@@ -953,8 +986,11 @@ program
   .description('Evaluate scene against quality criteria')
   .action(async (project, act, num) => {
     try {
+      const actNum = validateNumber(act, 'Act number');
+      const sceneNum = validateNumber(num, 'Scene number');
+      
       const projectPath = getProjectPath(project);
-      const scenePath = path.join(projectPath, 'scenes', `act${act}_scene${num}.json`);
+      const scenePath = path.join(projectPath, 'scenes', `act${actNum}_scene${sceneNum}.json`);
 
       if (!await fs.pathExists(scenePath)) {
         output({ success: false, error: 'Scene not found' });
@@ -963,7 +999,7 @@ program
 
       const scene = await fs.readJson(scenePath);
       const evaluation = {
-        scene: `Act ${act} Scene ${num}`,
+        scene: `Act ${actNum} Scene ${sceneNum}`,
         criteria: [],
         score: 0,
         maxScore: 100,
