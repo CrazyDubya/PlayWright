@@ -514,6 +514,10 @@ const finalizeEvaluation = (evaluation) => {
 program
   .command('project:list')
   .description('List all projects with status')
+  .addHelpText('after', `
+Examples:
+  $ playwright-agent project:list
+  Returns JSON with all projects, their status, progress, and content counts.`)
   .action(async () => {
     try {
       const projects = await fs.readdir(PROJECTS_DIR);
@@ -561,6 +565,10 @@ program
 program
   .command('project:create <name>')
   .description('Create new project with full scaffolding')
+  .addHelpText('after', `
+Examples:
+  $ playwright-agent project:create "My Musical"
+  Creates project directory with characters/, scenes/, songs/, research/ folders.`)
   .action(async (name) => {
     try {
       const projectName = sanitizeName(name);
@@ -735,6 +743,10 @@ program
 program
   .command('concept:generate')
   .description('Generate story concept')
+  .addHelpText('after', `
+Examples:
+  $ playwright-agent concept:generate
+  $ playwright-agent concept:generate --mode guided --genre Drama --theme Identity`)
   .option('-m, --mode <mode>', 'Generation mode: random, guided, custom', 'random')
   .option('--genre <genre>', 'Genre (for guided mode)')
   .option('--setting <setting>', 'Setting (for guided mode)')
@@ -814,16 +826,16 @@ program
         return outputError(projectValidation.error);
       }
 
+      // Safely parse JSON first (before checking project existence)
+      const parseResult = safeJsonParse(options.json, 'concept data');
+      if (!parseResult.success) {
+        return outputError(parseResult.error);
+      }
+
       const projectPath = getProjectPath(project);
 
       if (!await fs.pathExists(projectPath)) {
         return outputError(ERROR_MESSAGES.PROJECT_NOT_FOUND);
-      }
-
-      // Safely parse JSON
-      const parseResult = safeJsonParse(options.json, 'concept data');
-      if (!parseResult.success) {
-        return outputError(parseResult.error);
       }
 
       const concept = parseResult.data;
@@ -874,6 +886,10 @@ program
 program
   .command('character:create <project> <name>')
   .description('Create a new character')
+  .addHelpText('after', `
+Examples:
+  $ playwright-agent character:create myproject "Maria Santos"
+  $ playwright-agent character:create myproject "John" --json '{"role":"protagonist","culturalBackground":"Second-generation Korean-American"}'`)
   .option('--json <json>', 'Character JSON data (optional - uses defaults if not provided)')
   .action(async (project, name, options) => {
     try {
@@ -951,6 +967,12 @@ program
   .action(async (project) => {
     try {
       const projectPath = getProjectPath(project);
+      
+      // Check if project exists first
+      if (!await fs.pathExists(projectPath)) {
+        return outputError(ERROR_MESSAGES.PROJECT_NOT_FOUND);
+      }
+
       const charactersDir = path.join(projectPath, 'characters');
 
       if (!await fs.pathExists(charactersDir)) {
@@ -1146,6 +1168,10 @@ program
 program
   .command('scene:create <project> <act> <num>')
   .description('Create a new scene')
+  .addHelpText('after', `
+Examples:
+  $ playwright-agent scene:create myproject 1 1
+  $ playwright-agent scene:create myproject 2 3 --json '{"title":"The Confrontation","location":"Kitchen"}'`)
   .option('--json <json>', 'Scene JSON data (optional - uses defaults if not provided)')
   .action(async (project, act, num, options) => {
     try {
@@ -1433,6 +1459,10 @@ program
 program
   .command('song:create <project> <name>')
   .description('Create a new song')
+  .addHelpText('after', `
+Examples:
+  $ playwright-agent song:create myproject "Opening Number"
+  $ playwright-agent song:create myproject "I Want Song" --json '{"function":"character-revealing","character":"Maria"}'`)
   .option('--json <json>', 'Song JSON data (optional - uses defaults if not provided)')
   .action(async (project, name, options) => {
     try {

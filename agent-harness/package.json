@@ -8,12 +8,25 @@
   },
   "scripts": {
     "start": "node playwright-agent.js",
-    "test": "node playwright-agent.js project:list"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "node playwright-agent.js project:list"
   },
   "dependencies": {
     "commander": "^11.1.0",
     "fs-extra": "^11.2.0",
     "chalk": "^4.1.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": ["**/tests/**/*.test.js"],
+    "collectCoverageFrom": ["playwright-agent.js"],
+    "coverageDirectory": "coverage",
+    "verbose": true
   },
   "keywords": ["musical", "theater", "ai", "agent", "cli"],
   "license": "MIT"
