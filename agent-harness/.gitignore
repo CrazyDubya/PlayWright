@@ -23,6 +23,9 @@ pids/
 # Coverage directory
 coverage/
 
+# Test directories
+test-projects/
+
 # IDE and editor files
 .idea/
 .vscode/
