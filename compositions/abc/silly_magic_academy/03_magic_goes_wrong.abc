@@ -1,0 +1,56 @@
+X:3
+T:Magic Goes Wrong
+T:The Spell Disaster - Silly Magic Academy
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=144
+K:F
+%%MIDI program 1 0
+%
+% INTRO - Chaotic, building (4 bars)
+|:"F"f2f2 a2c'2|"Bb"b4 a2g2|"C"g2f2 e2d2|"C7"c4 z4:|
+%
+% VERSE 1 - The spell begins
+|:"F"f2f2 f2e2|"Bb"d4 e2f2|"C"g2g2 g2f2|"F"f4 z4|
+w:O-kay here goes I'll say the words I prac-ticed this a thou-sand times
+|"F"f2g2 a2b2|"Bb"b4 a2g2|"C"g2f2 e2d2|"F"f4 z4:|
+w:A-bra-ca zam-ma fig-gle dee dee wait that's not the rhyme
+%
+% CHORUS - Everything going wrong
+|:"F"a4 a2b2|"Bb"b4 a2g2|"C"g4 f4|"F"f4 z4|
+w:OH NO! The ma-gic's go-ing WRONG!
+|"Dm"d4 d2e2|"Bb"f4 g2a2|"C"g4 f2e2|"F"f4 z4|
+w:WATCH OUT! It's way too strong!
+|"Dm"a2g2 f2e2|"Bb"d2e2 f2g2|"C"a2g2 f2e2|"C7"e4 z4|
+w:The spar-kles are ex-plo-ding and the po-tion's over-flow-ing
+|"F"f2f2 f2g2|"Bb"a4 g2f2|"C"e2d2 c2B2|"F"F4 z4:|
+w:Ev-ery-thing is go-ing wrong wrong WRONG!
+%
+% VERSE 2 - More chaos
+|:"F"f2f2 f2g2|"Bb"a4 g2f2|"C"g2g2 g2a2|"F"f4 z4|
+w:The ham-ster's glow-ing pur-ple and the cat is turn-ing blue
+|"F"f2g2 a2b2|"Bb"b4 a2g2|"C"g2f2 e2d2|"F"f4 z4:|
+w:The ceil-ing's drip-ping rain-bows I don't know what to do!
+%
+% BRIDGE - Pip panicking
+|:"Dm"d2d2 d2d2|"Dm"d2e2 f2g2|"Bb"f2f2 f2f2|"Bb"f2g2 a2b2|
+w:Stop stop stop it make it stop! Why won't the ma-gic stop?
+|"Gm"b2a2 g2f2|"C"e2d2 c2B2|"F"A2B2 c2d2|"C7"c4 z4:|
+w:I tried to do a sim-ple spell and now there's quite a flop!
+%
+% BIG CHAOS SECTION - Sound effects moment
+|:"F"f4 z4|"Bb"b4 z4|"C"c'4 z4|"F"f4 z4|
+w:BANG! CRASH! SPLAT! POP!
+|"Dm"d4 z4|"Bb"f4 z4|"C"g4 z4|"C7"e4 z4:|
+w:FIZZ! WHOOSH! DRIP! DROP!
+%
+% FINAL CHORUS - Resigned/funny
+|:"F"a4 a2b2|"Bb"b4 a2g2|"C"g4 f4|"F"f4 z4|
+w:OH WELL the ma-gic's go-ing WRONG
+|"Dm"d4 d2e2|"Bb"f4 g2a2|"C"g4 f2e2|"F"f4 z4|
+w:I GUESS it won't be long
+|"Dm"a2g2 f2e2|"Bb"d2e2 f2g2|"C"a2g2 f2e2|"C7"e4 z4|
+w:Till Pro-fes-sor comes in here and tries to fix this place I fear
+|"F"f2f2 f2g2|"Bb"a4 g2f2|"C"e2d2 c2B2|"F"F8:|]
+w:Ev-ery-thing is go-ing wrong but that's o-KAY!

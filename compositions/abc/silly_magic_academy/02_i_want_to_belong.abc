@@ -1,0 +1,58 @@
+X:2
+T:I Want to Belong
+T:Pip's "I Want" Song - Silly Magic Academy
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=92
+K:G
+%%MIDI program 1 0
+%
+% INTRO - Gentle, uncertain (4 bars)
+|:"G"d4 B2d2|"C"e4 d2c2|"G"B4 G2B2|"D"A4 z4:|
+%
+% VERSE 1 - Pip alone, nervous
+|:"G"B2B2 B2A2|"Em"G4 A2B2|"C"c2c2 c2B2|"D"A4 z4|
+w:Ev-ery-one here knows what they do their ma-gic works the way it should
+|"G"B2B2 c2d2|"Em"e4 d2c2|"C"B2A2 "D"G2F2|"G"G4 z4:|
+w:But ev-ery-thing I try goes wrong I wish I could be-long
+%
+% PRE-CHORUS - Building hope
+|:"Em"e2e2 e2f2|"C"g4 f2e2|"D"d2d2 d2e2|"D"d4 z4|
+w:May-be if I try real hard may-be if I wish on a star
+|"Em"e2f2 g2a2|"C"g4 e2d2|"D"d2e2 f2g2|"D"d4 z4:|
+w:Some-day I could find my place some-day I could win the race
+%
+% CHORUS - Pip's wish
+|:"G"d4 d2e2|"C"e4 e2f2|"G"g4 "D"f4|"Em"e4 z4|
+w:I want to be-LONG I want to fit IN
+|"C"c4 c2d2|"D"d4 d2e2|"G"B4 "D"A4|"G"G4 z4|
+w:I want to have FRIENDS I want to WIN
+|"Em"e2f2 g2a2|"C"g4 f2e2|"Am"e2d2 "D"c2B2|"G"G4 z4|
+w:Not be per-fect just be me and have a fam-i-ly
+|"C"c2d2 e2d2|"D"d4 c2B2|"G"G8:|
+w:I just want to be-long
+%
+% VERSE 2 - More vulnerable
+|:"G"B2B2 B2c2|"Em"d4 c2B2|"C"c2c2 c2d2|"D"d4 z4|
+w:Back at home they called me weird they laughed at me and always sneered
+|"G"B2c2 d2e2|"Em"e4 d2c2|"C"B2A2 "D"G2F2|"G"G4 z4:|
+w:But here the weird ones are the cool ones may-be I can be one
+%
+% BRIDGE - Moment of doubt then hope
+|:"Am"A2B2 c2d2|"Em"e4 d2c2|"F"f4 e2d2|"C"c4 z4|
+w:What if I mess up a-gain? What if they laugh like be-fore?
+|"Am"A2B2 c2d2|"D"d4 e2f2|"G"g4 f2e2|"D"d4 z4:|
+w:But Pro-fes-sor said mis-takes are ma-gic may-be there's more
+%
+% FINAL CHORUS - With conviction
+|:"G"d4 d2e2|"C"e4 e2f2|"G"g4 "D"f4|"Em"e4 z4|
+w:I WILL be-LONG I WILL fit IN
+|"C"c4 c2d2|"D"d4 d2e2|"G"B4 "D"A4|"G"G4 z4|
+w:I WILL have FRIENDS I WILL WIN
+|"Em"e2f2 g2a2|"C"g4 f2e2|"Am"e2d2 "D"c2B2|"G"G4 z4|
+w:I'll be my-self just be me and find my fam-i-ly
+|"C"c2d2 e2d2|"D"d4 B2A2|
+w:I know that I be-long
+|"G"G8|"G"z8:|]
+w:here!

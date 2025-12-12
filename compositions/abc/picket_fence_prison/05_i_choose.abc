@@ -1,0 +1,69 @@
+X:5
+T:I Choose
+T:Claire's Declaration of Agency
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=88
+K:D
+%%MIDI program 1 0
+%
+% INTRO - Resolute, clear (4 bars)
+|:"D"d4 f2a2|"G"g4 b2d'2|"A"a4 c'2e'2|"D"d'4 z4:|
+%
+% VERSE 1 - Clarity after chaos
+|:"D"f2f2 f2e2|"G"d4 e2f2|"A"e2e2 e2d2|"D"d4 z4|
+w:Af-ter all the storms I've wea-thered af-ter all the ropes and chains
+|"D"f2g2 a2b2|"G"a4 g2f2|"A"e2d2 c2B2|"D"d4 z4:|
+w:I fi-nal-ly know what mat-ters what I've lost and what re-mains
+|"Bm"b2b2 b2a2|"G"g4 a2b2|"A"a2a2 a2g2|"D"f4 z4|
+w:I'm not the wo-man I was yes-ter-day I'm not the girl my par-ents raised
+|"Bm"b2a2 g2f2|"G"e4 f2g2|"A"f2e2 d2c2|"D"d4 z4:|
+w:I'm some-thing new some-thing true some-thing on-ly I can praise
+%
+% CHORUS - The declaration
+|:"D"a4 a2b2|"G"b4 a2g2|"A"a4 g4|"D"f4 z4|
+w:I CHOOSE this I CHOOSE me I CHOOSE to fi-nal-ly be free
+|"Bm"b4 b2a2|"G"g4 f2e2|"A"e4 d4|"D"d4 z4|
+w:Not what they want not what they need but what I CHOOSE to be
+|"G"g2a2 b2a2|"D"a4 g2f2|"Em"e2f2 g2a2|"A"a4 z4|
+w:I choose the light I choose the dark I choose to fi-nal-ly start
+|"Bm"b2a2 g2f2|"G"e4 d2c2|"A"c2d2 e2f2|"D"d4 z4:|
+w:Li-ving for my-self not for the world I choose to guard my heart
+%
+% VERSE 2 - What she's learned
+|:"D"f2f2 f2g2|"G"g4 f2e2|"A"e2e2 e2f2|"D"f4 z4|
+w:Sur-ren-der taught me I was strong con-trol showed me I was weak
+|"D"f2g2 a2b2|"G"a4 g2f2|"A"e2d2 c2B2|"D"d4 z4:|
+w:The an-swer was-n't found in oth-ers it was mine a-lone to seek
+|"Bm"b2b2 b2c'2|"G"d'4 c'2b2|"A"a2a2 a2g2|"D"f4 z4|
+w:Mich-ael may ne-ver un-der-stand and may-be that's o-kay
+|"Bm"b2a2 g2f2|"G"e4 f2g2|"A"f2e2 d2c2|"D"d4 z4:|
+w:I can love him for what he is while walk-ing my own way
+%
+% BRIDGE - Integration
+|:"Em"e2e2 e2f2|"Bm"g4 f2e2|"G"g2g2 g2a2|"A"a4 z4|
+w:I'm not a-shamed of what I've done I'm not a-shamed of what I am
+|"Em"e2f2 g2a2|"Bm"b4 a2g2|"G"g2f2 e2d2|"A"d4 z4:|
+w:The wo-man in the mir-ror now is stron-ger than the sham
+|"D"f2g2 a2b2|"G"c'4 b2a2|"A"a2g2 f2e2|"D"d4 z4|
+w:I found my-self in un-ex-pec-ted pla-ces dark-ness showed me light
+|"Bm"b2a2 g2f2|"G"e2f2 g2a2|"A"a4 g4|"D"d4 z4:|
+w:And now I stand with o-pen eyes see-ing clear-ly for the first time right
+%
+% FINAL CHORUS - Triumphant
+Q:1/4=96
+|:"D"a4 a2b2|"G"b4 a2g2|"A"a4 g4|"D"f4 z4|
+w:I CHOOSE this I CHOOSE me I CHOOSE to fi-nal-ly be FREE
+|"Bm"b4 b2a2|"G"g4 f2e2|"A"e4 d4|"D"d4 z4|
+w:Not per-fect not bro-ken just WHOLE just who I'm meant to be
+|"G"g2a2 b2a2|"D"a4 g2f2|"Em"e2f2 g2a2|"A"a4 z4|
+w:I choose to love I choose to feel I choose to fi-nal-ly heal
+|"Bm"b2a2 g2f2|"G"e4 d2c2|"A"c2d2 e2f2|"D"d4 z4|
+w:From all the years of pre-tend-ing I choose what's true and real
+%
+% TAG - Final declaration
+|"D"a2a2 a2b2|"G"c'4 b2a2|"A"a2g2 f2e2|"D"d4 z4|
+w:I CHOOSE I CHOOSE I CHOOSE
+|"Bm"b4 "G"g4|"A"a4 "D"d'4|"D"d'8|]
+w:ME!

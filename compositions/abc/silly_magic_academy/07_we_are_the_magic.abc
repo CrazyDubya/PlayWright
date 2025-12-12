@@ -1,0 +1,72 @@
+X:7
+T:We Are the Magic
+T:Finale - Silly Magic Academy
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=138
+K:C
+%%MIDI program 1 0
+%
+% INTRO - Triumphant fanfare (4 bars)
+|:"C"c2e2 g2c'2|"F"f2a2 c'2f2|"G"g2b2 d'2g2|"C"c'4 z4:|
+%
+% VERSE 1 - Pip transformed
+|:"C"e2e2 e2f2|"F"f4 e2d2|"G"d2d2 d2e2|"C"c4 z4|
+w:I came here feel-ing small and scared my ma-gic all went wrong
+|"C"e2f2 g2a2|"F"a4 g2f2|"G"f2e2 d2c2|"C"c4 z4:|
+w:But now I know the truth at last I knew it all a-long
+%
+% PRE-CHORUS - Building
+|:"Am"a2a2 a2b2|"F"c'4 b2a2|"G"g2g2 g2a2|"G"g4 z4|
+w:It's not a-bout be-ing per-fect it's not a-bout be-ing right
+|"Am"a2b2 c'2d'2|"F"c'4 b2a2|"G"g2f2 e2d2|"G"d4 z4:|
+w:It's a-bout the friends be-side you when you're sha-king with stage fright
+%
+% CHORUS - The anthem
+|:"C"g4 g2a2|"F"a4 a2b2|"G"g4 f4|"C"e4 z4|
+w:WE are the ma-gic WE are the light
+|"Am"a4 a2b2|"F"c'4 b2a2|"G"g4 f4|"C"e4 z4|
+w:WE are the spar-kles shin-ing bright
+|"C"e2f2 g2a2|"F"a4 g2f2|"Dm"f2e2 d2c2|"G"d4 z4|
+w:To-ge-ther we can do a-ny-thing to-ge-ther we are strong
+|"Am"a2g2 f2e2|"F"f4 e2d2|"G"d2e2 f2g2|"C"c4 z4:|
+w:We are the ma-gic all a-long WE are where we be-long!
+%
+% VERSE 2 - Each character moment
+|:"C"e2e2 e2f2|"F"f4 e2d2|"G"d2d2 d2e2|"C"c4 z4|
+w:PERFECTA: I learned that mess-y can be fun
+|"C"e2f2 g2a2|"F"a4 g2f2|"G"f2e2 d2c2|"C"c4 z4|
+w:GIGGLES: And se-rious mat-ters too
+|"Am"a2a2 a2b2|"Em"g4 f2e2|"F"f2f2 f2g2|"G"g4 z4|
+w:WHISPER: I found my voice was there in-side
+|"Am"a2b2 c'2b2|"F"a4 g2f2|"G"f2e2 d2c2|"C"c4 z4:|
+w:SPARKLES: And I love be-ing new!
+%
+% BRIDGE - Professor's blessing
+|:"F"f4 f2g2|"C"e4 d2c2|"G"d4 d2e2|"C"c4 z4|
+w:PROF: Now go forth my lit-tle ma-ges spread your ma-gic wide
+|"F"f2g2 a2b2|"C"g4 f2e2|"G"f2e2 d2c2|"C"c4 z4|
+w:Re-mem-ber that your dif-fer-ence is your great-est source of pride
+|"Am"a2a2 a2b2|"F"c'4 b2a2|"Dm"a2g2 f2e2|"G"d4 z4|
+w:When ma-gic goes side-ways laugh and try a-gain
+|"F"f2g2 a2g2|"G"g4 f2e2|"G7"d2e2 f2g2|"C"c4 z4:|
+w:The best ma-gic al-ways comes from im-per-fect wo-men and men!
+%
+% FINAL CHORUS - Full company maximum energy
+|:"C"g4 g2a2|"F"a4 a2b2|"G"g4 f4|"C"e4 z4|
+w:WE are the ma-gic WE are the light
+|"Am"a4 a2b2|"F"c'4 b2a2|"G"g4 f4|"C"e4 z4|
+w:WE are the spar-kles shin-ing bright
+|"C"e2f2 g2a2|"F"a4 g2f2|"Dm"f2e2 d2c2|"G"d4 z4|
+w:To-ge-ther we can do a-ny-thing to-ge-ther we are strong
+|"Am"a2g2 f2e2|"F"f4 e2d2|"G"d2e2 f2g2|"C"c4 z4|
+w:We are the ma-gic all a-long we ARE where we be-LONG!
+%
+% TAG - Big finish
+|"C"c2c2 e2e2|"F"f2f2 a2a2|"G"g2g2 b2b2|"C"c'4 z4|
+w:We ARE the MA-gic we ARE the LIGHT!
+|"F"a4 "G"b4|"Am"c'4 "G"b4|"F"a4 "G"g4|
+w:WE! ARE! THE! MA-GIC!
+|"C"c'8|"C"z8|]
+w:YEAH!

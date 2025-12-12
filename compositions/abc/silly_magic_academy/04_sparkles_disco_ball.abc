@@ -1,0 +1,71 @@
+X:4
+T:Sparkles the Disco Ball
+T:Sparkles' Introduction - Silly Magic Academy
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=120
+K:Eb
+%%MIDI program 1 0
+%
+% INTRO - Disco groove (4 bars)
+|:"Eb"e2g2 b2g2|"Ab"a2c'2 a2f2|"Bb"b2d'2 b2g2|"Eb"e4 z4:|
+%
+% SPOKEN INTRO (over vamp)
+% "Wait a minute... what's this feeling? I'm shiny! I'm bright! I'm..."
+%
+% VERSE 1 - Pure joy discovery
+|:"Eb"g2g2 g2f2|"Ab"e4 f2g2|"Bb"a2a2 a2g2|"Eb"g4 z4|
+w:I USED to be a lit-tle ham-ster run-ning on my wheel all day
+|"Eb"g2a2 b2c'2|"Ab"c'4 b2a2|"Bb"a2g2 f2e2|"Eb"e4 z4:|
+w:But NOW I'm some-thing so much gran-der a dis-co ball in ev-ery way!
+%
+% PRE-CHORUS
+|:"Cm"g2g2 g2a2|"Ab"a4 b2c'2|"Bb"b2b2 b2a2|"Bb"b4 z4|
+w:I've got lights that flash and spar-kle I've got rhy-thm in my soul
+|"Cm"g2a2 b2c'2|"Ab"c'4 b2a2|"Bb"a2g2 "Bb7"f2e2|"Eb"e4 z4:|
+w:I'm no long-er small and sim-ple I'm a shi-ny dis-co ball!
+%
+% CHORUS - The hook
+|:"Eb"b4 b2c'2|"Ab"c'4 b2a2|"Bb"b4 a4|"Eb"g4 z2g2|
+w:I'm SPAR-kles the DIS-co BALL! Dan-cing bright for one and all!
+|"Cm"g2a2 b2c'2|"Ab"c'4 b2a2|"Bb"b2a2 g2f2|"Eb"e4 z4|
+w:Spin-ning grin-ning ne-ver fall I'm Spar-kles the dis-co ball!
+|"Eb"g2g2 g2a2|"Ab"a4 b2c'2|"Bb"b2b2 b2a2|"Eb"g4 z4|
+w:BOO-gie WOO-gie here I go light-ing up the ma-gic show
+|"Cm"g2a2 b2c'2|"Ab"c'4 b2a2|"Bb"b4 "Bb7"a4|"Eb"e4 z4:|
+w:From my head down to my toe I'm the star of ev-ery show!
+%
+% VERSE 2 - Addressing the "problem"
+|:"Eb"g2g2 g2a2|"Ab"a4 g2f2|"Bb"f2f2 f2g2|"Eb"e4 z4|
+w:Now ev-ery-one thinks I'm a pro-blem they want to change me back
+|"Eb"g2a2 b2c'2|"Ab"c'4 b2a2|"Bb"a2g2 f2e2|"Eb"e4 z4:|
+w:But I LOVE be-ing big and spar-kly there's no-thing that I lack!
+%
+% BRIDGE - Philosophical but funky
+|:"Cm"g2g2 g2g2|"Ab"a4 a2a2|"Bb"b2b2 b2b2|"Eb"g4 z4|
+w:They say I'm a mis-take but look at all the joy I make!
+|"Cm"g2a2 b2c'2|"Ab"c'4 b2a2|"Bb"b2a2 g2f2|"Bb7"f4 z4|
+w:I light up ev-ery cor-ner I make the whole room shake!
+|"Ab"a2a2 a2b2|"Eb"g4 f2e2|"Bb"f2f2 f2g2|"Eb"e4 z4|
+w:So what if I'm not nor-mal? So what if I'm not small?
+|"Ab"a2b2 c'2b2|"Bb"b4 a2g2|"Bb7"f2e2 d2c2|"Eb"e4 z4:|
+w:I'd ra-ther be a dis-co ball than no-thing much at all!
+%
+% DANCE BREAK - Call outs
+|:"Eb"e4 z4|"Ab"a4 z4|"Bb"b4 z4|"Eb"e4 z4:|
+w:(CLAP!) (SPIN!) (WAVE!) (SPAR-kle!)
+%
+% FINAL CHORUS - Maximum energy
+|:"Eb"b4 b2c'2|"Ab"c'4 b2a2|"Bb"b4 a4|"Eb"g4 z2g2|
+w:We're DAN-cing with the DIS-co BALL! Shi-ning bright for one and all!
+|"Cm"g2a2 b2c'2|"Ab"c'4 b2a2|"Bb"b2a2 g2f2|"Eb"e4 z4|
+w:Ma-gic mu-sic hav-ing a ball with Spar-kles the dis-co ball!
+%
+% OUTRO - Triumphant
+|"Eb"g2g2 g2a2|"Ab"a2b2 c'2b2|"Bb"b4 a2g2|
+w:So re-mem-ber when you're diff-erent and you don't know what to do
+|"Eb"g2a2 b2c'2|"Ab"c'4 b2a2|"Bb"b2a2 g2f2|"Eb"e4 z4|
+w:Just spar-kle like a dis-co ball and let your light shine through!
+|"Eb"e8|]
+w:(YEAH!)

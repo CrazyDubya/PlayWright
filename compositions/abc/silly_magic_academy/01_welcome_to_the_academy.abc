@@ -1,0 +1,63 @@
+X:1
+T:Welcome to the Academy
+T:Opening Number - Silly Magic Academy
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=132
+K:C
+%%staves {V1 V2}
+%%MIDI program 1 0
+%%MIDI program 2 0
+%
+% INTRO - Fanfare (4 bars)
+V:1 name="Melody" clef=treble
+|:"C"c2c2 e2g2|"G"g4 f2e2|"Am"a2g2 f2e2|"G"d4 "G7"B2d2:|
+%
+% VERSE 1 - Professor Gigglebottom
+|:"C"e2e2 e2d2|c4 "G"d2e2|"F"f2f2 f2e2|"C"e4 z4|
+w:Wel-come wel-come one and all to our ma-gi-cal a-cad-e-my hall
+|"C"e2e2 f2g2|"G"g4 "Am"a2g2|"F"f2e2 "G"d2c2|"C"c4 z4:|
+w:Where spells go side-ways po-tions bub-ble and ev-ery mis-take's worth the trou-ble
+%
+% CHORUS
+|:"C"g4 g2a2|"F"f4 f2g2|"C"e4 "G"d4|"C"c4 z4|
+w:WEL-come to the A-CAD-e-MY where MA-gic's meant to be
+|"Am"e2e2 f2g2|"F"a4 g2f2|"G"d2d2 d2e2|"C"c4 z2c2|
+w:SIL-ly if your spell goes wrong don't you fret that's the best ma-gic yet! Clap
+|"C"z2c2 "G7"z2B2|"C"c4 z4:|
+w:clap POOF! Wel-come!
+%
+% VERSE 2 - Students (call and response)
+|:"C"e4 e2d2|"G"d4 z4|"F"f4 f2e2|"C"c4 z4|
+w:My ex-PLO-sions make RAIN-bows! I fly BACK-wards through the SKY!
+|"Am"e4 e2f2|"Em"g4 z4|"F"a4 "G"g2f2|"C"c4 z4:|
+w:My po-tions turn PUR-ple! My tick-le spells make DRA-gons cry!
+%
+% BRIDGE - Spoken rhythm (vamp)
+|:"Am"e2e2 e2e2|"Am"e2e2 e2f2|"F"f2f2 f2f2|"F"f2f2 f2g2|
+w:Now lis-ten close my dear young ma-ges this school's been here for a-ges and a-ges
+|"C"g2g2 g2g2|"C"g2g2 g2a2|"G"a2a2 a2g2|"G7"g4 z4:|
+w:We don't teach per-fect we don't teach neat we teach ma-gic that can't be BEAT!
+%
+% VERSE 3 - Building
+|:"C"e2f2 g2a2|"G"g4 f2e2|"F"f2g2 a2b2|"G"g4 z4|
+w:So WAVE your wands and STOMP your feet let's MAKE this wel-come song com-plete
+|"Am"a2g2 f2e2|"F"f4 e2d2|"G"d2d2 d2d2|"G7"d4 z4:|
+w:with spar-kles gig-gles and a great big...
+%
+% FINAL CHORUS - Big finish
+|:"C"g4 g2a2|"F"f4 f2g2|"C"e4 "G"d4|"C"c4 z4|
+w:WEL-COME to the A-CAD-e-MY where MA-gic's meant to be
+|"Am"e2e2 f2g2|"F"a4 g2f2|"G"d2d2 d2e2|"C"c4 z2c2|
+w:SIL-ly if your spell goes wrong don't you fret that's the best ma-gic yet! Clap
+|"C"z2c2 "G7"z2B2|"C"c2c2 c2c2|
+w:clap POOF! Wel-come to the a-cad-
+|"F"f4 "G"g4|"C"c8:|]
+w:e-MY!
+%
+% OUTRO - Magical chaos
+|"C"c4 z4|"G"B4 z4|"Am"A4 z4|"G7"G4 z4|
+w:POOF! BANG! SPAR-kle! WHEEE!
+|"C"e2e2 e2d2|"G"d2d2 d2e2|"C"c8|]
+w:That's how we do ma-gic can't you see!
