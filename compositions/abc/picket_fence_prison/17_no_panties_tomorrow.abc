@@ -1,0 +1,116 @@
+X:17
+T:No Panties Tomorrow
+T:Claire & David Seduction Duet - The Night That Changes Everything
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=66
+K:Am
+%%MIDI program 1 0
+%
+% INTRO - Seductive jazz feel (4 bars)
+|:"Am"A2c2 e2a2|"Dm"D2F2 A2d2|"E7"E2^G2 B2e2|"Am"A4 z4:|
+%
+% SETUP - Party conversation
+|:"Am"e2e2 e2d2|"Dm"c4 d2e2|"E7"^G2^G2 ^G2A2|"Am"A4 z4|
+w:DAVID: You look like you could use an-oth-er drink to-night
+|"Am"e2f2 g2f2|"Dm"f4 e2d2|"E7"e2d2 c2B2|"Am"A4 z4:|
+w:CLAIRE: I think I've had e-nough to make me think dan-ger-ous thoughts
+%
+% VERSE 1 - CLAIRE (flirtatious, nervous)
+|:"Am"A2A2 A2B2|"Dm"c4 B2A2|"E7"^G2^G2 ^G2A2|"Am"A4 z4|
+w:CLAIRE: I used to dance like no one was watch-ing be-fore I learned that ev-ery-one was
+|"Am"A2B2 c2d2|"Dm"d4 c2B2|"E7"c2B2 A2^G2|"Am"A4 z4:|
+w:I used to laugh with-out cal-cu-lat-ing the so-cial cost of ev-ery-thing I does
+|"F"f2f2 f2e2|"Am"d4 e2f2|"Dm"f2f2 f2e2|"E7"e4 z4|
+w:But to-night the wine is talk-ing and it's say-ing things I should-n't say
+|"F"f2g2 a2g2|"Am"f4 e2d2|"E7"e2d2 c2B2|"Am"A4 z4:|
+w:Like how I no-tice when you're walk-ing and how you make me feel a cer-tain way
+%
+% VERSE 1 - DAVID (controlled, studying)
+|:"Am"e2e2 e2d2|"Dm"c4 d2e2|"E7"^G2^G2 ^G2A2|"Am"A4 z4|
+w:DAVID: I've been watch-ing you for months now be-hind your per-fect sub-ur-ban mask
+|"Am"e2f2 g2f2|"Dm"f4 e2d2|"E7"e2d2 c2B2|"Am"A4 z4:|
+w:There's a wo-man who's for-got-ten how to take what she wants to e-ven ask
+|"F"f2f2 f2g2|"Am"a4 g2f2|"Dm"f2f2 f2e2|"E7"e4 z4|
+w:You move through life like you're a-pol-o-giz-ing for tak-ing up space for hav-ing needs
+|"F"f2g2 a2g2|"Am"f4 e2d2|"E7"e2d2 c2B2|"Am"A4 z4:|
+w:But I can see through your dis-guis-ing the fire that your care-ful life con-ceals
+%
+% PRE-CHORUS - BOTH (building tension)
+|:"Dm"d2d2 d2e2|"Am"f4 e2d2|"E7"e2e2 e2d2|"Am"c4 z4|
+w:CLAIRE: There's some-thing dan-ger-ous in your eyes DAVID: Some-thing hun-gry in your soul
+|"Dm"d2e2 f2e2|"Am"e4 d2c2|"E7"^G2A2 B2^G2|"Am"A4 z4:|
+w:BOTH: If you're brave e-nough to let it some-thing that could make you whole
+%
+% CHORUS - DAVID (commanding)
+Q:1/4=76
+K:C
+|:"C"g4 g2a2|"F"a4 g2f2|"Am"e4 d4|"G"d4 z4|
+w:DAVID: Dance with me like no one's watch-ing ev-en though they are
+|"C"g4 g2a2|"F"a4 g2f2|"Am"e4 "G"d4|"C"c4 z4|
+w:Show me the wo-man you're hid-ing be-hind your sub-ur-ban star
+|"F"f2f2 f2g2|"C"g4 f2e2|"Am"e2e2 e2d2|"G"d4 z4|
+w:Let me see you move your bo-dy like you used to move your mind
+|"F"f2g2 a2g2|"C"g4 f2e2|"G"d2e2 f2d2|"C"c4 z4:|
+w:Be-fore you learned that be-ing sor-ry was the on-ly way to shine
+%
+% VERSE 2 - CLAIRE (getting bolder)
+K:Am
+|:"Am"A2A2 A2B2|"Dm"c4 B2A2|"E7"^G2^G2 ^G2A2|"Am"A4 z4|
+w:CLAIRE: I have-n't felt this a-live in years this reck-less this a-wake
+|"Am"A2B2 c2d2|"Dm"d4 c2B2|"E7"c2B2 A2^G2|"Am"A4 z4:|
+w:All my care-ful con-struc-ted fears are start-ing to break
+%
+% VERSE 2 - DAVID (darker, intense)
+|:"Am"e2e2 e2f2|"Dm"g4 f2e2|"E7"^g2^g2 ^g2a2|"Am"a4 z4|
+w:DAVID: That's just the be-gin-ning Claire of what you're go-ing to feel
+|"Am"e2f2 g2a2|"Dm"a4 g2f2|"E7"g2f2 e2d2|"Am"e4 z4:|
+w:When you stop pre-tend-ing you don't care a-bout what's ac-tu-al-ly real
+%
+% BRIDGE - Spoken/Sung (music drops)
+Q:1/4=60
+|:"Am"A4 z4|"Dm"D4 z4|"E7"E4 z4|"Am"A4 z4|
+w:DAVID: Tell me what you want Claire CLAIRE: I don't know how to want things a-ny-more
+|"Am"A2B2 c2B2|"Dm"A4 G2F2|"E7"E4 z4|"Am"A4 z4:|
+w:DAVID: Then let me teach you let me show you how to feel a-gain
+%
+% THE COMMAND - DAVID (building, commanding)
+Q:1/4=84
+K:C
+|:"C"g2g2 g2a2|"F"b4 a2g2|"Am"a2a2 a2g2|"G"g4 z4|
+w:DAVID: No pan-ties to-mor-row when you go to the store
+|"C"g2a2 b2c'2|"F"c'4 b2a2|"Am"a2g2 "G"f2e2|"C"e4 z4|
+w:Let ev-ery step re-mind you of what you're liv-ing for
+|"F"f2f2 f2g2|"C"a4 g2f2|"Am"f2f2 f2e2|"G"e4 z4|
+w:Feel the fab-ric of your dress a-gainst your skin
+|"F"f2g2 a2b2|"C"c'4 b2a2|"G"g2a2 b2g2|"C"c4 z4:|
+w:And re-mem-ber this is where your real life be-gins
+%
+% CLAIRE'S RESPONSE (shocked, aroused, conflicted)
+K:Am
+Q:1/4=76
+|:"Am"e2e2 e2d2|"Dm"c4 d2e2|"E7"^G2^G2 ^G2A2|"Am"A4 z4|
+w:CLAIRE: I can't I'm not that's not who I am I'm a mo-ther I'm a wife
+|"Am"e2f2 g2f2|"Dm"f4 e2d2|"E7"e2d2 c2B2|"Am"A4 z4:|
+w:DAVID: That's ex-act-ly who you are Claire you just for-got how to let her breathe
+%
+% FINAL CHORUS - BOTH (building to climax)
+Q:1/4=92
+K:C
+|:"C"g4 g2a2|"F"a4 g2f2|"Am"e4 d4|"G"d4 z4|
+w:DAVID: No pan-ties to-mor-row feel a-live a-gain
+|"C"g4 g2a2|"F"a4 g2f2|"Am"e4 "G"d4|"C"c4 z4|
+w:CLAIRE: I'm ter-ri-fied of what that might be-gin
+|"F"f2f2 f2g2|"C"g4 f2e2|"Am"e2f2 g2f2|"G"g4 z4|
+w:BOTH: Feel the pow-er feel the dan-ger feel the fire in-side
+|"F"f2g2 a2b2|"C"c'4 b2a2|"G"g2a2 b2g2|"C"c4 z4:|
+w:BOTH: This is where your real life starts this is where you trust your heart
+%
+% OUTRO - CLAIRE (whispered decision)
+Q:1/4=66
+K:Am
+|:"Am"A4 z4|"Dm"D4 z4|"E7"E4 z4|"Am"A4 z4|
+w:CLAIRE: No pan-ties to-mor-row... What else?
+|"Am"e4 d4|"Dm"c4 B4|"E7"A4 ^G4|"Am"A8|]
+w:DAVID: That's my girl

@@ -1,0 +1,91 @@
+X:14
+T:Couples Puppy
+T:Jessica's Humiliation - The Darkest Moment
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=56
+K:Dm
+%%MIDI program 1 48
+%
+% INTRO - Uncomfortable, sparse (4 bars)
+|:"Dm"D2F2 A2d2|"Gm"G2B2 d2g2|"A7"A2^c2 e2a2|"Dm"d4 z4:|
+%
+% VERSE 1 - DAVID's Command (cold, controlled)
+|:"Dm"A2A2 A2G2|"Gm"F4 G2A2|"A7"E2E2 E2F2|"Dm"D4 z4|
+w:DAVID: Since you can't be trus-ted to make good choi-ces on your own
+|"Dm"A2B2 c2d2|"Gm"d4 c2B2|"A7"^c2B2 A2G2|"Dm"A4 z4:|
+w:You'll stay here where I can watch you un-til you've a-toned
+%
+% JESSICA's Response (voice small, broken)
+|:"Dm"F2F2 F2E2|"Gm"D4 E2F2|"A7"E2E2 E2D2|"Dm"D4 z4|
+w:JESSICA: Yes Sir I un-der-stand I was bad I was wrong
+|"Dm"F2G2 A2B2|"Gm"B4 A2G2|"A7"G2F2 E2D2|"Dm"D4 z4:|
+w:I put my-self in dan-ger and I was-n't ve-ry strong
+|"Bb"d2d2 d2c2|"Gm"B4 c2d2|"A7"^c2^c2 ^c2B2|"Dm"A4 z4|
+w:I'm sor-ry I'm bro-ken I'm sor-ry I'm a dis-grace
+|"Bb"d2e2 f2e2|"Gm"d4 c2B2|"A7"A2G2 F2E2|"Dm"D4 z4:|
+w:The rules that nor-mal peo-ple fol-low keep them safe
+%
+% PRE-CHORUS - The Degradation
+|:"Gm"B2B2 B2c2|"Dm"d4 c2B2|"A7"^c2^c2 ^c2d2|"Dm"d4 z4|
+w:DAVID: Good girls don't sell their bod-ies on-line good girls know the line
+|"Gm"B2c2 d2c2|"Dm"c4 B2A2|"A7"A2G2 F2E2|"Dm"D4 z4:|
+w:What are you Jes-si-ca? JESSICA: I'm your pup-py Sir
+%
+% CHORUS - The Humiliation (Jessica on floor)
+Q:1/4=52
+|:"Dm"d4 d2e2|"Gm"f4 e2d2|"A7"e4 d4|"Dm"d4 z4|
+w:JESSICA: I'm just a PUP-PY I don't get to choose
+|"Bb"f4 f2g2|"Gm"g4 f2e2|"A7"e4 d4|"Dm"d4 z4|
+w:Pup-pies can't make de-ci-sions they on-ly lose
+|"Gm"B2c2 d2e2|"Dm"f4 e2d2|"Bb"d2c2 B2A2|"A7"A4 z4|
+w:I'm just a pup-py I eat from a bowl I sleep on the floor
+|"Gm"B2c2 d2c2|"Dm"c4 B2A2|"A7"A2G2 F2E2|"Dm"D4 z4:|
+w:I don't have a soul of my own I'm just a bone for you to throw
+%
+% VERSE 2 - Claire's Growing Discomfort
+|:"Dm"F2F2 F2G2|"Gm"A4 G2F2|"A7"E2E2 E2F2|"Dm"F4 z4|
+w:CLAIRE: This feels wrong DAVID: She needs struc-ture she needs to learn
+|"Dm"F2G2 A2B2|"Gm"B4 A2G2|"A7"G2F2 E2D2|"Dm"D4 z4:|
+w:CLAIRE: This is-n't struc-ture this is... DAVID: What she earned
+%
+% BRIDGE - Jessica's Desperation
+Q:1/4=60
+|:"Bb"d2d2 d2e2|"Gm"f4 e2d2|"A7"e2e2 e2d2|"Dm"d4 z4|
+w:JESSICA: Please don't fight be-cause of me please don't let me ru-in this too
+|"Bb"d2e2 f2e2|"Gm"e4 d2c2|"A7"^c2B2 A2G2|"Dm"A4 z4:|
+w:I'll be good I'll be qui-et I'll do what-ev-er you want me to
+|"Gm"g2g2 g2f2|"Dm"e4 f2g2|"Bb"f2f2 f2e2|"A7"e4 z4|
+w:Just like you just like her I'm hu-man un-der-neath
+|"Gm"g2f2 e2d2|"Dm"d4 c2B2|"A7"A2G2 F2E2|"Dm"D4 z4:|
+w:But if be-ing hu-man hurts this much may-be I'd ra-ther be be-neath
+%
+% CLAIRE'S REALIZATION
+Q:1/4=66
+|:"Dm"A2A2 A2B2|"Gm"c4 B2A2|"A7"A2A2 A2G2|"Dm"F4 z4|
+w:CLAIRE: Jes-si-ca look at me you are NOT a pup-py look at me!
+|"Dm"A2B2 c2d2|"Gm"d4 c2B2|"A7"^c2B2 A2G2|"Dm"A4 z4:|
+w:You are a wo-man who made a mis-take but you're still a wo-man yet
+|"Bb"f2f2 f2e2|"Gm"d4 e2f2|"A7"e2e2 e2d2|"Dm"d4 z4|
+w:CLAIRE to DAVID: This is-n't dom-in-ance this is cru-el-ty this is con-trol
+|"Bb"f2g2 a2g2|"Gm"f4 e2d2|"A7"d2c2 B2A2|"Dm"A4 z4:|
+w:This is-n't help-ing her this is des-troy-ing her soul
+%
+% FINAL CHORUS - The Breaking Point (three-part)
+Q:1/4=72
+|:"Dm"d4 d2e2|"Gm"f4 e2d2|"A7"e4 d4|"Dm"d4 z4|
+w:JESSICA: I'm just a pup-py I don't de-serve love I'm not good e-nough
+|"Bb"f4 f2g2|"Gm"g4 f2e2|"A7"e4 d4|"Dm"d4 z4|
+w:CLAIRE: This is-n't love this is con-trol you're des-troy-ing her soul
+|"Gm"B2c2 d2e2|"Dm"f4 e2d2|"Bb"d2c2 B2A2|"A7"A4 z4|
+w:DAVID: She needs to learn con-se-quen-ces she has to pay
+|"Gm"B2c2 d2c2|"Dm"c4 B2A2|"A7"A2G2 F2E2|"Dm"D4 z4:|
+w:ALL THREE: This is the mo-ment ev-ery-thing chang-es to-day
+%
+% OUTRO - The Silence (music stops)
+Q:1/4=48
+|:"Dm"F4 z4|"Gm"G4 z4|"A7"A4 z4|"Dm"D4 z4|
+w:CLAIRE: Get up Jes-si-ca JESSICA: But he said...
+|"Dm"d4 c4|"Gm"B4 A4|"A7"G4 F4|"Dm"D8|]
+w:CLAIRE: I don't care what he said We need to talk

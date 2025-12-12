@@ -1,0 +1,83 @@
+X:13
+T:What We Choose
+T:Claire and David Final Duet
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=72
+K:G
+%%MIDI program 1 0
+%
+% INTRO - Bittersweet (4 bars)
+|:"G"G2B2 d2g2|"Em"E2G2 B2e2|"C"C2E2 G2c2|"D"D4 z4:|
+%
+% VERSE 1 - DAVID
+|:"G"B2B2 B2c2|"Em"d4 c2B2|"C"c2c2 c2B2|"D"A4 z4|
+w:DAVID: I thought I knew what I was do-ing thought I had it all con-trolled
+|"G"B2c2 d2e2|"Em"e4 d2c2|"C"c2B2 "D"A2G2|"G"G4 z4:|
+w:But some-where in your sur-ren-der some-thing in me came un-rolled
+|"Am"A2B2 c2d2|"Em"e4 d2c2|"C"c2c2 c2B2|"D"A4 z4|
+w:I built a king-dom out of con-trol but you showed me it was emp-ty
+|"Am"A2B2 c2d2|"Em"e4 d2c2|"D"c2B2 A2G2|"G"G4 z4:|
+w:The mas-ter of my lit-tle world was just a-noth-er kind of pris-on-er
+%
+% VERSE 1 - CLAIRE
+|:"G"B2B2 B2c2|"Em"d4 c2B2|"C"c2c2 c2B2|"D"A4 z4|
+w:CLAIRE: I thought you were my li-ber-a-tor thought you held the on-ly key
+|"G"B2c2 d2e2|"Em"e4 d2c2|"C"c2B2 "D"A2G2|"G"G4 z4:|
+w:But free-dom's not a-bout who holds you it's a-bout what you choose to be
+|"Am"A2B2 c2d2|"Em"e4 d2c2|"C"c2c2 c2B2|"D"A4 z4|
+w:You woke me up that much is true but now I have to learn to walk
+|"Am"A2B2 c2d2|"Em"e4 d2c2|"D"c2B2 A2G2|"G"G4 z4:|
+w:A-lone with-out your hands to guide me learn-ing my own way to talk
+%
+% CHORUS - Together
+|:"G"d4 d2e2|"Em"e4 d2c2|"C"c4 B4|"D"A4 z4|
+w:BOTH: What we CHOOSE is what de-FINES us not the chains or the re-lease
+|"G"d4 d2e2|"Em"e4 d2c2|"C"c4 "D"B4|"G"G4 z4|
+w:What we CHOOSE when no one's WATCH-ing that's where we fi-nal-ly find peace
+|"Am"e2e2 e2f2|"Em"g4 f2e2|"C"e2d2 c2B2|"D"A4 z4|
+w:DAVID: I choose to let you go CLAIRE: I choose to fi-nal-ly grow
+|"Am"e2f2 g2f2|"Em"e4 d2c2|"C"c2B2 "D"A2G2|"G"G4 z4:|
+w:BOTH: We choose to be more than what we've been we choose to start a-gain
+%
+% VERSE 2 - DAVID
+|:"G"B2B2 B2c2|"Em"d4 c2B2|"C"c2c2 c2B2|"D"A4 z4|
+w:DAVID: I can't prom-ise I'll be dif-fer-ent can't prom-ise I'll be good
+|"G"B2c2 d2e2|"Em"e4 d2c2|"C"c2B2 "D"A2G2|"G"G4 z4:|
+w:But you made me want to try Claire you made me wish I could
+%
+% VERSE 2 - CLAIRE
+|:"G"B2B2 B2c2|"Em"d4 c2B2|"C"c2c2 c2B2|"D"A4 z4|
+w:CLAIRE: I don't need you to be dif-fer-ent don't need you to be saved
+|"G"B2c2 d2e2|"Em"e4 d2c2|"C"c2B2 "D"A2G2|"G"G4 z4:|
+w:I just need to find my own path one that I have brave-ly paved
+%
+% BRIDGE - Acceptance
+Q:1/4=80
+|:"Em"e2e2 e2f2|"C"g4 f2e2|"Am"e2e2 e2d2|"D"d4 z4|
+w:DAVID: So this is good-bye? CLAIRE: This is hel-lo to who I am
+|"Em"e2f2 g2f2|"C"e4 d2c2|"Am"c2B2 "D"A2G2|"G"G4 z4:|
+w:DAVID: With-out me? CLAIRE: With-out a-ny-one tell-ing me I can
+|"C"c2d2 e2f2|"G"g4 f2e2|"Am"e2f2 g2a2|"D"a4 z4|
+w:BOTH: This is what love looks like when it fi-nal-ly lets go
+|"C"c2d2 e2f2|"G"g4 f2e2|"D"f2e2 d2c2|"G"B4 z4:|
+w:When it wants more for the oth-er than it wants for it to show
+%
+% FINAL CHORUS
+Q:1/4=84
+|:"G"d4 d2e2|"Em"e4 d2c2|"C"c4 B4|"D"A4 z4|
+w:BOTH: What we CHOOSE is what de-FINES us not the hun-ger or the need
+|"G"d4 d2e2|"Em"e4 d2c2|"C"c4 "D"B4|"G"G4 z4|
+w:What we CHOOSE when it's the HARD-est that's where we plant the seed
+|"Am"e2e2 e2f2|"Em"g4 f2e2|"C"e2d2 c2B2|"D"A4 z4|
+w:Of who we might be-come some-day when we've done the work a-lone
+|"Am"e2f2 g2f2|"Em"e4 d2c2|"C"c2B2 "D"A2G2|"G"G4 z4:|
+w:We choose to walk a-way to-day so we can both come home
+%
+% OUTRO - Parting
+Q:1/4=66
+|:"G"d4 c4|"Em"B4 A4|"C"G4 F4|"D"D4 z4|
+w:DAVID: Good-bye Claire CLAIRE: Good-bye Da-vid
+|"G"B4 A4|"Em"G4 F4|"C"E4 "D"D4|"G"G8|]
+w:BOTH: We choose we choose we choose

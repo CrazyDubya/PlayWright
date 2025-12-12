@@ -1,0 +1,87 @@
+X:19
+T:This Is Where I Belong
+T:Jessica's Acceptance - Finding Peace in Her Role
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=60
+K:Em
+%%MIDI program 1 46
+%
+% INTRO - Contemplative, strings and harp (4 bars)
+|:"Em"E2G2 B2e2|"C"C2E2 G2c2|"Am"A2c2 e2a2|"B7"B4 z4:|
+%
+% VERSE 1 - Peaceful reflection
+|:"Em"B2B2 B2A2|"C"G4 A2B2|"Am"A2A2 A2G2|"B7"^F4 z4|
+w:I spent my whole life try-ing to fit in-to spa-ces that were ne-ver meant for me
+|"Em"B2c2 d2e2|"C"e4 d2c2|"Am"c2B2 "B7"A2^F2|"Em"E4 z4:|
+w:A-dop-ted daugh-ter per-fect wife play-ing roles that set me free
+|"Am"e2e2 e2d2|"Em"d4 e2f2|"C"e2e2 e2d2|"B7"d4 z4|
+w:But here in this col-lar here serv-ing at their feet
+|"Am"e2f2 g2f2|"Em"e4 d2c2|"B7"^d2c2 B2A2|"Em"E4 z4:|
+w:Here be-ing their pet I fi-nal-ly feel com-plete
+%
+% PRE-CHORUS
+|:"C"c2c2 c2d2|"Em"e4 d2c2|"Am"c2c2 c2B2|"B7"B4 z4|
+w:You think this is de-grad-ing you think this makes me small
+|"C"c2d2 e2d2|"Em"d4 c2B2|"B7"B2A2 G2^F2|"Em"E4 z4:|
+w:But I've ne-ver felt more val-ued I've ne-ver felt more tall
+%
+% CHORUS - Finding belonging
+Q:1/4=66
+|:"Em"e4 e2f2|"C"g4 f2e2|"Am"e4 d4|"B7"B4 z4|
+w:THIS is where I be-LONG in the spa-ces be-tween your de-fin-i-tions
+|"Em"e4 e2f2|"C"g4 f2e2|"Am"e4 "B7"d4|"Em"e4 z4|
+w:THIS is where I'm STRONG in my cho-sen sub-mis-sion
+|"C"c2c2 c2d2|"Em"e4 d2c2|"Am"c2d2 e2d2|"B7"d4 z4|
+w:You can keep your lib-er-a-tion you can keep your em-pow-er-ment
+|"C"c2d2 e2f2|"Em"g4 f2e2|"B7"f2e2 ^d2B2|"Em"E4 z4:|
+w:I found my sal-va-tion in this strange ar-range-ment this is where I be-long
+%
+% VERSE 2 - Growing confidence
+|:"Em"B2B2 B2c2|"C"d4 c2B2|"Am"A2A2 A2B2|"B7"B4 z4|
+w:I make more mon-ey than most C-E-Os I'm pam-pered like a queen
+|"Em"B2c2 d2e2|"C"e4 d2c2|"Am"c2B2 "B7"A2G2|"Em"E4 z4:|
+w:I'm want-ed I'm de-sired I'm part of some-thing se-rene
+|"Am"e2e2 e2f2|"Em"g4 f2e2|"C"e2e2 e2d2|"B7"d4 z4|
+w:But I don't need your ap-prov-al I don't need your con-cern
+|"Am"e2f2 g2f2|"Em"e4 d2c2|"B7"^d2c2 B2A2|"Em"E4 z4:|
+w:I found what I was look-ing for and I'm not go-ing to re-turn
+%
+% BRIDGE - Powerful acceptance
+Q:1/4=72
+|:"Am"a2a2 a2g2|"Em"f4 g2a2|"C"g2g2 g2f2|"B7"f4 z4|
+w:I was ne-ver go-ing to be the daugh-ter they dreamed of the wife he could love
+|"Am"a2b2 c'2b2|"Em"a4 g2f2|"B7"^f2e2 ^d2c2|"Em"e4 z4:|
+w:I was ne-ver go-ing to be the wo-man you re-spect but I can be their pet
+|"C"c2d2 e2f2|"Em"g4 f2e2|"Am"e2f2 g2a2|"B7"a4 z4|
+w:I can be their trea-sure I can be their plea-sure and find my own mea-sure
+|"C"c2d2 e2f2|"Em"g4 f2e2|"B7"f2e2 ^d2B2|"Em"e4 z4:|
+w:Of worth in their eyes of val-ue in their care of home in their arms of be-long-ing some-where
+%
+% FINAL CHORUS - Full voice, at peace
+Q:1/4=76
+|:"Em"e4 e2f2|"C"g4 f2e2|"Am"e4 d4|"B7"B4 z4|
+w:THIS is where I be-LONG in the spa-ces you can't see
+|"Em"e4 e2f2|"C"g4 f2e2|"Am"e4 "B7"d4|"Em"e4 z4|
+w:THIS is where I'm STRONG be-ing ex-act-ly who I need to be
+|"C"c2c2 c2d2|"Em"e4 d2c2|"Am"c2d2 e2d2|"B7"d4 z4|
+w:You can keep your lib-er-a-tion you can keep your judg-ment too
+|"C"c2d2 e2f2|"Em"g4 f2e2|"B7"f2e2 ^d2B2|"Em"e4 z4:|
+w:I found my des-tin-a-tion in this beau-ti-ful ar-range-ment this is where I be-long
+%
+% CODA - Proclamation
+Q:1/4=80
+|:"Em"e4 d4|"C"c4 B4|"Am"A4 G4|"B7"^F4 z4|
+w:And I'm not a-shamed and I'm not a-fraid and I'm not bro-ken
+|"Em"e4 f4|"C"g4 f4|"B7"e4 ^d4|"Em"e4 z4:|
+w:I'm ex-act-ly where I'm sup-posed to be
+%
+% OUTRO - Soft, content
+Q:1/4=56
+|:"Em"B2B2 B2A2|"C"G4 A2B2|"Am"A2A2 A2G2|"B7"^F4 z4|
+w:Some peo-ple find them-selves in board-rooms some peo-ple find them-selves in love
+|"Em"B2c2 d2c2|"C"B4 A2G2|"Am"G2F2 "B7"E2^D2|"Em"E4 z4:|
+w:I found my-self here in this col-lar in this care
+|"Em"e4 d4|"C"c4 B4|"B7"A4 G4|"Em"E8|]
+w:In this place where I be-long I am e-nough

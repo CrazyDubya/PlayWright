@@ -1,0 +1,78 @@
+X:12
+T:The Choice
+T:Claire's Moment of Decision
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=80
+K:Em
+%%MIDI program 1 0
+%
+% INTRO - Weight of decision (4 bars)
+|:"Em"E2G2 B2e2|"C"C2E2 G2c2|"D"D2F2 A2d2|"Em"E4 z4:|
+%
+% VERSE 1 - Laying out the options
+|:"Em"B2B2 B2c2|"C"c4 B2A2|"D"A2A2 A2B2|"Em"B4 z4|
+w:I can stay in this mar-riage pre-tend-ing ev-ery-thing's fine con-tin-ue the per-for-mance
+|"Em"B2c2 d2e2|"C"e4 d2c2|"D"c2B2 A2G2|"Em"E4 z4:|
+w:Tell my-self that sub-ur-ban life is all I need the per-fect wife
+|"Am"A2B2 c2d2|"Em"e4 d2c2|"C"c2c2 c2B2|"D"A4 z4|
+w:Or I can walk a-way from ev-ery-thing I've built burn down the house I've made
+|"Am"A2B2 c2d2|"Em"e4 d2c2|"D"c2B2 A2G2|"Em"E4 z4:|
+w:Tell the truth and face the con-se-quen-ces of the bed I've laid
+%
+% PRE-CHORUS
+|:"C"c2c2 c2d2|"Em"e4 d2c2|"Am"c2c2 c2B2|"D"A4 z4|
+w:My daugh-ters will be hor-ri-fied my hus-band will be de-stroyed
+|"C"c2d2 e2d2|"Em"d4 c2B2|"D"B2A2 G2F2|"Em"E4 z4:|
+w:The neigh-bors will all whis-per a-bout the emp-ty void
+%
+% CHORUS - The choice itself
+Q:1/4=88
+|:"Em"e4 e2f2|"C"g4 f2e2|"D"f4 e4|"Em"e4 z4|
+w:This is THE CHOICE this is THE MO-ment when I de-cide who I be-come
+|"Am"a4 a2g2|"C"g4 f2e2|"D"e4 d4|"Em"e4 z4|
+w:Do I keep pre-TEND-ing or do I fi-nal-ly come un-done?
+|"C"c2d2 e2f2|"G"g4 f2e2|"Am"e2d2 c2B2|"D"A4 z4|
+w:Do I choose safe-ty or do I choose truth? Do I choose com-fort or do I choose proof
+|"Am"a2g2 f2e2|"C"e4 d2c2|"D"d2c2 B2A2|"Em"E4 z4:|
+w:That I am more than what they see more than just a wife and mom that I'm fi-nal-ly ME
+%
+% VERSE 2 - What she's learned
+|:"Em"B2B2 B2c2|"C"c4 B2A2|"D"A2A2 A2B2|"Em"B4 z4|
+w:Da-vid showed me what I could be what I'd bur-ied for twen-ty years
+|"Em"B2c2 d2e2|"C"e4 d2c2|"D"c2B2 A2G2|"Em"E4 z4:|
+w:But he al-so showed me his dark-ness the man-ip-u-la-tion and the fears
+|"Am"A2B2 c2d2|"Em"e4 d2c2|"C"c2c2 c2B2|"D"A4 z4|
+w:I can't un-know what I've dis-cov-ered I can't pre-tend I'm still a-sleep
+|"Am"A2B2 c2d2|"Em"e4 d2c2|"D"c2B2 A2G2|"Em"E4 z4:|
+w:But I al-so can't just fol-low a man who games the wo-men that he keeps
+%
+% BRIDGE - Finding her own path
+Q:1/4=92
+|:"Am"a2a2 a2b2|"Em"g4 f2e2|"C"e2e2 e2d2|"D"d4 z4|
+w:What if there's a third op-tion? What if I don't have to choose?
+|"Am"a2b2 c'2b2|"Em"b4 a2g2|"D"g2f2 e2d2|"Em"e4 z4:|
+w:Be-tween the life I had and Da-vid? What if I re-fuse?
+|"C"c2d2 e2f2|"G"g4 f2e2|"Am"e2f2 g2a2|"D"a4 z4|
+w:To let a-ny-one else de-fine what my free-dom looks like?
+|"C"c2d2 e2f2|"G"g4 f2e2|"D"f2e2 d2c2|"Em"e4 z4:|
+w:What if I choose MY-SELF in-stead of an-oth-er man to strike?
+%
+% FINAL CHORUS - The decision made
+Q:1/4=96
+|:"Em"e4 e2f2|"C"g4 f2e2|"D"f4 e4|"Em"e4 z4|
+w:THIS is THE CHOICE this is THE MO-ment I de-cide that I am free
+|"Am"a4 a2g2|"C"g4 f2e2|"D"e4 d4|"Em"e4 z4|
+w:Not free to be Da-vid's not free to be Mich-ael's but free to just be ME
+|"C"c2d2 e2f2|"G"g4 f2e2|"Am"e2d2 c2B2|"D"A4 z4|
+w:I choose to leave the mar-riage but not to run to some-one else
+|"Am"a2g2 f2e2|"C"e4 d2c2|"D"d2c2 B2A2|"Em"E4 z4:|
+w:I choose to learn to stand a-lone I choose to find my-self
+%
+% OUTRO - Resolution
+Q:1/4=76
+|:"Em"B2B2 B2c2|"C"c4 B2A2|"Am"A2A2 A2B2|"D"A4 z4|
+w:The choice is made the path is clear I'm walk-ing in-to the un-known
+|"Em"e4 d4|"C"c4 B4|"D"A4 G4|"Em"E8|]
+w:But for the first time in my life I'm walk-ing there a-lone

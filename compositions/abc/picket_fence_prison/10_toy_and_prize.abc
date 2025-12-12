@@ -1,0 +1,90 @@
+X:10
+T:Toy and Prize
+T:David's Internal Conflict
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=88
+K:Gm
+%%MIDI program 1 0
+%
+% INTRO - Conflicted, shifting (4 bars)
+|:"Gm"G2B2 d2g2|"Cm"c2e2 g2c'2|"D7"d2^f2 a2d'2|"Gm"g4 z4:|
+%
+% VERSE 1 - Jessica (The Toy) - Cold, calculated
+|:"Gm"d2d2 d2c2|"Cm"B4 c2d2|"D7"d2d2 d2c2|"Gm"B4 z4|
+w:Jes-si-ca is sim-ple Jes-si-ca is clear a bro-ken lit-tle toy that I keep here
+|"Gm"d2e2 f2g2|"Cm"g4 f2e2|"D7"^f2e2 d2c2|"Gm"d4 z4:|
+w:For my a-muse-ment for my use ea-sy to con-trol ea-sy to a-buse
+|"Eb"e2e2 e2f2|"Cm"g4 f2e2|"D7"^f2^f2 ^f2e2|"Gm"d4 z4|
+w:Wind her up and watch her dance give her mo-ney give her chance
+|"Eb"e2f2 g2f2|"Cm"f4 e2d2|"D7"d2c2 B2A2|"Gm"G4 z4:|
+w:To feel spe-cial feel de-sired while I pull the strings I've wired
+%
+% PRE-CHORUS
+|:"Cm"c2c2 c2d2|"Gm"e4 d2c2|"D7"d2d2 d2e2|"Gm"d4 z4|
+w:I know ex-act-ly what she is I know ex-act-ly what I'm do-ing
+|"Cm"c2d2 e2d2|"Gm"d4 c2B2|"D7"B2A2 G2^F2|"Gm"G4 z4:|
+w:She's en-ter-tain-ment she's a bus-iness she's a game that I'm pur-su-ing
+%
+% CHORUS - The Confusion (key shifts to major)
+K:G
+|:"G"d4 d2e2|"C"e4 d2c2|"D"d4 c4|"G"B4 z4|
+w:But CLAIRE... CLAIRE is dif-fer-ent CLAIRE was ne-ver meant to be
+|"Em"e4 e2f2|"C"g4 f2e2|"D"f4 e4|"G"d4 z4|
+w:More than just a-noth-er TOY in my sub-ur-ban in-ven-tor-y
+|"Em"e2f2 g2f2|"C"e4 d2c2|"Am"c2c2 c2B2|"D"A4 z4|
+w:But CLAIRE... CLAIRE is dif-fer-ent and I don't know what that means
+|"Em"e2f2 g2a2|"C"g4 f2e2|"Am"e2d2 "D"c2B2|"G"G4 z4:|
+w:When a pre-da-tor finds a prize in his col-lec-tion of bro-ken things
+%
+% VERSE 2 - Claire (The Prize) - Warmer, confused
+K:Gm
+|:"Gm"d2d2 d2e2|"Cm"f4 e2d2|"D7"d2d2 d2c2|"Gm"B4 z4|
+w:Claire was an ac-ci-dent a mo-ment's whim too much wine her guard grew thin
+|"Gm"d2e2 f2g2|"Cm"g4 f2e2|"D7"e2d2 c2B2|"Gm"d4 z4:|
+w:I gave a com-mand she o-beyed and some-thing in me changed
+|"Eb"e2e2 e2f2|"Cm"g4 f2e2|"D7"^f2^f2 ^f2g2|"Gm"g4 z4|
+w:But when she looks at me with trust when she sur-ren-ders to my touch
+|"Eb"e2f2 g2f2|"Cm"f4 e2d2|"D7"d2c2 B2A2|"Gm"G4 z4:|
+w:I feel some-thing I don't re-cog-nize some-thing that ter-ri-fies
+%
+% BRIDGE - Internal War (chaotic)
+Q:1/4=100
+|:"Cm"c2c2 c2d2|"Gm"e4 d2c2|"D7"^f2^f2 ^f2g2|"Gm"g4 z4|
+w:What is this feel-ing? What is this need? To pro-tect her to keep her
+|"Cm"c2d2 e2f2|"Gm"g4 f2e2|"D7"e2d2 c2B2|"Gm"d4 z4:|
+w:To ac-tu-al-ly feed her growth her plea-sure not just my own
+|"Eb"g2g2 g2a2|"Cm"b4 a2g2|"D7"a2a2 a2g2|"Gm"g4 z4|
+w:This is-n't how this works! This is-n't who I am!
+|"Eb"g2a2 b2a2|"Cm"a4 g2f2|"D7"^f2e2 d2c2|"Gm"d4 z4:|
+w:I'm the man who breaks Jes-si-ca I'm not sup-posed to un-der-stand
+%
+% VERSE 3 - Realization (desperate)
+|:"Gm"d2d2 d2e2|"Cm"f4 e2d2|"D7"d2d2 d2c2|"Gm"B4 z4|
+w:Jes-si-ca sees me as I am a us-er a man-ip-u-la-tor
+|"Gm"d2e2 f2g2|"Cm"g4 f2e2|"D7"e2d2 c2B2|"Gm"d4 z4:|
+w:She loves me for my cru-el-ty she's my wil-ling col-lab-or-a-tor
+|"Eb"e2e2 e2f2|"Cm"g4 f2e2|"D7"^f2^f2 ^f2g2|"Gm"g4 z4|
+w:But Claire... Claire sees some-thing else some-thing I'm not sure ex-ists
+|"Eb"e2f2 g2f2|"Cm"f4 e2d2|"D7"d2c2 B2A2|"Gm"G4 z4:|
+w:A man who could love with-out de-stroy-ing a Dom who could care with-out twists
+%
+% FINAL CHORUS - No resolution
+K:G
+Q:1/4=84
+|:"G"d4 d2e2|"C"e4 d2c2|"D"d4 c4|"G"B4 z4|
+w:CLAIRE is dif-fer-ent CLAIRE is dif-fer-ent but I don't know if I can be
+|"Em"e4 e2f2|"C"g4 f2e2|"D"f4 e4|"G"d4 z4|
+w:The man she thinks she's sur-ren-der-ing to or just a-noth-er pre-da-tor like me
+|"Em"e2f2 g2f2|"C"e4 d2c2|"Am"c2c2 c2B2|"D"A4 z4|
+w:Jes-si-ca is my TOY my cre-a-tion Claire is my PRIZE my con-fu-sion
+|"Em"e2f2 g2a2|"C"g4 f2e2|"Am"e2d2 "D"c2B2|"G"G4 z4:|
+w:One I con-trol com-plete-ly one con-trols my de-lu-sion
+%
+% OUTRO - The question (unresolved)
+Q:1/4=72
+|:"Em"e4 d4|"C"c4 B4|"Am"A4 G4|"D7"^F4 z4|
+w:Jes-si-ca is my toy Claire is my prize
+|"Em"e4 d4|"C"c4 B4|"D7"A4 G4|"G"G8|]
+w:But which one shows me who I real-ly am in-side?
