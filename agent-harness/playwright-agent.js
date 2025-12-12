@@ -175,7 +175,18 @@ const randomElements = (array, count) => {
   return shuffled.slice(0, count);
 };
 
-const sanitizeName = (name) => name.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+const sanitizeName = (name) => {
+  if (!name || typeof name !== 'string') {
+    throw new Error('Name must be a non-empty string');
+  }
+  // Remove path separators and parent directory references to prevent path traversal
+  const cleaned = name.replace(/[\/\\]/g, '').replace(/\.\./g, '');
+  const sanitized = cleaned.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+  if (!sanitized) {
+    throw new Error('Name contains only invalid characters');
+  }
+  return sanitized;
+};
 
 const output = (data) => {
   console.log(JSON.stringify(data, null, 2));
@@ -195,6 +206,34 @@ const setState = async (state) => {
 
 const getProjectPath = (projectName) => {
   return path.join(PROJECTS_DIR, sanitizeName(projectName));
+};
+
+const parseJSON = (jsonString, errorContext = 'JSON') => {
+  try {
+    if (!jsonString) {
+      throw new Error(`${errorContext} is required but was not provided`);
+    }
+    return JSON.parse(jsonString);
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      throw new Error(`Invalid ${errorContext}: ${error.message}`);
+    }
+    throw error;
+  }
+};
+
+const validateActSceneNumbers = (act, num) => {
+  const actNum = parseInt(act);
+  const sceneNum = parseInt(num);
+  
+  if (isNaN(actNum) || actNum < 1 || actNum > 10) {
+    throw new Error('Act number must be between 1 and 10');
+  }
+  if (isNaN(sceneNum) || sceneNum < 1 || sceneNum > 50) {
+    throw new Error('Scene number must be between 1 and 50');
+  }
+  
+  return { act: actNum, scene: sceneNum };
 };
 
 // ============================================================================
@@ -505,7 +544,7 @@ program
         return;
       }
 
-      const concept = JSON.parse(options.json);
+      const concept = parseJSON(options.json, 'Concept data');
       concept.savedAt = new Date().toISOString();
 
       await fs.writeJson(path.join(projectPath, 'concept.json'), concept, { spaces: 2 });
@@ -566,7 +605,7 @@ program
 
       await fs.ensureDir(charactersDir);
 
-      const characterData = options.json ? JSON.parse(options.json) : {};
+      const characterData = options.json ? parseJSON(options.json, 'Character data') : {};
 
       const character = {
         name,
@@ -676,7 +715,7 @@ program
       }
 
       const existing = await fs.readJson(characterPath);
-      const updates = JSON.parse(options.json);
+      const updates = parseJSON(options.json, 'Character update data');
 
       const updated = {
         ...existing,
@@ -799,16 +838,19 @@ program
         return;
       }
 
+      // Validate act and scene numbers
+      const validated = validateActSceneNumbers(act, num);
+
       await fs.ensureDir(scenesDir);
 
-      const sceneData = options.json ? JSON.parse(options.json) : {};
+      const sceneData = options.json ? parseJSON(options.json, 'Scene data') : {};
 
       const scene = {
-        act: parseInt(act),
-        sceneNumber: parseInt(num),
+        act: validated.act,
+        sceneNumber: validated.scene,
         ...sceneData,
         // Ensure required fields
-        title: sceneData.title || `Act ${act} Scene ${num}`,
+        title: sceneData.title || `Act ${validated.act} Scene ${validated.scene}`,
         location: sceneData.location || '',
         time: sceneData.time || '',
         charactersPresent: sceneData.charactersPresent || [],
@@ -824,12 +866,12 @@ program
         updatedAt: new Date().toISOString()
       };
 
-      const filename = `act${act}_scene${num}.json`;
+      const filename = `act${validated.act}_scene${validated.scene}.json`;
       await fs.writeJson(path.join(scenesDir, filename), scene, { spaces: 2 });
 
       output({
         success: true,
-        scene: `Act ${act} Scene ${num}`,
+        scene: `Act ${validated.act} Scene ${validated.scene}`,
         path: path.join(scenesDir, filename),
         message: 'Scene created successfully'
       });
@@ -886,8 +928,11 @@ program
   .description('Get scene details')
   .action(async (project, act, num) => {
     try {
+      // Validate act and scene numbers
+      const validated = validateActSceneNumbers(act, num);
+      
       const projectPath = getProjectPath(project);
-      const scenePath = path.join(projectPath, 'scenes', `act${act}_scene${num}.json`);
+      const scenePath = path.join(projectPath, 'scenes', `act${validated.act}_scene${validated.scene}.json`);
 
       if (!await fs.pathExists(scenePath)) {
         output({ success: false, error: 'Scene not found' });
@@ -907,8 +952,11 @@ program
   .option('--json <json>', 'Updated scene data')
   .action(async (project, act, num, options) => {
     try {
+      // Validate act and scene numbers
+      const validated = validateActSceneNumbers(act, num);
+      
       const projectPath = getProjectPath(project);
-      const scenePath = path.join(projectPath, 'scenes', `act${act}_scene${num}.json`);
+      const scenePath = path.join(projectPath, 'scenes', `act${validated.act}_scene${validated.scene}.json`);
 
       if (!await fs.pathExists(scenePath)) {
         output({ success: false, error: 'Scene not found' });
@@ -916,7 +964,7 @@ program
       }
 
       const existing = await fs.readJson(scenePath);
-      const updates = JSON.parse(options.json);
+      const updates = parseJSON(options.json, 'Scene update data');
 
       const updated = {
         ...existing,
@@ -925,7 +973,7 @@ program
       };
 
       await fs.writeJson(scenePath, updated, { spaces: 2 });
-      output({ success: true, message: 'Scene updated', scene: `Act ${act} Scene ${num}` });
+      output({ success: true, message: 'Scene updated', scene: `Act ${validated.act} Scene ${validated.scene}` });
     } catch (error) {
       output({ success: false, error: error.message });
     }
@@ -936,8 +984,11 @@ program
   .description('Evaluate scene against quality criteria')
   .action(async (project, act, num) => {
     try {
+      // Validate act and scene numbers
+      const validated = validateActSceneNumbers(act, num);
+      
       const projectPath = getProjectPath(project);
-      const scenePath = path.join(projectPath, 'scenes', `act${act}_scene${num}.json`);
+      const scenePath = path.join(projectPath, 'scenes', `act${validated.act}_scene${validated.scene}.json`);
 
       if (!await fs.pathExists(scenePath)) {
         output({ success: false, error: 'Scene not found' });
@@ -946,7 +997,7 @@ program
 
       const scene = await fs.readJson(scenePath);
       const evaluation = {
-        scene: `Act ${act} Scene ${num}`,
+        scene: `Act ${validated.act} Scene ${validated.scene}`,
         criteria: [],
         score: 0,
         maxScore: 100,
@@ -1033,7 +1084,7 @@ program
 
       await fs.ensureDir(songsDir);
 
-      const songData = options.json ? JSON.parse(options.json) : {};
+      const songData = options.json ? parseJSON(options.json, 'Song data') : {};
 
       const song = {
         name,
@@ -1144,7 +1195,7 @@ program
       }
 
       const existing = await fs.readJson(songPath);
-      const updates = JSON.parse(options.json);
+      const updates = parseJSON(options.json, 'Song update data');
 
       const updated = {
         ...existing,
@@ -1254,7 +1305,7 @@ program
   .option('--context <json>', 'Context JSON with current situation')
   .action(async (options) => {
     try {
-      const context = options.context ? JSON.parse(options.context) : {};
+      const context = options.context ? parseJSON(options.context, 'Context data') : {};
 
       const guidance = {
         decisionFramework: [
@@ -1287,7 +1338,7 @@ program
   .option('--context <json>', 'Context JSON with character and situation')
   .action(async (options) => {
     try {
-      const context = options.context ? JSON.parse(options.context) : {};
+      const context = options.context ? parseJSON(options.context, 'Context data') : {};
 
       const guidance = {
         decisionFramework: [
@@ -1319,7 +1370,7 @@ program
   .option('--context <json>', 'Context JSON with scene/moment details')
   .action(async (options) => {
     try {
-      const context = options.context ? JSON.parse(options.context) : {};
+      const context = options.context ? parseJSON(options.context, 'Context data') : {};
 
       const guidance = {
         decisionFramework: [
