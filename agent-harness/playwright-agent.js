@@ -826,16 +826,16 @@ program
         return outputError(projectValidation.error);
       }
 
+      // Safely parse JSON first (before checking project existence)
+      const parseResult = safeJsonParse(options.json, 'concept data');
+      if (!parseResult.success) {
+        return outputError(parseResult.error);
+      }
+
       const projectPath = getProjectPath(project);
 
       if (!await fs.pathExists(projectPath)) {
         return outputError(ERROR_MESSAGES.PROJECT_NOT_FOUND);
-      }
-
-      // Safely parse JSON
-      const parseResult = safeJsonParse(options.json, 'concept data');
-      if (!parseResult.success) {
-        return outputError(parseResult.error);
       }
 
       const concept = parseResult.data;
@@ -967,6 +967,12 @@ program
   .action(async (project) => {
     try {
       const projectPath = getProjectPath(project);
+      
+      // Check if project exists first
+      if (!await fs.pathExists(projectPath)) {
+        return outputError(ERROR_MESSAGES.PROJECT_NOT_FOUND);
+      }
+
       const charactersDir = path.join(projectPath, 'characters');
 
       if (!await fs.pathExists(charactersDir)) {

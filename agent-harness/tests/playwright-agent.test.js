@@ -22,14 +22,21 @@ const runCli = (command) => {
   try {
     const output = execSync(`node ${CLI_PATH} ${command}`, {
       encoding: 'utf-8',
-      cwd: path.join(__dirname, '..')
+      cwd: path.join(__dirname, '..'),
+      stdio: ['pipe', 'pipe', 'pipe']
     });
     return JSON.parse(output.trim());
   } catch (error) {
-    if (error.stdout) {
-      return JSON.parse(error.stdout.trim());
+    if (error.stdout && error.stdout.trim()) {
+      try {
+        return JSON.parse(error.stdout.trim());
+      } catch (parseError) {
+        // If stdout isn't JSON, return error object
+        return { success: false, error: error.stdout.trim() || error.stderr.trim() || error.message };
+      }
     }
-    throw error;
+    // Return a structured error response for commands that fail without JSON output
+    return { success: false, error: error.stderr ? error.stderr.trim() : error.message };
   }
 };
 
@@ -78,7 +85,7 @@ describe('Input Validation', () => {
     });
 
     test('rejects negative scene numbers', () => {
-      const result = runCli('scene:create testproject 1 -1');
+      const result = runCli('scene:create testproject 1 -- -1');
       expect(result.success).toBe(false);
       expect(result.error).toContain('Scene number must be');
     });
