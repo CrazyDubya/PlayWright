@@ -7,7 +7,7 @@
 
 const path = require('path');
 const fs = require('fs-extra');
-const { execSync } = require('child_process');
+const { spawnSync } = require('child_process');
 
 // Test configuration
 const TEST_PROJECTS_DIR = path.join(__dirname, '../test-projects');
@@ -15,28 +15,62 @@ const CLI_PATH = path.join(__dirname, '../playwright-agent.js');
 
 /**
  * Helper to run CLI commands and return parsed JSON output
- * @param {string} command - The CLI command to run
+ * Uses spawnSync with array arguments to prevent command injection
+ * @param {string} command - The CLI command to run (will be split into args)
  * @returns {Object} Parsed JSON response
  */
 const runCli = (command) => {
   try {
-    const output = execSync(`node ${CLI_PATH} ${command}`, {
+    // Parse command string into arguments safely
+    // Handle quoted strings to preserve them as single arguments
+    const args = [];
+    let current = '';
+    let inQuotes = false;
+    let quoteChar = '';
+
+    for (const char of command) {
+      if ((char === '"' || char === "'") && !inQuotes) {
+        inQuotes = true;
+        quoteChar = char;
+      } else if (char === quoteChar && inQuotes) {
+        inQuotes = false;
+        quoteChar = '';
+      } else if (char === ' ' && !inQuotes) {
+        if (current) {
+          args.push(current);
+          current = '';
+        }
+      } else {
+        current += char;
+      }
+    }
+    if (current) args.push(current);
+
+    // Use spawnSync with array arguments (safe from injection)
+    const result = spawnSync('node', [CLI_PATH, ...args], {
       encoding: 'utf-8',
       cwd: path.join(__dirname, '..'),
       stdio: ['pipe', 'pipe', 'pipe']
     });
-    return JSON.parse(output.trim());
-  } catch (error) {
-    if (error.stdout && error.stdout.trim()) {
-      try {
-        return JSON.parse(error.stdout.trim());
-      } catch (parseError) {
-        // If stdout isn't JSON, return error object
-        return { success: false, error: error.stdout.trim() || error.stderr.trim() || error.message };
-      }
+
+    if (result.stdout && result.stdout.trim()) {
+      return JSON.parse(result.stdout.trim());
     }
-    // Return a structured error response for commands that fail without JSON output
-    return { success: false, error: error.stderr ? error.stderr.trim() : error.message };
+
+    if (result.status !== 0) {
+      if (result.stderr && result.stderr.trim()) {
+        try {
+          return JSON.parse(result.stderr.trim());
+        } catch {
+          return { success: false, error: result.stderr.trim() };
+        }
+      }
+      return { success: false, error: 'Command failed with no output' };
+    }
+
+    return { success: false, error: 'No output from command' };
+  } catch (error) {
+    return { success: false, error: error.message };
   }
 };
 

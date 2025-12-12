@@ -344,6 +344,46 @@ const safeJsonParse = (jsonString, errorContext = 'JSON data') => {
 };
 
 /**
+ * Sanitizes an object by removing prototype pollution vectors
+ * Prevents __proto__, constructor, and prototype from being spread into objects
+ * @param {Object} obj - User-provided object to sanitize
+ * @param {number} [depth=0] - Current recursion depth (prevents infinite recursion attacks)
+ * @returns {Object} Sanitized object safe for spread operations
+ */
+const sanitizeObject = (obj, depth = 0) => {
+  // Prevent deep recursion attacks
+  if (depth > 10) return obj;
+
+  if (typeof obj !== 'object' || obj === null) {
+    return obj;
+  }
+
+  // Handle arrays
+  if (Array.isArray(obj)) {
+    return obj.map(item => sanitizeObject(item, depth + 1));
+  }
+
+  const dangerousKeys = ['__proto__', 'constructor', 'prototype'];
+  const sanitized = {};
+
+  for (const key of Object.keys(obj)) {
+    // Block dangerous keys at all levels
+    if (dangerousKeys.includes(key)) {
+      continue;
+    }
+
+    // Recursively sanitize nested objects
+    if (typeof obj[key] === 'object' && obj[key] !== null) {
+      sanitized[key] = sanitizeObject(obj[key], depth + 1);
+    } else {
+      sanitized[key] = obj[key];
+    }
+  }
+
+  return sanitized;
+};
+
+/**
  * Validates that a required --json option is provided
  * @param {Object} options - Command options object
  * @param {string} optionName - Name of the option to validate
@@ -920,7 +960,7 @@ Examples:
         if (!parseResult.success) {
           return outputError(parseResult.error);
         }
-        characterData = parseResult.data;
+        characterData = sanitizeObject(parseResult.data);  // Prevent prototype pollution
       }
 
       const character = {
@@ -1048,7 +1088,7 @@ program
       }
 
       const existing = await fs.readJson(characterPath);
-      const updates = parseResult.data;
+      const updates = sanitizeObject(parseResult.data);  // Prevent prototype pollution
 
       const updated = {
         ...existing,
@@ -1203,7 +1243,7 @@ Examples:
         if (!parseResult.success) {
           return outputError(parseResult.error);
         }
-        sceneData = parseResult.data;
+        sceneData = sanitizeObject(parseResult.data);  // Prevent prototype pollution
       }
 
       const scene = {
@@ -1340,7 +1380,7 @@ program
       }
 
       const existing = await fs.readJson(scenePath);
-      const updates = parseResult.data;
+      const updates = sanitizeObject(parseResult.data);  // Prevent prototype pollution
 
       const updated = {
         ...existing,
@@ -1493,7 +1533,7 @@ Examples:
         if (!parseResult.success) {
           return outputError(parseResult.error);
         }
-        songData = parseResult.data;
+        songData = sanitizeObject(parseResult.data);  // Prevent prototype pollution
       }
 
       const song = {
@@ -1616,7 +1656,7 @@ program
       }
 
       const existing = await fs.readJson(songPath);
-      const updates = parseResult.data;
+      const updates = sanitizeObject(parseResult.data);  // Prevent prototype pollution
 
       const updated = {
         ...existing,

@@ -10,12 +10,67 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '1mb' }));  // Prevent local resource exhaustion
+app.use(bodyParser.urlencoded({ extended: true, limit: '1mb' }));
 
 // Paths
 const PROJECTS_DIR = path.join(__dirname, '../../projects');
 const TEMPLATES_DIR = path.join(__dirname, '../../templates');
+
+/**
+ * Sanitizes a project name for safe filesystem use (local security)
+ * Prevents path traversal attacks that could affect local filesystem
+ * @param {string} name - The name to sanitize
+ * @returns {string} Sanitized name safe for filesystem use
+ * @throws {Error} If name is invalid or contains path traversal
+ */
+const sanitizeProjectName = (name) => {
+  if (!name || typeof name !== 'string') {
+    throw new Error('Invalid project name: must be a non-empty string');
+  }
+
+  // Decode URL-encoded characters to catch obfuscated attacks
+  let decoded = name;
+  try {
+    decoded = decodeURIComponent(name);
+  } catch {
+    decoded = name;
+  }
+
+  // Check for path traversal patterns
+  const pathTraversalPatterns = [
+    /\.\./,           // Parent directory reference
+    /^\//,            // Absolute path
+    /^[a-zA-Z]:\\/,   // Windows absolute path
+    /\0/,             // Null byte injection
+    /[/\\]/           // Forward or backslashes
+  ];
+
+  for (const pattern of pathTraversalPatterns) {
+    if (pattern.test(decoded)) {
+      throw new Error('Invalid project name: path traversal detected');
+    }
+  }
+
+  // Sanitize: lowercase, spaces to underscores, only safe chars
+  const sanitized = decoded
+    .toLowerCase()
+    .replace(/\s+/g, '_')
+    .replace(/[^a-z0-9_-]/g, '');
+
+  if (!sanitized) {
+    throw new Error('Invalid project name: must contain alphanumeric characters');
+  }
+
+  // Defense-in-depth: verify resolved path stays within PROJECTS_DIR
+  const testPath = path.resolve(path.join(PROJECTS_DIR, sanitized));
+  const resolvedBase = path.resolve(PROJECTS_DIR);
+  if (!testPath.startsWith(resolvedBase + path.sep)) {
+    throw new Error('Invalid project name: path traversal detected');
+  }
+
+  return sanitized;
+};
 
 // Concept generation data (from generate_concept.sh)
 const GENRES = ['Drama', 'Comedy', 'Romance', 'Mystery', 'Fantasy', 'Sci-Fi', 'Historical', 'Musical Comedy'];
@@ -181,7 +236,7 @@ app.get('/api/projects', async (req, res) => {
 app.post('/api/projects/create', async (req, res) => {
   try {
     const { name } = req.body;
-    const projectName = name.toLowerCase().replace(/\s+/g, '_');
+    const projectName = sanitizeProjectName(name);  // Path traversal protection
     const projectPath = path.join(PROJECTS_DIR, projectName);
 
     // Create directory structure
@@ -238,7 +293,8 @@ Created: ${new Date().toLocaleDateString()}
 app.post('/api/validation/run', async (req, res) => {
   try {
     const { project } = req.body;
-    const projectPath = path.join(PROJECTS_DIR, project.toLowerCase().replace(/\s+/g, '_'));
+    const projectName = sanitizeProjectName(project);  // Path traversal protection
+    const projectPath = path.join(PROJECTS_DIR, projectName);
 
     // Check if project exists
     const exists = await fs.pathExists(projectPath);
