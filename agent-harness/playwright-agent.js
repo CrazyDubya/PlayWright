@@ -211,8 +211,19 @@ const DIALOGUE_STARTERS = {
 
 const randomElement = (array) => array[Math.floor(Math.random() * array.length)];
 
+/**
+ * Returns random elements from an array using Fisher-Yates shuffle.
+ * @param {Array} array - Source array
+ * @param {number} count - Number of elements to return
+ * @returns {Array} Array of random elements
+ */
 const randomElements = (array, count) => {
-  const shuffled = [...array].sort(() => 0.5 - Math.random());
+  const shuffled = [...array];
+  // Fisher-Yates shuffle
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
   return shuffled.slice(0, count);
 };
 
@@ -302,8 +313,8 @@ const parseJSON = (jsonString, errorContext = 'JSON') => {
  * @throws {Error} If act or scene numbers are out of range
  */
 const validateActSceneNumbers = (act, num) => {
-  const actNum = parseInt(act);
-  const sceneNum = parseInt(num);
+  const actNum = parseInt(act, 10);
+  const sceneNum = parseInt(num, 10);
   
   if (isNaN(actNum) || actNum < VALIDATION_LIMITS.MIN_ACT || actNum > VALIDATION_LIMITS.MAX_ACT) {
     throw new Error(`Act number must be between ${VALIDATION_LIMITS.MIN_ACT} and ${VALIDATION_LIMITS.MAX_ACT}`);
