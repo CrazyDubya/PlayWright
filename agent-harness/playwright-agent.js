@@ -169,18 +169,44 @@ const DIALOGUE_STARTERS = {
 // UTILITY FUNCTIONS
 // ============================================================================
 
+/**
+ * Get a random element from an array
+ * @param {Array} array - The array to pick from
+ * @returns {*} Random element from the array
+ */
 const randomElement = (array) => array[Math.floor(Math.random() * array.length)];
+
+/**
+ * Get multiple random elements from an array
+ * @param {Array} array - The array to pick from
+ * @param {number} count - Number of elements to pick
+ * @returns {Array} Array of random elements
+ */
 const randomElements = (array, count) => {
   const shuffled = [...array].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 };
 
+/**
+ * Sanitize a name for use in file paths
+ * Converts to lowercase, replaces spaces with underscores, removes special characters
+ * @param {string} name - The name to sanitize
+ * @returns {string} Sanitized name safe for file paths
+ */
 const sanitizeName = (name) => name.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
 
+/**
+ * Output JSON data to console
+ * @param {Object} data - Data to output as JSON
+ */
 const output = (data) => {
   console.log(JSON.stringify(data, null, 2));
 };
 
+/**
+ * Get the current agent state from file
+ * @returns {Promise<Object>} The current state object
+ */
 const getState = async () => {
   try {
     return await fs.readJson(STATE_FILE);
@@ -189,10 +215,22 @@ const getState = async () => {
   }
 };
 
+/**
+ * Save the agent state to file
+ * @param {Object} state - The state object to save
+ * @returns {Promise<void>}
+ */
 const setState = async (state) => {
   await fs.writeJson(STATE_FILE, state, { spaces: 2 });
 };
 
+/**
+ * Get the full path to a project directory with security validation
+ * Sanitizes the project name and validates it doesn't escape the projects directory
+ * @param {string} projectName - The project name to get the path for
+ * @returns {string} Full validated path to the project directory
+ * @throws {Error} If path traversal is detected
+ */
 const getProjectPath = (projectName) => {
   const sanitized = sanitizeName(projectName);
   const fullPath = path.join(PROJECTS_DIR, sanitized);
