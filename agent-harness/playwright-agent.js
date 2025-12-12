@@ -210,11 +210,19 @@ const DIALOGUE_STARTERS = {
 // ============================================================================
 
 const randomElement = (array) => array[Math.floor(Math.random() * array.length)];
+
 const randomElements = (array, count) => {
   const shuffled = [...array].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 };
 
+/**
+ * Sanitizes a name for use in file paths and project names.
+ * Removes path separators, parent directory references, and special characters.
+ * @param {string} name - The name to sanitize
+ * @returns {string} Sanitized name containing only lowercase letters, numbers, and underscores
+ * @throws {Error} If name is invalid or contains only invalid characters
+ */
 const sanitizeName = (name) => {
   if (!name || typeof name !== 'string') {
     throw new Error('Name must be a non-empty string');
@@ -228,10 +236,18 @@ const sanitizeName = (name) => {
   return sanitized;
 };
 
+/**
+ * Outputs data as JSON to stdout for LLM consumption.
+ * @param {Object} data - The data to output
+ */
 const output = (data) => {
   console.log(JSON.stringify(data, null, 2));
 };
 
+/**
+ * Gets the current agent state from file.
+ * @returns {Promise<Object>} The current state or default state if file doesn't exist
+ */
 const getState = async () => {
   try {
     return await fs.readJson(STATE_FILE);
@@ -240,14 +256,30 @@ const getState = async () => {
   }
 };
 
+/**
+ * Saves the agent state to file.
+ * @param {Object} state - The state to save
+ */
 const setState = async (state) => {
   await fs.writeJson(STATE_FILE, state, { spaces: 2 });
 };
 
+/**
+ * Gets the full path for a project directory.
+ * @param {string} projectName - The project name
+ * @returns {string} The full path to the project directory
+ */
 const getProjectPath = (projectName) => {
   return path.join(PROJECTS_DIR, sanitizeName(projectName));
 };
 
+/**
+ * Safely parses JSON with error handling.
+ * @param {string} jsonString - The JSON string to parse
+ * @param {string} errorContext - Context for error messages
+ * @returns {Object} Parsed JSON object
+ * @throws {Error} If JSON is invalid or missing
+ */
 const parseJSON = (jsonString, errorContext = 'JSON') => {
   try {
     if (!jsonString) {
@@ -262,6 +294,13 @@ const parseJSON = (jsonString, errorContext = 'JSON') => {
   }
 };
 
+/**
+ * Validates act and scene numbers are within acceptable ranges.
+ * @param {string|number} act - The act number
+ * @param {string|number} num - The scene number
+ * @returns {{act: number, scene: number}} Validated act and scene numbers
+ * @throws {Error} If act or scene numbers are out of range
+ */
 const validateActSceneNumbers = (act, num) => {
   const actNum = parseInt(act);
   const sceneNum = parseInt(num);
@@ -276,6 +315,13 @@ const validateActSceneNumbers = (act, num) => {
   return { act: actNum, scene: sceneNum };
 };
 
+/**
+ * Creates a new evaluation object with initial structure.
+ * @param {string} itemType - The type of item being evaluated (e.g., 'character', 'scene', 'song')
+ * @param {string} itemName - The name of the item being evaluated
+ * @param {number} maxScore - Maximum possible score (default: 100)
+ * @returns {Object} Initialized evaluation object
+ */
 const createEvaluation = (itemType, itemName, maxScore = 100) => {
   return {
     [itemType]: itemName,
@@ -288,6 +334,14 @@ const createEvaluation = (itemType, itemName, maxScore = 100) => {
   };
 };
 
+/**
+ * Adds a criterion to an evaluation and updates the score if passed.
+ * @param {Object} evaluation - The evaluation object
+ * @param {string} name - Name of the criterion
+ * @param {boolean} passed - Whether the criterion passed
+ * @param {number} score - Points to award if passed
+ * @returns {boolean} Whether the criterion passed
+ */
 const addCriterion = (evaluation, name, passed, score) => {
   evaluation.criteria.push({ name, passed, score: passed ? score : 0 });
   if (passed) {
@@ -296,6 +350,11 @@ const addCriterion = (evaluation, name, passed, score) => {
   return passed;
 };
 
+/**
+ * Finalizes an evaluation by calculating the grade and passed status.
+ * @param {Object} evaluation - The evaluation object to finalize
+ * @returns {Object} The finalized evaluation with grade and passed status
+ */
 const finalizeEvaluation = (evaluation) => {
   evaluation.passed = evaluation.score >= GRADE_THRESHOLDS.PASSING;
   if (evaluation.score >= GRADE_THRESHOLDS.A) {
@@ -2086,7 +2145,7 @@ GENERATORS:
 
 All commands output JSON to stdout for easy parsing by an LLM agent.
 `;
-    console.log(reference);
+    output({ success: true, reference });
   });
 
 // Parse arguments
