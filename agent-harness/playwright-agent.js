@@ -197,6 +197,23 @@ const getProjectPath = (projectName) => {
   return path.join(PROJECTS_DIR, sanitizeName(projectName));
 };
 
+/**
+ * Safely parse JSON with proper error handling
+ * @param {string} jsonString - The JSON string to parse
+ * @returns {Object} Parsed JSON object
+ * @throws {Error} If JSON parsing fails with descriptive message
+ */
+const safeJsonParse = (jsonString) => {
+  if (!jsonString) {
+    throw new Error('JSON data is required but was not provided');
+  }
+  try {
+    return JSON.parse(jsonString);
+  } catch (error) {
+    throw new Error(`Invalid JSON format: ${error.message}`);
+  }
+};
+
 // ============================================================================
 // PROJECT MANAGEMENT COMMANDS
 // ============================================================================
@@ -505,7 +522,7 @@ program
         return;
       }
 
-      const concept = JSON.parse(options.json);
+      const concept = safeJsonParse(options.json);
       concept.savedAt = new Date().toISOString();
 
       await fs.writeJson(path.join(projectPath, 'concept.json'), concept, { spaces: 2 });
@@ -566,7 +583,7 @@ program
 
       await fs.ensureDir(charactersDir);
 
-      const characterData = options.json ? JSON.parse(options.json) : {};
+      const characterData = options.json ? safeJsonParse(options.json) : {};
 
       const character = {
         name,
@@ -676,7 +693,7 @@ program
       }
 
       const existing = await fs.readJson(characterPath);
-      const updates = JSON.parse(options.json);
+      const updates = safeJsonParse(options.json);
 
       const updated = {
         ...existing,
@@ -801,7 +818,7 @@ program
 
       await fs.ensureDir(scenesDir);
 
-      const sceneData = options.json ? JSON.parse(options.json) : {};
+      const sceneData = options.json ? safeJsonParse(options.json) : {};
 
       const scene = {
         act: parseInt(act),
@@ -916,7 +933,7 @@ program
       }
 
       const existing = await fs.readJson(scenePath);
-      const updates = JSON.parse(options.json);
+      const updates = safeJsonParse(options.json);
 
       const updated = {
         ...existing,
@@ -1033,7 +1050,7 @@ program
 
       await fs.ensureDir(songsDir);
 
-      const songData = options.json ? JSON.parse(options.json) : {};
+      const songData = options.json ? safeJsonParse(options.json) : {};
 
       const song = {
         name,
@@ -1144,7 +1161,7 @@ program
       }
 
       const existing = await fs.readJson(songPath);
-      const updates = JSON.parse(options.json);
+      const updates = safeJsonParse(options.json);
 
       const updated = {
         ...existing,
@@ -1254,7 +1271,7 @@ program
   .option('--context <json>', 'Context JSON with current situation')
   .action(async (options) => {
     try {
-      const context = options.context ? JSON.parse(options.context) : {};
+      const context = options.context ? safeJsonParse(options.context) : {};
 
       const guidance = {
         decisionFramework: [
@@ -1287,7 +1304,7 @@ program
   .option('--context <json>', 'Context JSON with character and situation')
   .action(async (options) => {
     try {
-      const context = options.context ? JSON.parse(options.context) : {};
+      const context = options.context ? safeJsonParse(options.context) : {};
 
       const guidance = {
         decisionFramework: [
@@ -1319,7 +1336,7 @@ program
   .option('--context <json>', 'Context JSON with scene/moment details')
   .action(async (options) => {
     try {
-      const context = options.context ? JSON.parse(options.context) : {};
+      const context = options.context ? safeJsonParse(options.context) : {};
 
       const guidance = {
         decisionFramework: [
