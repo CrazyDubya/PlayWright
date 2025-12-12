@@ -1,0 +1,20 @@
+{
+  "name": "playwright-agent-harness",
+  "version": "1.0.0",
+  "description": "CLI harness for agentic LLM-driven musical creation",
+  "main": "playwright-agent.js",
+  "bin": {
+    "playwright-agent": "./playwright-agent.js"
+  },
+  "scripts": {
+    "start": "node playwright-agent.js",
+    "test": "node playwright-agent.js project:list"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "fs-extra": "^11.2.0",
+    "chalk": "^4.1.2"
+  },
+  "keywords": ["musical", "theater", "ai", "agent", "cli"],
+  "license": "MIT"
+}
