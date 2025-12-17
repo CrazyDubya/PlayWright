@@ -1,0 +1,103 @@
+X:4
+T:Swipe Right for Danger
+T:Jessica's Dating App Addiction
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=132
+K:Em
+%%MIDI program 1 81
+%
+% INTRO - Electronic pulse (4 bars)
+|:"Em"e2g2 b2g2|"C"c2e2 g2e2|"D"d2f2 a2f2|"Em"e4 z4:|
+%
+% VERSE 1 - Starting the descent
+|:"Em"B2B2 B2c2|"C"c4 B2A2|"D"A2A2 A2B2|"Em"B4 z4|
+w:Star-ted with con-tent just for the views "sub-ur-ban wife ex-plores what's she got to lose?"
+|"Em"B2c2 d2e2|"C"e4 d2c2|"D"c2B2 A2G2|"Em"E4 z4:|
+w:But com-ments keep ask-ing "is this real-ly real?" "show us more make us feel"
+|"Am"A2B2 c2d2|"Em"e4 d2c2|"C"c2c2 c2B2|"D"A4 z4|
+w:So I made a pro-file just to see what stran-gers might want to do to me
+|"Am"A2B2 c2d2|"Em"e4 d2c2|"D"d2c2 B2A2|"Em"B4 z4:|
+w:"Mar-ried but cur-ious look-ing to play" fif-ty match-es in the first day
+%
+% PRE-CHORUS - Frantic swiping
+|:"Am"e2e2 e2f2|"Em"g4 f2e2|"C"e2e2 e2d2|"D"d4 z4|
+w:Swipe left swipe right ev-ery face a new de-light
+|"Am"e2f2 g2f2|"Em"e4 d2c2|"D"d2c2 B2A2|"Em"B4 z4:|
+w:Ev-ery mes-sage makes me high ev-ery "hey" makes me fly
+%
+% CHORUS - Addictive energy
+|:"Em"g4 g2a2|"C"a4 g2f2|"D"f4 e4|"Em"e4 z4|
+w:SWIPE RIGHT for DAN-ger SWIPE RIGHT for thrills
+|"Am"e4 e2f2|"C"g4 f2e2|"D"e4 d4|"Em"e4 z4|
+w:Ev-ery STRAN-ger gives me chills
+|"C"c2d2 e2f2|"G"g4 f2e2|"D"d2d2 d2e2|"Em"e4 z4|
+w:They don't know me I don't know them but they want me a-gain and a-gain
+|"Am"e2d2 c2B2|"C"c4 B2A2|"D"A2B2 c2d2|"Em"e4 z4|
+w:SWIPE RIGHT for POW-er SWIPE RIGHT for more ev-ery match makes me soar
+|"C"c2d2 e2d2|"G"d4 c2B2|"D"B2c2 d2e2|"Em"e4 z4:|
+w:High-er than my hus-band's touch this at-ten-tion means so much
+%
+% VERSE 2 - Escalating
+Q:1/4=140
+|:"Em"B2B2 B2c2|"C"c4 B2A2|"D"A2A2 A2B2|"Em"B4 z4|
+w:On-ly-Fans says I could make some cash "sub-ur-ban MILF pre-mium stash"
+|"Em"B2c2 d2e2|"C"e4 d2c2|"D"c2B2 A2G2|"Em"E4 z4:|
+w:Cus-tom vi-de-os pri-vate chats "tell me your fan-ta-sies I'll do that"
+|"Am"A2B2 c2d2|"Em"e4 d2c2|"C"c2c2 c2B2|"D"A4 z4|
+w:Ash-ley Ma-di-son Seek-ing Ar-range-ment ev-ery app a new en-gage-ment
+|"Am"A2B2 c2d2|"Em"e4 d2c2|"D"d2c2 B2A2|"Em"B4 z4:|
+w:"Meet me to-night ho-tel room" my heart goes boom boom boom
+%
+% BRIDGE - First meeting (darker)
+Q:1/4=108
+K:Bm
+|:"Bm"B4 z4|"Em"E4 z4|"F#m"F4 z4|"Bm"B4 z4:|
+w:(Spoken) "Room two thir-ty se-ven Mar-ri-ott down-town"
+|:"Bm"b2b2 b2a2|"Em"g4 a2b2|"F#m"a2a2 a2g2|"Bm"f4 z4|
+w:This is real-ly hap-pen-ing not just con-tent not just a thing
+|"Bm"b2a2 g2f2|"Em"e4 f2g2|"F#m"f2e2 d2c2|"Bm"B4 z4:|
+w:I'm real-ly going to meet this man who does-n't know my mas-ter plan
+%
+% Voice becoming uncertain
+|:"Em"e2e2 e2f2|"Bm"f4 e2d2|"F#m"d2d2 d2e2|"Bm"e4 z4|
+w:Wait... what IS my plan? What am I do-ing I don't un-der-stand
+|"Em"e2f2 g2a2|"Bm"a4 g2f2|"F#m"f2e2 "F#7"d2c2|"Bm"B4 z4:|
+w:How I got from mak-ing con-tent to this mo-ment so po-tent
+%
+% VERSE 3 - Losing control
+K:Em
+Q:1/4=144
+|:"Em"B2B2 c2d2|"C"e4 d2c2|"D"d2d2 d2c2|"Em"B4 z4|
+w:Sev-en-teen apps a hun-dred match-es my real life bare-ly catch-es
+|"Em"B2c2 d2e2|"C"e4 d2c2|"D"c2B2 A2G2|"Em"E4 z4:|
+w:Up to my di-gi-tal de-sires I'm play-ing with real fires
+|"Am"A2B2 c2d2|"Em"e4 d2c2|"C"c2c2 c2B2|"D"A4 z4|
+w:Ro-bert's sleep-ing next to me while I plan my in-fi-del-i-ty
+|"Am"A2B2 c2d2|"Em"e4 d2c2|"D"d2c2 B2A2|"Em"B4 z4:|
+w:Not for love not for con-nec-tion just for di-gi-tal af-fec-tion
+%
+% FINAL CHORUS - Desperate/chaotic
+Q:1/4=152
+|:"Em"g4 g2a2|"C"a4 g2f2|"D"f4 e4|"Em"e4 z4|
+w:SWIPE RIGHT for DAN-ger I CAN'T STOP
+|"Am"e4 e2f2|"C"g4 f2e2|"D"e4 d4|"Em"e4 z4|
+w:Ev-ery MATCH makes my heart DROP
+|"C"c2d2 e2f2|"G"g4 f2e2|"D"d2d2 d2e2|"Em"e4 z4|
+w:In-to a place I don't re-cog-nize be-hind these stran-ger's eyes
+|"Am"e2d2 c2B2|"C"c4 B2A2|"D"A2B2 c2d2|"Em"e4 z4|
+w:SWIPE RIGHT for POW-er but I'm weak ev-ery thrill that I seek
+|"C"c2d2 e2d2|"G"d4 c2B2|"D"B2c2 d2e2|"Em"e4 z4:|
+w:Takes me fur-ther from my-self I'm just con-tent on a shelf
+%
+% OUTRO - Point of no return
+Q:1/4=92
+|:"Em"e4 z4|"C"c4 z4|"D"d4 z4|"Em"E4 z4|
+w:(Whispered) "I'm here. Room two thir-ty se-ven." (text sent)
+|"Em"B2B2 B2c2|"C"c4 B2A2|"D"A4 G4|"Em"E4 z4|
+w:(Sung small) What have I done? What have I be-come?
+|"Am"A2A2 A2B2|"C"c4 B2A2|"D"A2G2 F2E2|"Em"E4 z4|
+w:This is-n't con-tent a-ny-more this is real and I'm not sure
+|"Am"A2B2 c2B2|"C"A4 G2F2|"D"D4 z4|"Em"E8|]
+w:If I re-mem-ber who I was be-fore the swipes be-fore the buzz

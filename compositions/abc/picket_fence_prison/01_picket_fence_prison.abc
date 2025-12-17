@@ -1,0 +1,109 @@
+X:1
+T:Picket Fence Prison
+T:Opening Number - Claire's "I Want" Song
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=72
+K:G
+%%MIDI program 1 0
+%
+% INTRO - Morning routine ostinato (8 bars)
+% Mechanical, clock-like pattern representing routine
+|:"Gmaj7"G2B2 d2e2|"Gmaj7"G2B2 d2e2|"Em7"E2G2 B2d2|"Em7"E2G2 B2d2|
+|"Cmaj7"C2E2 G2B2|"D/C"D2F2 A2c2|"Gmaj7"G2B2 d2e2|"G"G4 z4:|
+%
+% VERSE 1 - Conversational, confined
+|:"G"B2B2 B2A2|"G/B"G4 A2B2|"C"c2c2 c2B2|"D"A4 z4|
+w:Cof-fee at sev-en yo-ga at eight vol-un-teer meet-ing can't be late
+|"Em"B2B2 B2c2|"D/F#"d4 c2B2|"C"B2A2 G2F2|"Dsus4"D4"D"z4|
+w:Check the Ring cam-era wave at the street per-fect per-form-ance rinse and re-peat
+|"G"B2B2 c2d2|"G/B"d4 c2B2|"C"c2c2 c2d2|"Cm"e4 z4|
+w:Twen-ty five years of the same rou-tine play-ing the part of sub-ur-ban queen
+|"Am"A2B2 c2d2|"Am/G"e4 d2c2|"D/F#"c2B2 A2G2|"D"A4 z4:|
+w:But when did I stop and when did I start just go-ing through mo-tions with-out a-ny heart?
+%
+% PRE-CHORUS - Building tension
+|:"Am"A2A2 A2B2|"Am/G"c4 B2A2|"F"A2A2 A2B2|"F"c4 z4|
+w:I used to dream of some-thing more than match-ing tow-els and mar-ble floors
+|"C"c2c2 c2d2|"D"d4 e2d2|"Em"B2B2 B2c2|"Em"B4 z4|
+w:I used to burn I used to feel now noth-ing here seems e-ven real
+%
+% CHORUS - Truth breaking through (tempo increases to 84)
+Q:1/4=84
+|:"Em"B4 B2A2|"C"G4 G2F2|"G"D4 "D"D2E2|"Em"E4 z4|
+w:These PICK-et FEN-ces feel like BARS and this dream HOUSE is my pri-son YARD
+|"C"E4 E2F2|"G/B"G4 "Am"A2G2|"D"F4 z4|"Dsus4"D2D2"D"z4|
+w:I'm SER-ving TIME for a crime I did-n't com-MIT
+|"Em"B4 B2A2|"C"G4 E2D2|"G"D4 "D/F#"D2E2|"Em"E4 z4|
+w:Be-ing the wo-man I thought I was sup-posed to be
+|"C"E4 E2F2|"Am"A4 "D"F4|"G"G4 z4|"G"z8:|
+w:Per-fect lawn per-fect life per-fect wife
+%
+% CHORUS CONTINUATION
+|:"G"B2B2 B2c2|"G/B"d4 c2B2|"C"c2c2 c2d2|"Cm"e4 z4|
+w:But I'm DY-ing in-SIDE this per-fect LIFE these pick-et fen-ces white and clean
+|"Em"B4 B2A2|"C"G4 E2D2|"Am"E2D2 "D"C2B2|"G"G4 z4:|
+w:Are the walls of my sub-ur-ban pri-son
+%
+% VERSE 2 - Kitchen scene
+Q:1/4=72
+|:"G"B2B2 B2A2|"G/B"G4 A2B2|"C"c2c2 c2B2|"D"A4 z4|
+w:Mich-ael's lunch packed his cof-fee poured he'll grunt "thanks babe" and head out the door
+|"Em"B2B2 B2c2|"D/F#"d4 c2B2|"C"B2A2 "Cm"G2F2|"G"G4 z4|
+w:Twen-ty years mar-ried we bare-ly speak just two stran-gers shar-ing the same tech-nique
+|"Em"B2B2 c2d2|"D/F#"d4 e2d2|"C"c2c2 c2d2|"Dsus4"d4"D"z4|
+w:The girls are at col-lege liv-ing their dreams while I'm still here burst-ing at the seams
+|"Am"A2B2 c2d2|"Am/G"e4 d2c2|"D/F#"c2B2 A2G2|"D"A4 z4:|
+w:They think I'm hap-py they think I'm fine but I'm dis-a-ppear-ing one day at a time
+%
+% BRIDGE - Breaking point (6/8 feel, slower)
+Q:1/4=56
+|:"Em"B4 z4|"Em/D"A4 z4|"C"G4 z4|"C"z8|
+w:(Spoken) When did I be-come so small?
+|"Am"E4 z4|"Am"z8|"B7"^D4 z4|"B7"z8|
+w:(Spoken) When did I stop want-ing a-ny-thing at all?
+% Building back
+|"Em"B2B2 B2c2|"Em/D"d4 c2B2|"C"c2c2 "Am"B2A2|"Am"A4 z4|
+w:I used to have o-pin-ions I used to have fire
+|"Em"B2c2 d2e2|"D"d4 c2B2|"C"B2A2 "D"G2F2|"Dsus4"D4"D"z4|
+w:I used to have dreams that could lift me high-er
+|"Am"A2B2 c2d2|"Am"e4 d2c2|"D"d2c2 B2A2|"D"A4 z4|
+w:Now I vol-un-teer for oth-er peo-ple's cau-ses
+|"Em"B2A2 G2F2|"C"E4 D2C2|"D"D4 z4|"Dsus4"D2D2"D"z4:|
+w:While my own life just stops and pau-ses
+%
+% BUILD TO FINAL CHORUS
+Q:1/4=84
+|:"Em"B2B2 B2c2|"C"d4 c2B2|"G"B2B2 "D"A2G2|"Em"G4 z4|
+w:There's GOT to be MORE than this there's GOT to be SOME-thing I've missed
+|"Em"B2c2 d2e2|"C"e4 d2c2|"Am"c2B2 "D"A2G2|"G"G4 z4|
+w:Some PART of me that's still a-LIVE some REA-son to more than just sur-vive
+%
+% FINAL CHORUS - Hope emerging (tempo 96)
+Q:1/4=96
+|:"Em"B4 B2A2|"C"G4 G2A2|"G"B4 "D"A4|"Em"G4 z4|
+w:These PICK-et FEN-ces feel like BARS but MAY-be I can SEE the STARS
+|"C"E4 E2F2|"G/B"G4 "Am"A2G2|"D"F4 z4|"Dsus4"D2D2"D"z4|
+w:I'm SER-ving TIME for a crime I did-n't com-MIT
+|"Em"B4 B2A2|"C"G4 E2D2|"G"D4 "D/F#"D2E2|"Em"E4 z4|
+w:Be-ing the wo-man I thought I was sup-posed to be
+|"C"E4 E2F2|"Am"A4 "D"F4|"G"G4 z4|"G"z8|
+w:Per-fect lawn per-fect life per-fect wife
+|"G"B2B2 B2c2|"G/B"d4 c2B2|"C"c2c2 c2d2|"Cm"e4 z4|
+w:But there's SOME-thing BURN-ing in this per-fect LIFE these pick-et fen-ces white and clean
+|"Em"B4 B2A2|"C"G4 E2D2|"Am"E2D2 "D"C2B2|"G"G4 z4|
+w:WON'T be the walls of my sub-ur-ban pri-son
+%
+% OUTRO - Return to ostinato
+Q:1/4=72
+|"Em"B4 z4|"Em"z4 B2A2|"C"G4 z4|"C"z4 G2F2|
+w:Not a-ny-more... Not a-ny-more...
+|"D"D4 z4|"Dsus4"D4"D"z4|
+w:There's got to be some-thing more...
+%
+% Final ostinato with doorbell
+|"Gmaj7"G2B2 d2e2|"Gmaj7"G2B2 d2e2|"Em7"E2G2 B2d2|"Em7"E4 z4|
+w:(whispered) There's got to be some-thing more...
+% [DOORBELL RINGS - David at door]
+|"G"G8|]

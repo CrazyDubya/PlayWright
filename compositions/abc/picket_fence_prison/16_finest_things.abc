@@ -1,0 +1,89 @@
+X:16
+T:Finest Things
+T:Jessica's Gilded Cage - Luxury Degradation Ballad
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=54
+K:Em
+%%MIDI program 1 46
+%
+% INTRO - Luxurious but hollow (4 bars - harp arpeggios)
+|:"Em"E2G2 B2e2|"C"C2E2 G2c2|"Am"A2c2 e2a2|"B7"B4 z4:|
+%
+% VERSE 1 - The Inventory (examining expensive accessories)
+|:"Em"B2B2 B2A2|"C"G4 A2B2|"Am"A2A2 A2G2|"B7"^F4 z4|
+w:Car-ti-er col-lar eight-een kar-at gold Her-mes leash hand-stitched and bold
+|"Em"B2c2 d2e2|"C"e4 d2c2|"Am"c2B2 "B7"A2^F2|"Em"E4 z4:|
+w:La Per-la lin-ge-rie bare-ly there Lou-bou-tin heels for crawl-ing wear
+|"Am"e2e2 e2d2|"Em"d4 e2f2|"C"e2e2 e2d2|"B7"d4 z4|
+w:Cus-tom-made cage I-tal-ian de-sign crys-tal wa-ter bowl vin-tage wine
+|"Am"e2f2 g2f2|"Em"e4 d2c2|"B7"^d2c2 B2A2|"Em"E4 z4:|
+w:Ev-ery-thing mon-ey can buy but look in-to my eyes
+%
+% PRE-CHORUS
+|:"C"c2c2 c2d2|"Em"e4 d2c2|"Am"c2c2 c2B2|"B7"B4 z4|
+w:Be-hind these fin-est things be-hind these gold-en rings
+|"C"c2d2 e2d2|"Em"d4 c2B2|"B7"B2A2 G2^F2|"Em"E4 z4:|
+w:There's no-thing left of me just ex-pen-sive emp-ti-ness
+%
+% CHORUS - The Gilded Cage
+Q:1/4=60
+|:"Em"e4 e2f2|"C"g4 f2e2|"Am"e4 d4|"B7"B4 z4|
+w:I have the FIN-EST THINGS that mon-ey can af-ford
+|"Em"e4 e2f2|"C"g4 f2e2|"Am"e4 "B7"d4|"Em"e4 z4|
+w:De-sign-er deg-ra-DA-tion lux-ur-y ab-horred
+|"Am"a2a2 a2g2|"Em"f4 g2a2|"C"g2f2 e2d2|"B7"d4 z4|
+w:Ev-ery chain that binds me costs more than most make in a year
+|"Am"a2g2 f2e2|"Em"e4 d2c2|"B7"B2A2 G2^F2|"Em"E4 z4:|
+w:I'm still a pri-son-er just in pret-ti-er bars I'm worth no-thing here
+%
+% VERSE 2 - The Contradiction
+|:"Em"B2B2 B2c2|"C"d4 c2B2|"Am"A2A2 A2B2|"B7"B4 z4|
+w:Bank ac-count grow-ing six fi-gures and more from con-tent cre-a-tion
+|"Em"B2c2 d2e2|"C"e4 d2c2|"Am"c2B2 "B7"A2G2|"Em"E4 z4:|
+w:Pre-mi-um sub-scrip-tions cus-tom re-quests I'm the ve-ry best
+|"Am"e2e2 e2f2|"Em"g4 f2e2|"C"e2e2 e2d2|"B7"d4 z4|
+w:At sell-ing my soul in high def-in-i-tion per-form-ing my own de-mo-li-tion
+|"Am"e2f2 g2f2|"Em"e4 d2c2|"B7"d2c2 B2A2|"Em"E4 z4:|
+w:The neigh-bors pay to watch me break while I dance in my gold-en chain
+%
+% BRIDGE - The Realization (building)
+Q:1/4=66
+|:"Am"a2a2 a2b2|"Em"b4 a2g2|"C"g2g2 g2f2|"B7"f4 z4|
+w:I thought if I made e-nough mon-ey I could buy back my dig-ni-ty
+|"Am"a2b2 c'2b2|"Em"a4 g2f2|"B7"^f2e2 ^d2c2|"Em"e4 z4:|
+w:I thought if I wore ex-pen-sive things I could pur-chase my hu-man-i-ty
+|"C"g2g2 g2a2|"Em"b4 a2g2|"Am"a2a2 a2g2|"B7"g4 z4|
+w:But ev-ery dol-lar that I earn just proves how far I've fal-len
+|"C"g2a2 b2a2|"Em"g4 f2e2|"B7"f2e2 ^d2c2|"Em"e4 z4:|
+w:Ev-ery lux-ur-y I own shows how worth-less I've be-come
+%
+% CLIMAX - Full realization
+Q:1/4=72
+|:"Am"a2a2 a2b2|"Em"c'4 b2a2|"C"a2a2 a2g2|"B7"g4 z4|
+w:They dress me up in fin-est silk to hide the bruis-es on my soul
+|"Am"a2b2 c'2b2|"Em"b4 a2g2|"B7"g2^f2 e2^d2|"Em"e4 z4:|
+w:They buy me dia-monds for my col-lar to dis-tract from the emp-ty hole
+|"C"c2d2 e2f2|"Em"g4 f2e2|"Am"e2f2 g2a2|"B7"a4 z4|
+w:Where my self-re-spect used to live where my dreams used to grow
+|"C"c2d2 e2f2|"Em"g4 f2e2|"B7"f2e2 ^d2c2|"Em"e4 z4:|
+w:Now there's just ex-pen-sive no-thing and a ve-ry pro-fit-a-ble show
+%
+% FINAL CHORUS
+Q:1/4=76
+|:"Em"e4 e2f2|"C"g4 f2e2|"Am"e4 d4|"B7"B4 z4|
+w:I have the FIN-EST THINGS that blood mon-ey can buy
+|"Em"e4 e2f2|"C"g4 f2e2|"Am"e4 "B7"d4|"Em"e4 z4|
+w:De-sign-er deg-ra-DA-tion while my spi-rit dies
+|"Am"a2a2 a2g2|"Em"f4 g2a2|"C"g2f2 e2d2|"B7"d4 z4|
+w:I'm still a pri-son-er in my pla-ti-num cage still bro-ken on this gild-ed stage
+|"Am"a2g2 f2e2|"Em"e4 d2c2|"B7"B2A2 G2^F2|"Em"E4 z4:|
+w:I have the fin-est things but I'm worth no-thing in these fin-est things
+%
+% OUTRO - The Acceptance (fading, hollow)
+Q:1/4=48
+|:"Em"B4 A4|"C"G4 F4|"Am"E4 D4|"B7"B,4 z4|
+w:At least the col-lar's pret-ty at least the cage is gold
+|"Em"e4 d4|"C"c4 B4|"B7"A4 G4|"Em"E8|]
+w:To the next girl who thinks that mon-ey e-quals worth

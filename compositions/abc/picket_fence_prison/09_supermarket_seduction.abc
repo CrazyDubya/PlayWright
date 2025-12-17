@@ -1,0 +1,82 @@
+X:9
+T:Supermarket Seduction
+T:Competition Number - Claire, Jessica, Ensemble
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=120
+K:F
+%%MIDI program 1 0
+%
+% INTRO - Suburban normalcy (4 bars)
+|:"F"f2a2 c'2a2|"Bb"b2d'2 b2f2|"C"c2e2 g2e2|"F"f4 z4:|
+%
+% OPENING ENSEMBLE - Shopping rhythm
+|:"F"A2A2 A2B2|"Bb"c4 B2A2|"C"B2B2 B2A2|"F"A4 z4|
+w:Or-gan-ic pro-duce glu-ten free bread soc-cer prac-tice kids to be fed
+|"Dm"A2B2 c2d2|"Bb"d4 c2B2|"C"B2A2 G2F2|"F"F4 z4:|
+w:Cou-pon clip-ping bud-get tight a-noth-er or-din-ar-y Tues-day night
+%
+% VERSE 1 - CLAIRE
+|:"F"c2c2 c2d2|"Bb"d4 c2B2|"C"c2c2 c2B2|"F"A4 z4|
+w:CLAIRE: Da-vid's text came in at nine "gro-cery shop-ping look di-vine"
+|"F"c2d2 e2f2|"Bb"f4 e2d2|"C"d2c2 B2A2|"F"F4 z4:|
+w:"Wear the dress you know the one make this trip a lit-tle fun"
+%
+% VERSE 1 - JESSICA (overlapping)
+|:"F"c2c2 c2d2|"Bb"d4 c2B2|"C"c2c2 c2B2|"F"A4 z4|
+w:JESSICA: Got my or-ders crys-tal clear "show them all what I hold dear"
+|"F"c2d2 e2f2|"Bb"f4 e2d2|"C"d2c2 B2A2|"F"F4 z4:|
+w:"Make them won-der make them stare show them you be-long to me my dear"
+%
+% PRE-CHORUS - Recognition
+|:"Dm"d2d2 d2e2|"Bb"f4 e2d2|"C"e2e2 e2d2|"F"c4 z4|
+w:CLAIRE: Wait is that...? JESSICA: Oh my God! BOTH: What is SHE do-ing here?
+|"Dm"d2e2 f2e2|"Bb"e4 d2c2|"C"c2B2 A2G2|"F"F4 z4:|
+w:CLAIRE: This is MY store! JESSICA: This is MY dare! BOTH: Some-thing is-n't right I fear!
+%
+% CHORUS - Competition begins
+Q:1/4=132
+|:"F"f4 f2g2|"Bb"a4 g2f2|"C"g4 f4|"F"f4 z4|
+w:CLAIRE: Watch me BEND to get the milk! JESSICA: See me MOVE like li-quid silk!
+|"Dm"d4 d2e2|"Bb"f4 e2d2|"C"e4 d4|"F"c4 z4|
+w:BOTH: Ev-ery EYE u-pon us now I'll show them HOW to make a sim-ple shop-ping trip
+|"Bb"f2g2 a2g2|"F"f4 e2d2|"C"e2d2 c2B2|"F"c4 z4:|
+w:In-to some-thing they can't skip ENSEMBLE: Some-thing's diff-erent in the air!
+%
+% VERSE 2 - CLAIRE escalating
+|:"F"c2c2 c2d2|"Bb"d4 c2B2|"C"c2c2 c2B2|"F"A4 z4|
+w:CLAIRE: Reach-ing high for fro-zen peas let-ting my dress ride up with ease
+|"F"c2d2 e2f2|"Bb"f4 e2d2|"C"d2c2 B2A2|"F"F4 z4:|
+w:Da-vid said to make them won-der what's be-neath this sub-ur-ban thun-der
+%
+% VERSE 2 - JESSICA one-upping
+|:"F"c2c2 c2d2|"Bb"d4 c2B2|"C"c2c2 c2B2|"F"A4 z4|
+w:JESSICA: Bend-ing low to read the la-bels show-ing off what I am a-ble
+|"F"c2d2 e2f2|"Bb"f4 e2d2|"C"d2c2 B2A2|"F"F4 z4:|
+w:To dis-play with-out a care Da-vid's watch-ing ev-ery-where
+%
+% BRIDGE - The revelation
+Q:1/4=108
+|:"Dm"d4 z4|"Bb"f4 z4|"C"e4 z4|"F"c4 z4|
+w:CLAIRE: Da-vid said to meet him at... JESSICA: Da-vid said... oh shit!
+|:"Dm"d2e2 f2e2|"Bb"d4 c2B2|"C"c2d2 e2f2|"F"f4 z4:|
+w:BOTH: DA-VID! DA-VID! DA-VID!
+%
+% FINAL CHORUS - Full competition
+Q:1/4=144
+|:"F"f4 f2g2|"Bb"a4 g2f2|"C"g4 f4|"F"f4 z4|
+w:CLAIRE: I was HERE first this is MY game! JESSICA: Ho-ney we're NOT play-ing the same!
+|"Dm"d4 d2e2|"Bb"f4 e2d2|"C"e4 d4|"F"c4 z4|
+w:BOTH: Da-vid CHOSE me Da-vid WANTS me CLAIRE: I'm the one he came to see!
+|"Dm"d2e2 f2g2|"Bb"a4 g2f2|"C"g2f2 e2d2|"F"c4 z4|
+w:JESSICA: I'm the one he came to free! BOTH: From this sub-ur-ban pri-son!
+|"Bb"f2g2 a2g2|"F"f4 e2d2|"C"e2d2 c2B2|"F"F4 z4:|
+w:ENSEMBLE: Some-thing's hap-pen-ing in our store some-thing we've not seen be-fore!
+%
+% OUTRO
+Q:1/4=100
+|:"F"c2c2 c2d2|"Bb"d4 c2B2|"C"B2B2 B2A2|"F"A4 z4|
+w:ENSEMBLE: (whispered) Did that real-ly just hap-pen here in our safe sub-ur-ban sphere?
+|"Dm"d2c2 B2A2|"Bb"G4 A2B2|"C"c4 B4|"F"F8|]
+w:What will we tell our hus-bands when we get home to them a-gain?

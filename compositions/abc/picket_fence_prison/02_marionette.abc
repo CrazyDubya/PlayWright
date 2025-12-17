@@ -1,0 +1,108 @@
+X:2
+T:Marionette
+T:Ballet/Suspension Centerpiece - Claire's Surrender
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=60
+K:Am
+%%MIDI program 1 48
+%
+% OPENING - Ethereal, whispered (strings only)
+|:"Am"A4 E2A2|"Am/G"G4 E2G2|"Fmaj7"F4 C2F2|"E7"E4 ^G2B2:|
+%
+% VERSE 1 - Vulnerable, soft
+|:"Am"A2A2 A2B2|"Am/G"c4 B2A2|"Fmaj7"A2A2 A2G2|"E7"G4 z4|
+w:Cut my strings of ex-pec-ta-tion ev-ery role ev-ery ob-li-ga-tion
+|"Am"A2B2 c2d2|"Dm"d4 c2B2|"E7"B2A2 ^G2E2|"Am"A4 z4:|
+w:Mo-ther wife per-fect neigh-bor let me be some-thing o-ther
+|"Dm"d2d2 d2e2|"Am"e4 d2c2|"Fmaj7"c2c2 c2B2|"E7"B4 z4|
+w:I've been danc-ing to their mu-sic all my life au-to-ma-tic
+|"Dm"d2e2 f2e2|"G"e4 d2c2|"C"c2B2 "E7"A2^G2|"Am"A4 z4:|
+w:But these hands know dif-ferent rhy-thms these ropes sing dif-ferent hymns
+%
+% PRE-CHORUS - Building
+|:"Fmaj7"f2f2 f2e2|"C"e4 d2c2|"Dm"d2d2 d2c2|"Am"c4 z4|
+w:Trust is hard-er than con-trol sur-ren-der deep-er than the soul
+|"Fmaj7"f2g2 a2g2|"G"g4 f2e2|"E7"e2d2 c2B2|"E7"B4 z4:|
+w:But in your hands I'm not break-ing I'm fin-al-ly a-wa-ken-ing
+%
+% CHORUS - Suspension begins (key shift to C major)
+K:C
+Q:1/4=72
+|:"C"g4 g2a2|"F"a4 g2f2|"Am"e4 "G"d4|"C"c4 z4|
+w:I am FLOA-ting I am FLY-ing I am LIV-ing I am DY-ing
+|"Am"a4 a2b2|"F"c'4 b2a2|"G"g4 f4|"C"e4 z4|
+w:To the wo-man I used to be now I'm DAN-cing fin-al-ly FREE
+|"F"f4 f2g2|"C/E"e4 d2c2|"Dm"d4 d2e2|"G"d4 z4|
+w:Mar-i-o-NETTE with will-ing strings feel the POW-er that sur-ren-der brings
+|"Am"a2g2 f2e2|"F"f4 e2d2|"G"d2e2 f2g2|"C"c4 z4:|
+w:In your hands I find my grace in this vul-ner-a-ble sa-cred space
+%
+% VERSE 2 - Aerial, stronger
+|:"C"e2e2 e2f2|"F"f4 e2d2|"Am"e2e2 e2f2|"G"g4 z4|
+w:Ev-ery rope a choice I'm mak-ing ev-ery knot my soul's a-wa-king
+|"C"e2f2 g2a2|"F"a4 g2f2|"Dm"f2e2 "G"d2c2|"C"c4 z4:|
+w:Not your pup-pet not your toy but a wo-man find-ing joy
+|"Am"a2a2 a2b2|"F"c'4 b2a2|"Dm"a2a2 a2g2|"G"g4 z4|
+w:In the space be-tween the earth and sky where truth lives and pre-ten-ses die
+|"Am"a2b2 c'2b2|"F"a4 g2f2|"G"f2e2 d2c2|"C"c4 z4:|
+w:I dis-cov-er who I am when I stop giv-ing a damn
+%
+% PRE-CHORUS 2 - Powerful
+|:"F"f2f2 f2g2|"C"g4 f2e2|"Dm"f2f2 f2e2|"Am"e4 z4|
+w:Trust is STRONG-er than my fear sur-ren-der makes ev-ery-thing clear
+|"F"f2g2 a2g2|"G"g4 a2b2|"E7"^g2a2 b2c'2|"Am"a4 z4:|
+w:In your hands I'm not fal-ling I'm fin-al-ly cal-ling
+%
+% BRIDGE - The revelation (music drops)
+Q:1/4=56
+K:Am
+|:"Am"A4 z4|"Am"z8|"Fmaj7"F4 z4|"Fmaj7"z8|
+w:(Spoken) This is what they ne-ver told me
+|"Dm"D4 z4|"Dm"z8|"E7"E4 z4|"E7"z8:|
+w:(Spoken) That po-wer is-n't al-ways hold-ing
+%
+% Building to climax
+Q:1/4=66
+|:"Am"A2B2 c2d2|"Fmaj7"e4 d2c2|"Dm"d2e2 f2e2|"E7"e4 z4|
+w:Ev-ery wo-man learns to car-ry the weight of oth-ers' ex-pec-ta-tions
+|"Am"A2B2 c2d2|"Fmaj7"e4 f2g2|"Dm"a2g2 "E7"f2e2|"Am"e4 z4:|
+w:But here sus-pen-ded in your care I'm free from all those ob-li-ga-tions
+%
+% Voice becoming operatic
+Q:1/4=76
+|:"Am"a4 a2b2|"F"c'4 b2a2|"Dm"a4 g4|"E7"e4 z4|
+w:I am NOT your pos-SES-sion I am NOT your ob-SES-sion
+|"Am"a4 a2b2|"F"c'4 b2a2|"G"b4 a4|"C"g4 z4|
+w:I am a WO-man CHOO-sing to TRUST with-out LO-sing
+|"F"f4 f2g2|"C"a4 g2f2|"Dm"f4 e4|"Am"e4 z4|
+w:My-SELF in the sur-REN-der I be-COME more TEN-der
+|"F"f2g2 a2b2|"G"c'4 b2a2|"E7"^g2a2 b2^g2|"Am"a4 z4:|
+w:And more POW-er-ful than be-FORE this is what I was look-ing for
+%
+% FINAL CHORUS - Climactic (Full company)
+K:C
+Q:1/4=84
+|:"C"g4 g2a2|"F"a4 g2f2|"Am"e4 "G"d4|"C"c4 z4|
+w:(CLAIRE) I am FLOA-ting I am FLY-ing
+|"Am"a4 a2b2|"F"c'4 b2a2|"G"g4 f4|"C"e4 z4|
+w:(ENSEMBLE) She is LIV-ing she is DY-ing
+|"Am"a2g2 f2e2|"F"d4 c2B2|"G"B2c2 d2e2|"C"c4 z4|
+w:(ALL) To the wo-man she used to be now she's DAN-cing fin-al-ly FREE
+|"F"f4 f2g2|"C/E"e4 d2c2|"Dm"d4 d2e2|"G"d4 z4|
+w:(DAVID) Mar-i-o-nette with will-ing strings
+|"Am"a2g2 f2e2|"F"f4 e2d2|
+w:(CLAIRE) Feel the POW-er that sur-ren-der brings
+|"G"d2e2 f2g2|"C"c4 z4|
+w:In these hands she finds her grace
+|"Am"a2g2 f2e2|"F"f2e2 d2c2|"G"d4 c4|"C"c4 z4:|
+w:(CLAIRE) In this vul-ner-a-ble sa-cred space
+%
+% OUTRO - Return to earth
+Q:1/4=56
+K:Am
+|:"Am"A4 E2A2|"Am/G"G4 E2G2|"Fmaj7"F4 z4|"E7"E4 z4|
+w:(whispered) I am not the same wo-man who walked in here to-night
+|"Am"A2B2 c2B2|"Fmaj7"A4 G2F2|"E7"E4 ^G4|"Am"A8|]
+w:I am not bro-ken I am not fixed I am sim-ply right

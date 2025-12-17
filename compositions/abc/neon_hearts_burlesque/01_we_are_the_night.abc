@@ -1,0 +1,102 @@
+X:1
+T:We Are the Night
+T:Chosen Family Ensemble - Neon Hearts Burlesque
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=108
+K:Gm
+%%MIDI program 1 0
+%
+% INTRO - Period feel, building warmth (4 bars)
+|:"Gm"G2B2 d2g2|"Cm"c2e2 g2c'2|"D7"d2f2 a2d'2|"Gm"g4 z4:|
+%
+% VERSE 1 - STELLA (Yiddish folk influence)
+|:"Gm"d2d2 d2c2|"Cm"B4 c2d2|"D7"d2d2 d2c2|"Gm"B4 z4|
+w:STELLA: Nee-dle and thread beads and lace I sew dreams for ev-ery face
+|"Gm"d2e2 f2g2|"Cm"g4 f2e2|"D7"d2c2 B2A2|"Gm"G4 z4:|
+w:That walks through this vel-vet door look-ing for some-thing more
+|"Eb"e2e2 e2f2|"Bb"f4 e2d2|"Cm"e2e2 e2d2|"D7"d4 z4|
+w:Twen-ty years I've watched them grow from scared girls to wo-men who know
+|"Eb"e2f2 g2f2|"Bb"f4 e2d2|"Cm"d2c2 "D7"B2A2|"Gm"G4 z4:|
+w:Their worth their pow-er their light we are the guar-dians of the night
+%
+% VERSE 2 - MAX (Irish folk rhythm)
+|:"Gm"d2d2 d2e2|"Cm"f4 e2d2|"D7"d2d2 d2c2|"Gm"B4 z4|
+w:MAX: Count the till check the books ig-nore the cus-tom-ers' dir-ty looks
+|"Gm"d2e2 f2g2|"Cm"g4 f2e2|"D7"d2c2 B2A2|"Gm"G4 z4:|
+w:When they think we're just a show they don't see what we real-ly know
+|"Eb"e2e2 e2f2|"Bb"f4 e2d2|"Cm"e2e2 e2d2|"D7"d4 z4|
+w:When the world says you're too much too loud too proud too rough
+|"Eb"e2f2 g2f2|"Bb"f4 e2d2|"Cm"d2c2 "D7"B2A2|"Gm"G4 z4:|
+w:We say come in take the stage turn your pain in-to your rage
+%
+% CHORUS - Building ensemble
+|:"Gm"g4 g2a2|"Cm"a4 g2f2|"D7"f4 e4|"Gm"d4 z4|
+w:We are the NIGHT when the day won't have you
+|"Eb"e4 e2f2|"Bb"g4 f2e2|"Cm"e4 "D7"d4|"Gm"d4 z4|
+w:We are the LIGHT when the dark-ness finds you
+|"Eb"e2f2 g2f2|"Bb"f4 e2d2|"Cm"e2d2 c2B2|"D7"A4 z4|
+w:We are the FAM-i-ly you choose for your-self when blood ain't e-nough
+|"Eb"e2f2 g2a2|"Bb"g4 f2e2|"Cm"e2d2 "D7"c2B2|"Gm"G4 z4:|
+w:And you need some-thing else we are the night
+%
+% VERSE 3 - TOMMY (Sicilian melody)
+|:"Gm"d2d2 d2c2|"Cm"B4 c2d2|"D7"d2d2 d2e2|"Gm"d4 z4|
+w:TOMMY: These hands have done ter-ri-ble things but here they pro-tect an-gel wings
+|"Gm"d2e2 f2g2|"Cm"g4 f2e2|"D7"d2c2 B2A2|"Gm"G4 z4:|
+w:Made of fea-thers and se-quined dreams no-thing's quite what it seems
+|"Eb"e2e2 e2f2|"Bb"f4 e2d2|"Cm"e2e2 e2d2|"D7"d4 z4|
+w:Free from judg-ment free from shame free to make their own damn name
+|"Eb"e2f2 g2f2|"Bb"f4 e2d2|"Cm"d2c2 "D7"B2A2|"Gm"G4 z2d2:|
+w:I stand guard at the door 'cause I know what we're fight-ing for not just a
+%
+% VERSE 4 - RUBY (Italian-American passion)
+|:"Gm"d2d2 d2e2|"Cm"f4 e2d2|"D7"d2d2 d2c2|"Gm"B4 z4|
+w:RUBY: Fif-teen years a-go I walked in preg-nant scared thick and thin
+|"Gm"d2e2 f2g2|"Cm"g4 f2e2|"D7"d2c2 B2A2|"Gm"G4 z4:|
+w:Was all I had to my name play-ing some-one else's game
+|"Eb"e2e2 e2f2|"Bb"f4 e2d2|"Cm"e2e2 e2d2|"D7"d4 z4|
+w:But Stel-la taught me how to sew Max taught me how to grow strong
+|"Eb"e2f2 g2f2|"Bb"f4 e2d2|"Cm"d2c2 "D7"B2A2|"Gm"G4 z4:|
+w:Tom-my kept the wolves a-way now it's my turn to fight we are the night
+%
+% BRIDGE - CANDY (Polish folk, conflicted)
+K:Dm
+|:"Dm"d2d2 d2e2|"Gm"f4 e2d2|"A7"e2e2 e2d2|"Dm"d4 z4|
+w:CANDY: I came here just a girl from a cold and dis-tant world
+|"Dm"d2e2 f2g2|"Gm"a4 g2f2|"A7"e2d2 c2B2|"Dm"d4 z4:|
+w:Where dreams were just for rich folks and hope was just for jokes
+|"Bb"f2f2 f2g2|"Gm"g4 f2e2|"A7"e2e2 e2f2|"Dm"f4 z4|
+w:But you took me in taught me how to win at this game of lights and sha-dows
+|"Bb"f2g2 a2g2|"Gm"g4 f2e2|"A7"e2d2 c2B2|"Dm"d4 z4:|
+w:Now I stand here torn be-tween but to-night I re-mem-ber how you saved me
+%
+% FINAL CHORUS - Full company
+K:Gm
+Q:1/4=116
+|:"Gm"g4 g2a2|"Cm"a4 g2f2|"D7"f4 e4|"Gm"d4 z4|
+w:ALL: We are the NIGHT when the day won't have you
+|"Eb"e4 e2f2|"Bb"g4 f2e2|"Cm"e4 "D7"d4|"Gm"d4 z4|
+w:We are the LIGHT when the dark-ness finds you
+|"Eb"e2f2 g2f2|"Bb"f4 e2d2|"Cm"e2d2 c2B2|"D7"A4 z4|
+w:We are the FAM-i-ly you choose for your-self when blood ain't e-nough
+|"Eb"e2f2 g2a2|"Bb"g4 f2e2|"Cm"e2d2 "D7"c2B2|"Gm"d4 z4|
+w:And you need some-thing else
+%
+% TAG - Maximum power
+|:"Gm"g2g2 g2a2|"Cm"a4 b2c'2|"D7"d'4 c'4|"Gm"b4 z4|
+w:We are the VEL-vet ROOM we are the NE-on HEART
+|"Eb"g2a2 b2c'2|"Bb"d'4 c'2b2|"Cm"a4 "D7"g4|"Gm"g4 z4|
+w:We are the ones who WON'T de-PART from each oth-er
+|"Eb"e2f2 g2a2|"Bb"b4 a2g2|"Cm"g2f2 e2d2|"D7"d4 z4|
+w:From this PLACE from the LOVE that time can't e-rase
+|"Gm"g4 "Cm"a4|"D7"b4 "Gm"g4|"Gm"G8|]
+w:WE ARE THE NIGHT!
+%
+% OUTRO - Soft resolution
+Q:1/4=92
+|:"Gm"d4 d2c2|"Cm"B4 A2G2|"D7"A4 G4|"Gm"G4 z4|
+w:(soft) And when the morn-ing comes and the ne-on fades a-way
+|"Eb"e2d2 c2B2|"Bb"A4 G2F2|"Cm"G4 "D7"F4|"Gm"G8|]
+w:We'll still be here we'll still be fa-mi-ly come what may

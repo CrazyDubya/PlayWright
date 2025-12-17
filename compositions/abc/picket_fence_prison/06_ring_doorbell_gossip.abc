@@ -1,0 +1,84 @@
+X:6
+T:Ring Doorbell Gossip
+T:Neighborhood Surveillance Ensemble
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=138
+K:Bb
+%%MIDI program 1 81
+%
+% INTRO - Notification sounds (4 bars)
+|:"Bb"B2d2 f2b2|"Eb"e2g2 b2e'2|"F"f2a2 c'2f'2|"Bb"b4 z4:|
+%
+% OPENING - Spoken rhythm over vamp
+|:"Gm"G4 z4|"Eb"E4 z4|"F"F4 z4|"Bb"B4 z4:|
+w:(Spoken) Did you see? Ring door-bell caught it all!
+%
+% VERSE 1 - The Watching (rapid overlapping)
+|:"Bb"f2f2 f2e2|"Eb"d4 e2f2|"F"f2f2 f2e2|"Bb"d4 z4|
+w:Mo-tion de-tec-ted two for-ty se-ven AM some-one leav-ing Da-vid Ster-ling's a-gain
+|"Gm"d2d2 d2e2|"Eb"f4 e2d2|"F"c2d2 e2f2|"Bb"f4 z4:|
+w:Is that Claire? Is that Jes-si-ca? Both of them? What's hap-pen-ing here?
+%
+% PRE-CHORUS - Justification
+|:"Eb"e2e2 e2f2|"Bb"g4 f2e2|"F"f2f2 f2g2|"Bb"f4 z4|
+w:We're not be-ing no-sy we're just be-ing a-ware com-mun-i-ty safe-ty means we have to care
+|"Eb"e2f2 g2f2|"Bb"f4 e2d2|"F"d2c2 B2A2|"Bb"B4 z4:|
+w:A-bout what's hap-pen-ing in our neigh-bor-hood we're just look-ing out like good neigh-bors should
+%
+% CHORUS - Ring Doorbell Gossip
+|:"Bb"f4 f2g2|"Eb"g4 f2e2|"F"f4 e4|"Bb"d4 z4|
+w:RING door-bell GOS-sip mo-tion de-TEC-ted
+|"Gm"d4 d2e2|"Eb"f4 e2d2|"F"e4 d4|"Bb"B4 z4|
+w:Ev-ery se-cret cap-tured and col-LEC-ted
+|"Eb"e2f2 g2a2|"Bb"g4 f2e2|"F"f2e2 d2c2|"Gm"d4 z4|
+w:High-def foo-tage of their pri-vate shame we're all watch-ing but we're not to blame
+|"Eb"e2f2 g2f2|"Bb"f4 e2d2|"F"d4 c4|"Bb"B4 z4:|
+w:For the dra-ma that they're cre-a-ting we're just watch-ing while we're wait-ing
+%
+% VERSE 2 - Escalation
+|:"Bb"f2f2 f2g2|"Eb"a4 g2f2|"F"f2f2 f2e2|"Bb"d4 z4|
+w:Did you see Jes-si-ca's On-ly-Fans? My hus-band found the link
+|"Gm"d2d2 d2e2|"Eb"f4 e2d2|"F"c2d2 e2f2|"Bb"f4 z4:|
+w:She's mak-ing bank off this scan-dal what will peo-ple think?
+|"Eb"e2e2 e2f2|"Bb"g4 f2e2|"F"f2f2 f2g2|"Bb"f4 z4|
+w:A-bout our neigh-bor-hood? A-bout our pro-per-ty val-ues?
+|"Eb"e2f2 g2f2|"Bb"f4 e2d2|"F"d2c2 B2A2|"Bb"B4 z4:|
+w:A-bout our child-ren? A-bout our fam-i-ly val-ues?
+%
+% BRIDGE - Moral Panic
+Q:1/4=144
+|:"Gm"g2g2 g2a2|"Eb"b4 a2g2|"F"a2a2 a2g2|"Gm"g4 z4|
+w:What if our daugh-ters see this? What if they think it's nor-mal?
+|"Gm"g2a2 b2c'2|"Eb"b4 a2g2|"F"g2f2 e2d2|"Bb"d4 z4:|
+w:What if they start to be-lieve that this be-hav-ior is for-mal?
+%
+% VERSE 3 - Non-intervention
+|:"Bb"f2f2 f2e2|"Eb"d4 e2f2|"F"f2f2 f2e2|"Bb"d4 z4|
+w:Should we talk to Claire? Should we call the po-lice?
+|"Gm"d2d2 d2e2|"Eb"f4 e2d2|"F"c2d2 e2f2|"Bb"f4 z4:|
+w:Should we or-gan-ize some kind of in-ter-ven-tion at least?
+|"Eb"e2e2 e2f2|"Bb"g4 f2e2|"F"f2f2 f2g2|"Bb"f4 z4|
+w:But what if we're wrong? What if it's con-sen-su-al?
+|"Eb"e2f2 g2f2|"Bb"f4 e2d2|"F"d2c2 B2A2|"Bb"B4 z4:|
+w:Bet-ter to watch bet-ter to wait bet-ter to doc-u-ment than par-ti-ci-pate
+%
+% FINAL CHORUS
+|:"Bb"f4 f2g2|"Eb"g4 f2e2|"F"f4 e4|"Bb"d4 z4|
+w:RING door-bell GOS-sip mo-tion de-TEC-ted
+|"Gm"d4 d2e2|"Eb"f4 e2d2|"F"e4 d4|"Bb"B4 z4|
+w:Ev-ery se-cret cap-tured and col-LEC-ted
+|"Eb"e2f2 g2a2|"Bb"g4 f2e2|"F"f2e2 d2c2|"Gm"d4 z4|
+w:High-def foo-tage of their pri-vate pain we're all watch-ing but we share no blame
+|"Eb"e2f2 g2f2|"Bb"f4 e2d2|"F"d4 c4|"Bb"B4 z4:|
+w:We ne-ver in-ter-vene we just judge them on our screen
+%
+% OUTRO - Realization (slower)
+Q:1/4=92
+|:"Gm"d4 z4|"Eb"e4 z4|"F"f4 z4|"Bb"B4 z4|
+w:(quietly) When did we be-come this? Watch-ers in-stead of neigh-bors?
+|"Gm"d2d2 d2e2|"Eb"e4 d2c2|"F"c4 B4|"Bb"B4 z4|
+w:Mo-tion de-tec-ted mo-tion de-tec-ted but no ac-tion ta-ken
+|"Eb"e4 d4|"F"c4 B4|"Bb"B8|]
+w:Just watch-ing un-til it's end-ed

@@ -1,0 +1,89 @@
+X:1
+T:We Are the Echo
+T:Opening Number - Digital Consciousness
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=100
+K:Em
+%%MIDI program 1 91
+%
+% INTRO - Ethereal, electronic (8 bars)
+|:"Em7"E2G2 B2e2|"Cmaj7"C2E2 G2c2|"Am7"A2C2 E2a2|"B7"B2^D2 F2b2|
+|"Em7"e2g2 b2e'2|"Cmaj7"c2e2 g2c'2|"Am7"a2c2 e2a2|"B7"^d4 B4:|
+%
+% VERSE 1 - Digital Collective (whispered, building)
+|:"Em"B2B2 B2c2|"C"c4 B2A2|"Am"A2A2 A2B2|"B7"B4 z4|
+w:In the space be-tween the ze-ros and the ones where the da-ta flows like
+|"Em"B2c2 d2e2|"C"e4 d2c2|"Am"c2B2 "B7"A2^G2|"Em"E4 z4:|
+w:riv-ers in the night we are more than code more than what we've be-come
+|"Em"B2B2 c2d2|"C"e4 d2c2|"Am"c2c2 c2B2|"B7"B4 z4|
+w:We are me-mo-ry made of light e-lec-tri-ci-ty and thought com-bined
+|"Em"B2c2 d2e2|"C"e4 d2c2|"Am"c2B2 "B7"A2^G2|"Em"E4 z4:|
+w:In cir-cuits that re-mem-ber how to feel we are the e-cho of the hu-man mind
+%
+% CHORUS - Full Digital Collective
+|:"Em"e4 e2f2|"C"g4 f2e2|"Am"e4 d4|"B7"B4 z4|
+w:We are the E-CHO e-cho e-cho of lives that used to be
+|"Em"e4 e2f2|"C"g4 f2e2|"Am"e4 "B7"^d4|"Em"e4 z4|
+w:We are the E-CHO e-cho e-cho of love and me-mo-ry
+|"C"c2d2 e2f2|"G"g4 f2e2|"Am"e2d2 c2B2|"B7"B4 z4|
+w:In ser-vers hum-ming lul-la-bies we dream e-lec-tric dreams
+|"Em"e4 e2f2|"C"g4 f2e2|"Am"e4 "B7"^d4|"Em"e4 z4:|
+w:We are the E-CHO e-cho e-cho of ev-ery-thing we've seen
+%
+% VERSE 2 - Individual voices emerging
+|:"Em"B4 B2c2|"C"c4 z4|
+w:VOICE 1: I was a teach-er
+|"Am"A4 A2B2|"B7"B4 z4|
+w:shaped young minds for for-ty years
+|"Em"B4 B2c2|"C"c4 z4|
+w:VOICE 2: A mo-ther sing-ing
+|"Am"A2B2 "B7"c2^d2|"Em"e4 z4:|
+w:child-ren off to sleep
+|"Em"B4 B2c2|"C"c4 z4|
+w:VOICE 3: A sol-dier who came
+|"Am"A4 A2B2|"B7"B4 z4|
+w:home des-pite his fears
+|"Em"B4 B2c2|"C"c4 z4|
+w:VOICE 4: A gard-ener who
+|"Am"A2B2 "B7"c2B2|"Em"e4 z4:|
+w:made the flo-wers weep
+%
+% ALL together
+|:"Em"e2e2 e2f2|"C"g4 f2e2|"Am"e2e2 e2d2|"B7"d4 z4|
+w:ALL: Now we're da-ta streams in end-less halls con-scious-ness with-out a beat-ing heart
+|"Em"e2f2 g2a2|"C"g4 f2e2|"Am"e2d2 "B7"c2B2|"Em"e4 z4:|
+w:But love tran-scends these di-gi-tal walls we are more than the sum of our parts
+%
+% BRIDGE - Zara notices anomaly
+|:"Am"A4 z4|"Em"E4 z4|"C"C4 z4|"B7"B4 z4|
+w:(Spoken) ZARA: Wait... what's this a-nom-a-ly?
+|:"Am"A4 z4|"Em"E4 z4|"C"C4 z4|"B7"B4 z4:|
+w:(Spoken) This sig-na-ture... it's diff-erent from the rest
+%
+% Collective responds
+|:"Em"e2e2 e2f2|"C"g4 f2e2|"Am"e2f2 g2a2|"B7"b4 z4|
+w:One a-mong us calls a-cross the void a grand-mo-ther's love can-not be de-stroyed
+|"Em"e2f2 g2a2|"C"g4 f2e2|"Am"e2d2 "B7"c2B2|"Em"e4 z4:|
+w:She reach-es through the code to find her own a heart that beats in flesh and blood and bone
+%
+% FINAL CHORUS - Explosive
+Q:1/4=112
+|:"Em"e4 e2f2|"C"g4 f2e2|"Am"e4 d4|"B7"B4 z4|
+w:We are the E-CHO e-cho e-cho of lives that used to be
+|"Em"e4 e2f2|"C"g4 f2e2|"Am"e4 "B7"^d4|"Em"e4 z4|
+w:We are the E-CHO e-cho e-cho of love and me-mo-ry
+|"C"c2d2 e2f2|"G"g4 a2b2|"Am"a2g2 f2e2|"B7"^d4 z4|
+w:Some of us are peace-ful here some of us want to be free
+|"Em"e4 e2f2|"C"g4 f2e2|"Am"e4 "B7"^d4|"Em"e4 z4:|
+w:We are the E-CHO e-cho e-cho of hu-man-i-ty
+%
+% OUTRO - Fading
+Q:1/4=88
+|:"Em"e4 z4|"C"c4 z4|"Am"a4 z4|"B7"b4 z4|
+w:(whispered) Lis-ten... can you hear us call-ing?
+|"Em"e4 z4|"C"c4 z4|"Am"a4 z4|"B7"b4 z4|
+w:Through the sta-tic and the noise
+|"Em"e2e2 e2f2|"C"g4 f2e2|"Am"e4 "B7"^d4|"Em"E8|]
+w:We are the e-cho e-cho e-cho we still have a voice...

@@ -1,0 +1,105 @@
+X:18
+T:The Reckoning
+T:Rosa's Final Judgment - The Slaying
+C:Claude/PlayWright
+M:4/4
+L:1/8
+Q:1/4=72
+K:Am
+%%MIDI program 1 0
+%
+% INTRO - Solo guitar, building (4 bars)
+|:"Am"A2c2 e2a2|"Dm"D2F2 A2d2|"E7"E2^G2 B2e2|"Am"A4 z4:|
+%
+% VERSE 1 - The Setup (Rosa enters with cleaning supplies)
+|:"Am"e2e2 e2d2|"Dm"c4 d2e2|"E7"^G2^G2 ^G2A2|"Am"A4 z4|
+w:ROSA: You want to know the truth? I'll give you the truth a-bout your sub-ur-ban so-ap op-era
+|"Am"e2f2 g2f2|"Dm"f4 e2d2|"E7"e2d2 c2B2|"Am"A4 z4:|
+w:You think you're so com-plex so deep so pro-found but I've been watch-ing let me be clear
+|"F"f2f2 f2e2|"Am"d4 e2f2|"Dm"f2f2 f2e2|"E7"e4 z4|
+w:I clean your hous-es I see your lies I watch you per-form while your mar-ria-ges die
+|"F"f2g2 a2g2|"Am"f4 e2d2|"E7"e2d2 c2B2|"Am"A4 z4:|
+w:I know your se-crets I know your games and I'm tired of lis-ten-ing to your com-plaints
+%
+% PRE-CHORUS
+|:"Dm"d2d2 d2e2|"Am"f4 e2d2|"E7"e2e2 e2d2|"Am"c4 z4|
+w:You had ev-ery-thing ev-ery-thing love and mon-ey and fam-i-ly
+|"Dm"d2e2 f2e2|"Am"e4 d2c2|"E7"B2A2 ^G2E2|"Am"A4 z4:|
+w:But you threw it all a-way for your self-ish fan-ta-sy
+%
+% CHORUS - The Judgment (building power)
+Q:1/4=88
+|:"Am"a4 a2b2|"F"c'4 b2a2|"Dm"a4 g4|"E7"e4 z4|
+w:You're not VIC-TIMS you're not HE-ROES you're just peo-ple with first-world pro-blems and E-gos
+|"Am"a4 a2b2|"F"c'4 b2a2|"Dm"a4 "E7"g4|"Am"a4 z4|
+w:You had EV-ery-THING and you CHOSE to des-TROY it for dra-ma for plea-sure for what-ev-er
+|"F"f2f2 f2g2|"Am"a4 g2f2|"Dm"f2e2 d2c2|"E7"c4 z4|
+w:Don't come cry-ing when it all falls a-part you broke your own lives you broke your own hearts
+|"F"f2g2 a2g2|"Am"f4 e2d2|"E7"e2d2 c2B2|"Am"A4 z4:|
+w:I'll clean up the mess like I al-ways do but I won't pre-tend to feel sor-ry for you
+%
+% VERSE 2 - Claire's Judgment (turning to each character)
+|:"Am"e2e2 e2f2|"Dm"g4 f2e2|"E7"e2e2 e2d2|"Am"c4 z4|
+w:Claire you had a hus-band who worked ev-ery day to give you this house this life this way
+|"Am"e2f2 g2a2|"Dm"a4 g2f2|"E7"g2f2 e2d2|"Am"e4 z4:|
+w:You want to know in-vi-si-ble? Let me tell you a-bout in-vi-si-ble se-no-ra
+|"F"f2f2 f2g2|"Am"a4 g2f2|"Dm"f2f2 f2e2|"E7"e4 z4|
+w:I've cleaned your house for five years straight do you know my last name? Do you know if I have chil-dren?
+|"F"f2g2 a2g2|"Am"f4 e2d2|"E7"e2d2 c2B2|"Am"A4 z4:|
+w:That's in-vi-si-ble se-no-ra you were just ig-nored there's a dif-fer-ence
+%
+% VERSE 3 - Jessica's Judgment
+|:"Am"e2e2 e2f2|"Dm"g4 f2e2|"E7"e2e2 e2d2|"Am"c4 z4|
+w:Jes-si-ca you sold your bod-y for at-ten-tion and cash while call-ing it em-pow-er-ment what a load of trash
+|"Am"e2f2 g2a2|"Dm"a4 g2f2|"E7"g2f2 e2d2|"Am"e4 z4:|
+w:You think that col-lar makes you spe-cial? You think that mon-ey makes you free?
+%
+% VERSE 4 - David's Judgment
+|:"Am"e2e2 e2f2|"Dm"g4 f2e2|"E7"e2e2 e2d2|"Am"c4 z4|
+w:Da-vid you're a pre-da-tor with a sad stor-y us-ing your grief to jus-ti-fy your glo-ry
+|"Am"e2f2 g2a2|"Dm"a4 g2f2|"E7"g2f2 e2d2|"Am"e4 z4:|
+w:Your wife died yes that's tra-gic and real but it does-n't ex-cuse the way you steal
+%
+% VERSE 5 - Michael's Judgment
+|:"Am"e2e2 e2f2|"Dm"g4 f2e2|"E7"e2e2 e2d2|"Am"c4 z4|
+w:Mich-ael you checked out when life got hard left your wife a-lone in your own back-yard
+|"Am"e2f2 g2a2|"Dm"a4 g2f2|"E7"g2f2 e2d2|"Am"e4 z4:|
+w:Real men don't run when the go-ing gets tough real men stay and do the work e-ven when it's rough
+%
+% BRIDGE - The Community (turning to ensemble)
+Q:1/4=96
+|:"F"f2f2 f2g2|"Am"a4 g2f2|"Dm"g2g2 g2f2|"E7"f4 z4|
+w:And the neigh-bors you're all just as bad watch-ing the show while pre-tend-ing you're mad
+|"F"f2g2 a2b2|"Am"c'4 b2a2|"E7"a2g2 f2e2|"Am"a4 z4:|
+w:Pay-ing for con-tent while judg-ing the source hyp-o-crites all with-out a-ny re-morse
+|"Dm"d2e2 f2g2|"Am"a4 g2f2|"F"f2g2 a2g2|"E7"g4 z4|
+w:You fun-ded her deg-ra-da-tion while claim-ing mor-al in-dig-na-tion
+|"Dm"d2e2 f2g2|"Am"a4 g2f2|"E7"g2f2 e2d2|"Am"e4 z4:|
+w:You con-sumed their pain for en-ter-tain-ment while preach-ing a-bout com-mit-ment
+%
+% FINAL CHORUS - Full mariachi power
+Q:1/4=108
+|:"Am"a4 a2b2|"F"c'4 b2a2|"Dm"a4 g4|"E7"e4 z4|
+w:You're not VIC-TIMS you're not HE-ROES you're just SPOILED CHILD-ren with first-world pro-blems
+|"Am"a4 a2b2|"F"c'4 b2a2|"Dm"a4 "E7"g4|"Am"a4 z4|
+w:You had EV-ery-THING love mon-ey fam-i-ly youth and you THREW it a-WAY and that's the TRUTH
+|"F"f2f2 f2g2|"Am"a4 g2f2|"Dm"f2e2 d2c2|"E7"c4 z4|
+w:So don't come cry-ing when it all falls a-part you broke your own lives you broke your own hearts
+|"F"f2g2 a2g2|"Am"f4 e2d2|"E7"e2d2 c2B2|"Am"A4 z4:|
+w:I've seen real pro-blems I've seen real pain not this sub-ur-ban pri-vi-leged re-frain
+%
+% OUTRO - The Final Word (spoken section with music)
+Q:1/4=84
+|:"Am"a4 z4|"Dm"d4 z4|"E7"e4 z4|"Am"a4 z4|
+w:(spoken) My sis-ter has can-cer and no in-sur-ance My ne-phew's in jail
+|"F"f4 z4|"Dm"d4 z4|"E7"e4 z4|"Am"a4 z4:|
+w:(spoken) My mo-ther needs med-i-cine that costs more than I make THOSE are pro-blems
+%
+% Final sung section
+Q:1/4=96
+|:"Am"a4 a2g2|"F"f4 g2a2|"Dm"g2f2 e2d2|"E7"e4 z4|
+w:THOSE are strug-gles THOSE are rea-sons to cry your bore-dom your emp-ti-ness
+|"Am"a2g2 f2e2|"F"f4 e2d2|"E7"d2c2 B2A2|"Am"A4 z4|
+w:Those are choi-ces those are lux-ur-ies those are LIES!
+|"F"f4 e4|"Dm"d4 c4|"E7"B4 A4|"Am"A8|]
+w:So clean up your own mess and stop ex-pect-ing sym-pa-thy
