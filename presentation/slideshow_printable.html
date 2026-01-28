@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayWright Codebase Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+        }
+
+        /* Each slide is a page */
+        .slide {
+            width: 100%;
+            min-height: 100vh;
+            padding: 40px 60px;
+            page-break-after: always;
+            page-break-inside: avoid;
+            border-bottom: 2px solid #333;
+        }
+
+        .slide:last-child {
+            page-break-after: avoid;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            color: #00d9ff;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #00d9ff;
+            padding-bottom: 12px;
+        }
+
+        h2 {
+            font-size: 1.6em;
+            color: #ff6b6b;
+            margin: 20px 0 12px 0;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            color: #ffd93d;
+            margin: 15px 0 8px 0;
+        }
+
+        p, li {
+            font-size: 1.1em;
+            line-height: 1.5;
+            margin: 8px 0;
+        }
+
+        ul {
+            margin-left: 30px;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #a8dadc;
+            border-left: 4px solid #a8dadc;
+            padding-left: 15px;
+            margin: 15px 0;
+            font-size: 1.2em;
+        }
+
+        pre {
+            background: #0d0d1a;
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 15px;
+            overflow-x: auto;
+            font-size: 0.85em;
+            margin: 12px 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        code {
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: #7bed9f;
+        }
+
+        .keyword { color: #ff6b6b; }
+        .string { color: #ffd93d; }
+        .comment { color: #888; }
+        .function { color: #00d9ff; }
+        .class { color: #ff9ff3; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+
+        th, td {
+            border: 1px solid #444;
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #16213e;
+            color: #00d9ff;
+        }
+
+        tr:nth-child(even) { background: #1a1a2e; }
+        tr:nth-child(odd) { background: #0f0f23; }
+
+        .diagram {
+            font-family: 'Consolas', monospace;
+            font-size: 0.8em;
+            line-height: 1.3;
+            background: #0d0d1a;
+            padding: 20px;
+            border-radius: 6px;
+            white-space: pre;
+            overflow-x: auto;
+            color: #00d9ff;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .error-box {
+            background: #ff6b6b22;
+            border: 2px solid #ff6b6b;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 12px 0;
+        }
+
+        .success-box {
+            background: #7bed9f22;
+            border: 2px solid #7bed9f;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 12px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-box {
+            background: #16213e;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            color: #00d9ff;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #888;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+
+        .file-ref {
+            color: #888;
+            font-size: 0.85em;
+            font-family: monospace;
+        }
+
+        .title-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .title-slide h1 {
+            font-size: 3em;
+            border: none;
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.5em;
+            color: #a8dadc;
+            margin-top: 15px;
+        }
+
+        .slide-header {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        /* Print styles for PDF */
+        @media print {
+            body {
+                background: white;
+                color: #222;
+            }
+
+            .slide {
+                padding: 30px 40px;
+                border-bottom: none;
+            }
+
+            h1 { color: #0066cc; border-bottom-color: #0066cc; }
+            h2 { color: #cc3333; }
+            h3 { color: #cc9900; }
+
+            pre {
+                background: #f5f5f5;
+                border: 1px solid #ccc;
+            }
+
+            code { color: #006600; }
+            .keyword { color: #cc3333; }
+            .string { color: #cc9900; }
+            .comment { color: #666; }
+            .function { color: #0066cc; }
+            .class { color: #9933cc; }
+
+            .diagram {
+                background: #f5f5f5;
+                color: #0066cc;
+            }
+
+            th { background: #e0e0e0; color: #0066cc; }
+            tr:nth-child(even) { background: #f9f9f9; }
+            tr:nth-child(odd) { background: white; }
+
+            .error-box {
+                background: #ffeeee;
+                border-color: #cc3333;
+            }
+
+            .success-box {
+                background: #eeffee;
+                border-color: #339933;
+            }
+
+            .stat-box { background: #f0f0f0; }
+            .stat-number { color: #0066cc; }
+
+            .quote { color: #336699; border-left-color: #336699; }
+        }
+
+        @page {
+            size: landscape;
+            margin: 0.5in;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Title -->
+    <div class="slide title-slide">
+        <div class="slide-header">Slide 1 of 15</div>
+        <h1>PlayWright</h1>
+        <div class="subtitle">AI-Powered Musical Theater Creation Framework</div>
+        <p style="margin-top: 30px; color: #666;">A Technical Codebase Review</p>
+        <div class="quote" style="margin-top: 40px; border: none; text-align: center;">
+            "Perfect systems create competent art.<br>Broken systems create transcendent art."
+        </div>
+    </div>
+
+    <!-- Slide 2: Overview -->
+    <div class="slide">
+        <div class="slide-header">Slide 2 of 15</div>
+        <h1>What is PlayWright?</h1>
+        <p><strong>Mission:</strong> Enable non-professionals to create production-ready Broadway musicals in weeks instead of months/years.</p>
+
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-number">11</div>
+                <div class="stat-label">Python Engine Files</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">80+</div>
+                <div class="stat-label">CLI Commands</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">277</div>
+                <div class="stat-label">Documentation Files</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">9</div>
+                <div class="stat-label">Sample Musicals</div>
+            </div>
+        </div>
+
+        <h2>Core Components</h2>
+        <ul>
+            <li><strong>10 Creative Engines</strong> - Python modules for different creative aspects</li>
+            <li><strong>Agent Harness</strong> - Node.js CLI for LLM autonomous control</li>
+            <li><strong>Web App</strong> - React + Express UI for manual interaction</li>
+            <li><strong>Orchestrator</strong> - Coordinates the engine cascade</li>
+        </ul>
+    </div>
+
+    <!-- Slide 3: 10 Engine Architecture -->
+    <div class="slide">
+        <div class="slide-header">Slide 3 of 15</div>
+        <h1>The 10-Engine Architecture</h1>
+        <div class="diagram">
+                      THOUSAND MINDS AWAKENED (Seeds)
+                                  |
+              +-------------------+-------------------+
+              |                   |                   |
+              v                   v                   v
+         CHARACTER            DREAM              TEMPORAL
+         GENETICS            PROTOCOL             SPIRAL
+              |                   |                   |
+              +-------------------+-------------------+
+                                  |
+                                  v
+                      SYNESTHETIC TRANSLATOR
+                                  |
+                      +-----------+-----------+
+                      |                       |
+                      v                       v
+                 BODY GRAMMAR           LIVING CANVAS
+                      |                       |
+                      +-----------+-----------+
+                                  |
+                                  v
+                            GHOST COUNCIL
+                                  |
+                                  v
+                           BREAKING ENGINE
+                                  |
+                                  v
+                           RITUAL FRAMEWORK</div>
+        <p style="text-align: center; margin-top: 15px;"><strong>Key Insight:</strong> Engines don't compete - they compound. Each adds insights as artifacts flow through.</p>
+    </div>
+
+    <!-- Slide 4: Creative Artifact -->
+    <div class="slide">
+        <div class="slide-header">Slide 4 of 15</div>
+        <h1>The Creative Artifact</h1>
+        <p class="file-ref">engines/core/base_engine.py:31-78</p>
+
+        <pre><code><span class="keyword">@dataclass</span>
+<span class="keyword">class</span> <span class="class">CreativeArtifact</span>:
+    <span class="string">"""A unit of creative output that flows between engines."""</span>
+    id: <span class="class">str</span>
+    artifact_type: <span class="class">str</span>  <span class="comment"># concept, character, scene, song</span>
+    content: <span class="class">Dict</span>[<span class="class">str</span>, <span class="class">Any</span>]
+    insights: <span class="class">Dict</span>[<span class="class">str</span>, <span class="class">Any</span>] = field(default_factory=<span class="class">dict</span>)
+    processed_by: <span class="class">List</span>[<span class="class">str</span>] = field(default_factory=<span class="class">list</span>)
+
+    <span class="keyword">def</span> <span class="function">add_insight</span>(self, engine_name, insight_key, insight_value):
+        <span class="string">"""Add an insight from an engine's processing"""</span>
+        <span class="keyword">if</span> engine_name <span class="keyword">not in</span> self.insights:
+            self.insights[engine_name] = {}
+        self.insights[engine_name][insight_key] = insight_value</code></pre>
+
+        <div class="success-box">
+            <h3>Pattern: Insight Accumulation</h3>
+            <p>Artifacts accumulate wisdom as they traverse the cascade. Each engine adds its unique perspective without destroying previous insights.</p>
+        </div>
+    </div>
+
+    <!-- Slide 5: Ghost Council -->
+    <div class="slide">
+        <div class="slide-header">Slide 5 of 15</div>
+        <h1>Ghost Council - Multi-Perspective Critique</h1>
+        <p class="file-ref">engines/layer5_critique/ghost_council.py:76-226</p>
+
+        <table>
+            <tr>
+                <th>Ghost</th>
+                <th>Focus</th>
+                <th>Signature Phrase</th>
+            </tr>
+            <tr>
+                <td>Sondheim</td>
+                <td>Lyrics, precision</td>
+                <td>"The word is everything."</td>
+            </tr>
+            <tr>
+                <td>Fosse</td>
+                <td>Body, movement</td>
+                <td>"The body doesn't lie."</td>
+            </tr>
+            <tr>
+                <td>Brecht</td>
+                <td>Politics, systems</td>
+                <td>"Theater that comforts serves power."</td>
+            </tr>
+            <tr>
+                <td>Kushner</td>
+                <td>Spirituality</td>
+                <td>"More. The angels demand it."</td>
+            </tr>
+            <tr>
+                <td>Dionysian</td>
+                <td>Ecstasy, danger</td>
+                <td>"Safety is death. Break something."</td>
+            </tr>
+            <tr>
+                <td>Wounded Child</td>
+                <td>Vulnerability</td>
+                <td>"Make me feel it."</td>
+            </tr>
+        </table>
+        <p><strong>Each ghost votes:</strong> APPROVE, REVISE, REJECT, or ABSTAIN</p>
+    </div>
+
+    <!-- Slide 6: Breaking Engine -->
+    <div class="slide">
+        <div class="slide-header">Slide 6 of 15</div>
+        <h1>Breaking Engine - Hunting Mediocrity</h1>
+        <p class="file-ref">engines/layer6_transformation/breaking_engine.py:30-48</p>
+
+        <div class="two-column">
+            <div>
+                <h3>Mediocrity Types Detected:</h3>
+                <pre><code><span class="keyword">class</span> <span class="class">MediocrityType</span>(Enum):
+  GENERIC = <span class="string">"generic"</span>
+  CONVENIENT_VILLAIN = <span class="string">"convenient_villain"</span>
+  TRAUMA_SERVES_PLOT = <span class="string">"trauma_serves_plot"</span>
+  TOO_CONSISTENT = <span class="string">"too_consistent"</span>
+  FALSE_STAKES = <span class="string">"false_stakes"</span>
+  EASY_RESOLUTION = <span class="string">"easy_resolution"</span></code></pre>
+            </div>
+            <div>
+                <h3>Breaking Intensity:</h3>
+                <pre><code><span class="keyword">class</span> <span class="class">BreakingIntensity</span>(Enum):
+  GENTLE = <span class="string">"gentle"</span>
+  <span class="comment"># Suggestions</span>
+  FIRM = <span class="string">"firm"</span>
+  <span class="comment"># Problems identified</span>
+  AGGRESSIVE = <span class="string">"aggressive"</span>
+  <span class="comment"># Everything questioned</span>
+  NUCLEAR = <span class="string">"nuclear"</span>
+  <span class="comment"># Scorched earth</span></code></pre>
+            </div>
+        </div>
+
+        <div class="success-box">
+            <h3>Example: Generic Detection</h3>
+            <p><strong>Input:</strong> "Asian-American family"</p>
+            <p><strong>Output:</strong> "Third-generation Japanese-American from Gardena whose grandfather was in Manzanar"</p>
+        </div>
+    </div>
+
+    <!-- Slide 7: Master Agent Loop -->
+    <div class="slide">
+        <div class="slide-header">Slide 7 of 15</div>
+        <h1>The Master Agent Loop</h1>
+        <p class="file-ref">agent-harness/AGENT_LOOP.md:7-36</p>
+
+        <div class="diagram" style="font-size: 0.75em;">
++---------------------------------------------------------------+
+|                     AGENT MASTER LOOP                          |
++---------------------------------------------------------------+
+|  WHILE project not complete:                                   |
+|                                                                |
+|    1. GET NEXT TASK                                            |
+|       $ node playwright-agent.js workflow:next-task <project>  |
+|       Returns: { nextTask, projectStatus }                     |
+|                                                                |
+|    2. EXECUTE TASK based on nextTask.task:                     |
+|       +-- "generate_concept"   --> Concept Generation Loop     |
+|       +-- "create_characters"  --> Character Creation Loop     |
+|       +-- "create_act*_scenes" --> Scene Creation Loop         |
+|       +-- "transcendence"      --> Breaking Protocol Loop      |
+|                                                                |
+|    3. VALIDATE RESULT                                          |
+|       $ node playwright-agent.js validate:project <project>    |
+|                                                                |
+|    4. MARK COMPLETE                                            |
+|       $ node playwright-agent.js workflow:complete-task        |
+|  END WHILE                                                     |
++---------------------------------------------------------------+</div>
+        <p style="text-align: center;"><strong>LLM receives JSON, parses it, makes decisions, calls next command. Fully autonomous.</strong></p>
+    </div>
+
+    <!-- Slide 8: Character Creation Loop -->
+    <div class="slide">
+        <div class="slide-header">Slide 8 of 15</div>
+        <h1>Sub-Loop: Character Creation</h1>
+        <p><strong>Pattern:</strong> Generate -> Evaluate -> Improve -> Re-evaluate</p>
+
+        <div class="two-column">
+            <div>
+                <h3>4-Layer Character Depth:</h3>
+                <ul>
+                    <li><strong>Surface</strong> - Occupation, persona, reputation</li>
+                    <li><strong>Behavior</strong> - Actions, habits, under pressure</li>
+                    <li><strong>Psychology</strong> - Motivations, fears, contradictions</li>
+                    <li><strong>Soul</strong> - Core values, dreams, would die for</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Scoring Criteria (100 pts):</h3>
+                <table style="font-size: 0.85em;">
+                    <tr><td>Cultural specificity</td><td>15 pts</td></tr>
+                    <tr><td>Internal contradictions</td><td>15 pts</td></tr>
+                    <tr><td>Personal trauma</td><td>15 pts</td></tr>
+                    <tr><td>Economic reality</td><td>15 pts</td></tr>
+                    <tr><td>Complete arc</td><td>20 pts</td></tr>
+                    <tr><td>Four layers defined</td><td>20 pts</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="error-box">
+            <strong>Quality Gate:</strong> Characters must score >= 70 to pass. If failed, UPDATE and re-evaluate.
+        </div>
+    </div>
+
+    <!-- Slide 9: Orchestrator -->
+    <div class="slide">
+        <div class="slide-header">Slide 9 of 15</div>
+        <h1>The Orchestrator - Cascade Conductor</h1>
+        <p class="file-ref">engines/orchestrator/engine_orchestrator.py:101-208</p>
+
+        <pre><code><span class="keyword">class</span> <span class="class">EngineOrchestrator</span>:
+    <span class="string">"""The conductor of the Ten Creative Engines."""</span>
+
+    CASCADE_ORDER = [
+        (<span class="string">"ThousandMindsAwakened"</span>, EngineLayer.SEEDS),
+        (<span class="string">"CharacterGenetics"</span>, EngineLayer.FOUNDATION),
+        (<span class="string">"DreamProtocol"</span>, EngineLayer.FOUNDATION),
+        (<span class="string">"TemporalSpiral"</span>, EngineLayer.FOUNDATION),
+        (<span class="string">"SynestheticTranslator"</span>, EngineLayer.TRANSLATION),
+        (<span class="string">"BodyGrammar"</span>, EngineLayer.MANIFESTATION),
+        (<span class="string">"LivingCanvas"</span>, EngineLayer.MANIFESTATION),
+        (<span class="string">"GhostCouncil"</span>, EngineLayer.CRITIQUE),
+        (<span class="string">"BreakingEngine"</span>, EngineLayer.TRANSFORMATION),
+        (<span class="string">"RitualFramework"</span>, EngineLayer.TRANSFORMATION),
+    ]
+
+    <span class="keyword">def</span> <span class="function">orchestrate</span>(self, artifact):
+        <span class="keyword">for</span> engine_name, layer <span class="keyword">in</span> self.CASCADE_ORDER:
+            current_artifact = engine.<span class="function">process</span>(current_artifact)</code></pre>
+
+        <p><strong>Result:</strong> Each artifact exits with insights from all 10 engines.</p>
+    </div>
+
+    <!-- Slide 10: Quality Gates -->
+    <div class="slide">
+        <div class="slide-header">Slide 10 of 15</div>
+        <h1>Quality Gates Between Phases</h1>
+
+        <div class="three-column">
+            <div class="success-box">
+                <h3>Phase 1 -> 2</h3>
+                <p><em>Foundation -> Systematic</em></p>
+                <ul style="font-size: 0.9em;">
+                    <li>Concept saved</li>
+                    <li>3+ characters >= 70</li>
+                    <li>Characters have arcs</li>
+                    <li>Have contradictions</li>
+                </ul>
+            </div>
+            <div class="success-box">
+                <h3>Phase 2 -> 3</h3>
+                <p><em>Systematic -> Breaking</em></p>
+                <ul style="font-size: 0.9em;">
+                    <li>10+ scenes >= 70</li>
+                    <li>8+ songs >= 70</li>
+                    <li>All acts complete</li>
+                </ul>
+            </div>
+            <div class="success-box">
+                <h3>Phase 3 -> Done</h3>
+                <p><em>Breaking -> Complete</em></p>
+                <ul style="font-size: 0.9em;">
+                    <li>Transcendence met</li>
+                    <li>Validation >= 80</li>
+                    <li>No generic refs</li>
+                    <li>Sympathetic villains</li>
+                </ul>
+            </div>
+        </div>
+
+        <p style="margin-top: 20px; text-align: center;"><strong>Enforced by:</strong> <code>validate:project</code> and <code>validate:transcendence</code></p>
+    </div>
+
+    <!-- Slide 11: Slop/Errors Part 1 -->
+    <div class="slide">
+        <div class="slide-header">Slide 11 of 15</div>
+        <h1>SLOP & ERRORS IDENTIFIED (1/2)</h1>
+
+        <div class="error-box">
+            <h3>Issue 1: Hardcoded Absolute Paths (11 files)</h3>
+            <pre><code><span class="comment"># Found in EVERY engine file:</span>
+<span class="keyword">import</span> sys
+sys.path.<span class="function">insert</span>(0, <span class="string">'/home/user/PlayWright'</span>)  <span class="comment"># BAD!</span></code></pre>
+            <p><strong>Problem:</strong> Breaks portability, fails on any other machine</p>
+            <p><strong>Fix:</strong> Use proper package structure with relative imports</p>
+        </div>
+
+        <div class="error-box">
+            <h3>Issue 2: Non-Deterministic Outputs (66 occurrences)</h3>
+            <pre><code><span class="comment"># ghost_council.py:485</span>
+<span class="keyword">return</span> random.<span class="function">choice</span>([Vote.REVISE, Vote.REJECT])
+
+<span class="comment"># breaking_engine.py:296</span>
+options = random.<span class="function">sample</span>(options, <span class="function">min</span>(5, <span class="function">len</span>(options)))</code></pre>
+            <p><strong>Problem:</strong> Same input -> different outputs. Hard to test/debug.</p>
+            <p><strong>Fix:</strong> Add optional seed parameter for reproducibility</p>
+        </div>
+    </div>
+
+    <!-- Slide 12: Slop/Errors Part 2 -->
+    <div class="slide">
+        <div class="slide-header">Slide 12 of 15</div>
+        <h1>SLOP & ERRORS IDENTIFIED (2/2)</h1>
+
+        <div class="error-box">
+            <h3>Issue 3: Naive Keyword-Based Voting</h3>
+            <pre><code><span class="comment"># ghost_council.py - Just checks if keywords exist!</span>
+positive_count = <span class="function">sum</span>(1 <span class="keyword">for</span> signal <span class="keyword">in</span> signals <span class="keyword">if</span> signal <span class="keyword">in</span> target_lower)
+<span class="keyword">if</span> positive_count >= 2: <span class="keyword">return</span> Vote.APPROVE
+<span class="keyword">else</span>: <span class="keyword">return</span> random.<span class="function">choice</span>([Vote.REVISE, Vote.REJECT])</code></pre>
+            <p><strong>Problem:</strong> Ghost Council critique is keyword-based, not semantic</p>
+        </div>
+
+        <div class="two-column">
+            <div class="error-box">
+                <h3>Issue 4: Zero Unit Tests</h3>
+                <pre><code>$ find engines -name "*test*"
+<span class="comment"># (empty)</span></code></pre>
+                <p>~8,000 lines Python, no tests</p>
+            </div>
+            <div class="error-box">
+                <h3>Issue 5: Duplicate Dicts</h3>
+                <p>200+ line inline dictionaries repeated across engines</p>
+                <p><strong>Fix:</strong> Extract to YAML/JSON</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Strengths -->
+    <div class="slide">
+        <div class="slide-header">Slide 13 of 15</div>
+        <h1>Architecture Strengths</h1>
+
+        <div class="success-box">
+            <h2>What's Done Well:</h2>
+            <ul>
+                <li><strong>Clean Abstraction Layer</strong> - CreativeEngine base class is well-designed</li>
+                <li><strong>Artifact Accumulation Pattern</strong> - Elegant way to build up insights</li>
+                <li><strong>JSON API for Agents</strong> - Every command returns parseable JSON</li>
+                <li><strong>Quality Gates</strong> - Enforced validation prevents bad progression</li>
+                <li><strong>Extensive Documentation</strong> - 277 markdown files</li>
+                <li><strong>Modular Engine Design</strong> - Each engine is self-contained</li>
+                <li><strong>Breaking Engine Concept</strong> - Novel approach to avoiding mediocrity</li>
+            </ul>
+        </div>
+
+        <div class="quote">
+            "The ten engines breathing as one lung."
+        </div>
+    </div>
+
+    <!-- Slide 14: Summary -->
+    <div class="slide">
+        <div class="slide-header">Slide 14 of 15</div>
+        <h1>Summary & Recommendations</h1>
+
+        <h2>What This Codebase Does:</h2>
+        <ul>
+            <li>Complete framework for LLM-driven musical creation</li>
+            <li>10 specialized engines process artifacts in cascade</li>
+            <li>Quality gates ensure consistent output quality</li>
+            <li>Designed for full autonomy with human override</li>
+        </ul>
+
+        <h2>Priority Fixes:</h2>
+        <table>
+            <tr><th>Priority</th><th>Issue</th><th>Effort</th></tr>
+            <tr><td style="color: #ff6b6b; font-weight: bold;">P0</td><td>Remove hardcoded paths</td><td>1 hour</td></tr>
+            <tr><td style="color: #ffd93d; font-weight: bold;">P1</td><td>Add reproducibility seeds</td><td>2 hours</td></tr>
+            <tr><td style="color: #00d9ff; font-weight: bold;">P2</td><td>Add unit test foundation</td><td>4 hours</td></tr>
+            <tr><td style="color: #7bed9f; font-weight: bold;">P3</td><td>Extract config to YAML</td><td>4 hours</td></tr>
+        </table>
+
+        <div class="quote">
+            A novel architecture for creative AI with solid bones but needs testing and production hardening.
+        </div>
+    </div>
+
+    <!-- Slide 15: Questions -->
+    <div class="slide title-slide">
+        <div class="slide-header">Slide 15 of 15</div>
+        <h1>Questions?</h1>
+        <div class="subtitle">PlayWright Codebase Review</div>
+        <p style="margin-top: 40px; color: #666;">
+            <strong>Key Files:</strong><br>
+            <code>engines/core/base_engine.py</code><br>
+            <code>engines/orchestrator/engine_orchestrator.py</code><br>
+            <code>engines/layer5_critique/ghost_council.py</code><br>
+            <code>agent-harness/AGENT_LOOP.md</code>
+        </p>
+    </div>
+
+    <div style="text-align: center; padding: 20px; color: #666; font-size: 0.9em;">
+        <p><strong>To export as PDF:</strong> Open in Chrome/Edge -> Print (Ctrl+P) -> Save as PDF -> Landscape orientation</p>
+    </div>
+</body>
+</html>
