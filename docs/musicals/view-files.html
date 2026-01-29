@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="View musical project details">
-  <title>Project Details - PlayWright</title>
-  <link rel="stylesheet" href="assets/css/main.css">
+  <title>View Project Files - Musical Library</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     .project-content {
@@ -72,22 +71,9 @@
       line-height: 1.8;
     }
     
-    .markdown-content h1 {
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      font-size: 2rem;
-    }
-    
-    .markdown-content h2 {
+    .markdown-content h1, .markdown-content h2, .markdown-content h3 {
       margin-top: 1.5rem;
       margin-bottom: 0.75rem;
-      font-size: 1.5rem;
-    }
-    
-    .markdown-content h3 {
-      margin-top: 1rem;
-      margin-bottom: 0.5rem;
-      font-size: 1.25rem;
     }
     
     .markdown-content p {
@@ -97,49 +83,6 @@
     .markdown-content ul, .markdown-content ol {
       margin-left: 2rem;
       margin-bottom: 1rem;
-    }
-    
-    .markdown-content blockquote {
-      border-left: 4px solid var(--link-color);
-      padding-left: 1rem;
-      margin: 1rem 0;
-      font-style: italic;
-      opacity: 0.9;
-    }
-    
-    .markdown-content hr {
-      margin: 2rem 0;
-      border: none;
-      border-top: 2px solid var(--card-border);
-    }
-    
-    .back-btn {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background: var(--button-bg);
-      color: var(--button-text);
-      text-decoration: none;
-      border-radius: 4px;
-      margin-bottom: 1rem;
-    }
-    
-    .back-btn:hover {
-      background: var(--button-hover);
-    }
-    
-    .error-message {
-      background: #fee;
-      border: 1px solid #fcc;
-      padding: 1rem;
-      border-radius: 4px;
-      color: #c00;
-    }
-    
-    .loading {
-      text-align: center;
-      padding: 2rem;
-      color: var(--text-color);
-      opacity: 0.7;
     }
     
     .two-column {
@@ -153,14 +96,18 @@
         grid-template-columns: 1fr;
       }
     }
+    
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      opacity: 0.7;
+    }
   </style>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-  
   <header class="site-header" role="banner">
     <div class="header-content">
-      <a href="index.html" class="site-title">🎭 Musical Projects</a>
+      <a href="../index.html" class="site-title">🎭 Musical Library</a>
       
       <nav class="accessibility-controls" role="navigation" aria-label="Accessibility controls">
         <div class="control-group">
@@ -182,19 +129,18 @@
     </div>
   </header>
 
-  <main id="main-content" class="main-content project-content" role="main">
-    <a href="projects.html" class="back-btn">← Back to Projects</a>
-    
-    <h1 id="project-title">Loading...</h1>
+  <main class="reader-content project-content" role="main">
+    <h1 id="project-title">View Project Files</h1>
+    <p style="margin-bottom: 2rem;">Browse the complete source materials including scenes, songs, and scripts.</p>
     
     <div class="tabs" id="tabs"></div>
     
     <div id="content-area">
-      <div class="loading">Loading project content...</div>
+      <div class="loading">Loading project files...</div>
     </div>
   </main>
 
-  <script src="assets/js/main.js"></script>
+  <script src="../assets/js/main.js"></script>
   <script>
     const projectNames = {
       'echo_musical': 'Echo: Digital Immortality',
@@ -213,33 +159,31 @@
     
     if (!projectId) {
       document.getElementById('content-area').innerHTML = 
-        '<div class="error-message">No project selected. <a href="projects.html">Return to projects</a></div>';
+        '<p>No project selected.</p>';
     } else {
-      document.getElementById('project-title').textContent = projectNames[projectId] || projectId;
+      document.getElementById('project-title').textContent = 
+        'Source Files: ' + (projectNames[projectId] || projectId);
       initProject();
     }
     
     let projectIndex = null;
-    let currentTab = 'overview';
     
     async function loadFile(path) {
       try {
-        const response = await fetch(`../projects/${projectId}/${path}`);
+        const response = await fetch(`../../projects/${projectId}/${path}`);
         if (!response.ok) return null;
         return await response.text();
       } catch (error) {
-        console.error('Error loading file:', path, error);
         return null;
       }
     }
     
     async function loadProjectIndex() {
       try {
-        const response = await fetch('projects-index.json');
+        const response = await fetch('../projects-index.json');
         const data = await response.json();
         return data.projects[projectId];
       } catch (error) {
-        console.error('Error loading project index:', error);
         return null;
       }
     }
@@ -261,7 +205,6 @@
     }
     
     async function showTab(tabName) {
-      currentTab = tabName;
       const contentArea = document.getElementById('content-area');
       
       document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -281,7 +224,7 @@
         }
         contentArea.innerHTML = html || '<p>No overview content found.</p>';
         
-      } else if (tabName === 'scenes' || tabName === 'scenes_revised' || tabName === 'songs') {
+      } else {
         const files = projectIndex[tabName] || [];
         
         if (files.length > 0) {
@@ -292,7 +235,7 @@
                 <ul class="file-list" id="file-list"></ul>
               </div>
               <div id="file-content">
-                <p>Select an item to view</p>
+                <p>Select a file to view</p>
               </div>
             </div>
           `;
@@ -314,14 +257,11 @@
               if (content) {
                 document.getElementById('file-content').innerHTML = 
                   `<div class="markdown-content">${renderMarkdown(content)}</div>`;
-              } else {
-                document.getElementById('file-content').innerHTML = 
-                  '<p class="error-message">Failed to load content.</p>';
               }
             });
           });
         } else {
-          contentArea.innerHTML = '<p>No content found.</p>';
+          contentArea.innerHTML = '<p>No files found.</p>';
         }
       }
     }
@@ -331,7 +271,7 @@
       
       if (!projectIndex) {
         document.getElementById('content-area').innerHTML = 
-          '<div class="error-message">Project not found or index not available.</div>';
+          '<p>Project index not available.</p>';
         return;
       }
       

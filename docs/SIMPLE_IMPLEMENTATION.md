@@ -4,46 +4,57 @@
 
 This is a **pure static HTML/CSS/JavaScript** implementation - no React, no build process, no dependencies to install.
 
+The implementation **enhances the existing musical library pages** rather than replacing them. The existing pages already have rich, hand-crafted content. We simply add links to view complete source files.
+
 ## How It Works
 
-### Files
+### Existing Structure (Preserved)
 
-1. **`projects.html`** - Lists all musical projects
-2. **`project.html`** - Displays individual project content with tabs
-3. **`projects-index.json`** - Index of all project files (generated)
-4. **`generate-index.py`** - Script to regenerate index when projects change
+The docs already have excellent static pages:
 
-### Features
+- **`index.html`** - Main library homepage with musical cards
+- **`musicals/echo.html`** - Synopsis and story for Echo musical
+- **`musicals/echo-learn-more.html`** - Complete songs and character details
 
-- ✅ Browse all musical projects
-- ✅ View scripts, scenes, songs with tabbed interface
-- ✅ Markdown rendering (using marked.js from CDN)
-- ✅ Responsive design
-- ✅ Full accessibility features (inherited from existing site)
-- ✅ No build process needed
-- ✅ No Node.js dependencies
+These pages have:
+- ✅ Detailed synopses and themes
+- ✅ Story structure breakdowns
+- ✅ Complete song lists with descriptions
+- ✅ Character profiles
+- ✅ Accessibility features
+- ✅ Beautiful styling
 
-### How Content is Loaded
+### What Was Added
 
-1. User clicks on a project in `projects.html`
-2. `project.html?id=echo_musical` loads
-3. JavaScript fetches `projects-index.json` to get file list
-4. User clicks tabs to load different content types
-5. Files are fetched directly from `/projects/` directory
-6. Markdown is rendered client-side with marked.js
+1. **`musicals/view-files.html`** - Utility page for browsing raw project files
+2. **Link in each *-learn-more.html** - "Complete Project Files" section
+3. **`projects-index.json`** - Index of all project files
+4. **`generate-index.py`** - Script to regenerate index
 
-### Adding New Content
+### User Flow
 
-When you add or modify project files:
+1. User visits main library → sees musical cards
+2. Clicks "Echo: Digital Immortality" → goes to `echo.html` (synopsis)
+3. Clicks "Learn More: Songs & Characters" → goes to `echo-learn-more.html`
+4. Scrolls to "Complete Project Files" section
+5. Clicks "Browse All Source Files" → goes to `view-files.html?id=echo_musical`
+6. Views tabs for Overview, Scenes, Songs with raw markdown content
 
-```bash
-python3 generate-index.py
-git add docs/projects-index.json
-git commit -m "Update project index"
-git push
+### Integration Points
+
+Each *-learn-more.html page now includes:
+
+```html
+<section>
+  <h2>📁 Complete Project Files</h2>
+  <p>View the complete source materials for this musical...</p>
+  <a href="view-files.html?id=echo_musical">
+    Browse All Source Files →
+  </a>
+</section>
 ```
 
-That's it! No build process, no npm install, no complex deployment.
+This adds functionality **without disrupting** the existing well-crafted pages.
 
 ## Technical Details
 
@@ -52,47 +63,43 @@ That's it! No build process, no npm install, no complex deployment.
 - **marked.js** (via CDN) - Markdown rendering
 - **Existing accessibility JS** - Theme switching, font controls
 
-### Browser Requirements
-
-- Modern browser with ES6 support
-- JavaScript enabled
-- Fetch API support
-
 ### File Size
 
-- `projects.html`: ~5KB
-- `project.html`: ~11KB  
-- `projects-index.json`: ~9KB (varies with content)
-- Total overhead: ~25KB (vs 210KB+ for React bundle)
+- `view-files.html`: ~10KB (utility page)
+- `projects-index.json`: ~9KB (file manifest)
+- Added to each learn-more page: ~500 bytes
 
-## Comparison to Previous Implementation
+### Adding New Content
 
-| Feature | React Version | Static HTML Version |
-|---------|--------------|---------------------|
-| Bundle Size | 210KB+ | ~25KB |
-| Dependencies | 1440+ npm packages | 0 |
-| Build Time | ~65 seconds | 0 seconds |
-| Build Process | 3-step (generate, build, deploy) | 1-step (generate index) |
-| Deployment | Complex scripts | Copy files |
-| Maintenance | Complex | Simple |
-| Learning Curve | React knowledge needed | Basic HTML/JS |
+When project files change:
 
-## Why This is Better
+```bash
+python3 generate-index.py
+git add docs/projects-index.json
+git commit -m "Update project index"
+git push
+```
 
-1. **Simpler** - No build toolchain, no transpilation, no bundling
-2. **Faster** - Smaller files, instant deployment
-3. **Maintainable** - Anyone can edit HTML/JS
-4. **Portable** - Works anywhere static files are served
-5. **Debuggable** - View source shows actual code
-6. **Future-proof** - No framework version upgrades needed
+## Why This Approach is Better
+
+1. **Respects Existing Work** - Doesn't replace hand-crafted content
+2. **Progressive Enhancement** - Adds features without breaking existing pages
+3. **Clear Separation** - Curated content vs. raw source files
+4. **Maintainable** - Both systems work independently
+5. **User Choice** - Users can view summaries OR dive into full source
 
 ## For Future Developers
 
-If you need to modify this:
+The system has two layers:
 
-1. **Add a new tab** - Edit the `initProject()` function in `project.html`
-2. **Change styling** - Edit `assets/css/main.css`
-3. **Modify layout** - Edit the HTML directly
-4. **Add features** - Add vanilla JavaScript
+**Layer 1: Curated Content** (already existed)
+- Hand-crafted HTML pages with summaries
+- Designed for reading and discovery
+- Rich formatting and structure
 
-No webpack config, no babel, no complex toolchain. Just edit and deploy.
+**Layer 2: Source Files** (added)
+- Raw markdown files from `/projects`
+- For those who want complete scripts/lyrics
+- Simple viewer with tabs
+
+Both layers complement each other without interfering.
