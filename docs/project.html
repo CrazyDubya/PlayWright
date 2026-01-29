@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View musical project details">
+  <title>Project Details - PlayWright</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    .project-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 2px solid var(--card-border);
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .tab-btn {
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--text-color);
+      transition: all 0.2s;
+    }
+    
+    .tab-btn:hover {
+      background: var(--card-bg);
+    }
+    
+    .tab-btn.active {
+      border-bottom-color: var(--link-color);
+      color: var(--link-color);
+      font-weight: 600;
+    }
+    
+    .file-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .file-item {
+      padding: 1rem;
+      margin: 0.5rem 0;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .file-item:hover {
+      transform: translateX(4px);
+      border-color: var(--link-color);
+    }
+    
+    .file-item.active {
+      background: var(--link-color);
+      color: white;
+    }
+    
+    .markdown-content {
+      line-height: 1.8;
+    }
+    
+    .markdown-content h1 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    
+    .markdown-content h2 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      font-size: 1.5rem;
+    }
+    
+    .markdown-content h3 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+    
+    .markdown-content p {
+      margin-bottom: 1rem;
+    }
+    
+    .markdown-content ul, .markdown-content ol {
+      margin-left: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .markdown-content blockquote {
+      border-left: 4px solid var(--link-color);
+      padding-left: 1rem;
+      margin: 1rem 0;
+      font-style: italic;
+      opacity: 0.9;
+    }
+    
+    .markdown-content hr {
+      margin: 2rem 0;
+      border: none;
+      border-top: 2px solid var(--card-border);
+    }
+    
+    .back-btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--button-bg);
+      color: var(--button-text);
+      text-decoration: none;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+    
+    .back-btn:hover {
+      background: var(--button-hover);
+    }
+    
+    .error-message {
+      background: #fee;
+      border: 1px solid #fcc;
+      padding: 1rem;
+      border-radius: 4px;
+      color: #c00;
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-color);
+      opacity: 0.7;
+    }
+    
+    .two-column {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <header class="site-header" role="banner">
+    <div class="header-content">
+      <a href="index.html" class="site-title">🎭 Musical Projects</a>
+      
+      <nav class="accessibility-controls" role="navigation" aria-label="Accessibility controls">
+        <div class="control-group">
+          <button id="theme-light" class="control-btn" aria-label="Light theme">☀️</button>
+          <button id="theme-dark" class="control-btn" aria-label="Dark theme">🌙</button>
+          <button id="theme-system" class="control-btn active" aria-label="System theme">💻</button>
+        </div>
+        
+        <div class="control-group">
+          <button id="font-decrease" class="control-btn" aria-label="Decrease font size">A-</button>
+          <button id="font-reset" class="control-btn" aria-label="Reset font size">A</button>
+          <button id="font-increase" class="control-btn" aria-label="Increase font size">A+</button>
+        </div>
+        
+        <div class="control-group">
+          <button id="dyslexia-toggle" class="control-btn" aria-label="Toggle dyslexia-friendly font" aria-pressed="false">Dyslexia Font</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="main-content project-content" role="main">
+    <a href="projects.html" class="back-btn">← Back to Projects</a>
+    
+    <h1 id="project-title">Loading...</h1>
+    
+    <div class="tabs" id="tabs"></div>
+    
+    <div id="content-area">
+      <div class="loading">Loading project content...</div>
+    </div>
+  </main>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    const projectNames = {
+      'echo_musical': 'Echo: Digital Immortality',
+      'electric_dreams_musical': 'Electric Dreams',
+      'fractured_mirrors_musical': 'Fractured Mirrors',
+      'midnight_at_the_majestic_musical': 'Midnight at the Majestic',
+      'neon_hearts_burlesque_musical': 'Neon Hearts',
+      'neon_rebellion_musical': 'Neon Rebellion',
+      'picket_fence_prison_musical': 'Picket Fence Prison',
+      'rainbow_academy_musical': 'Rainbow Academy',
+      'silly_magic_academy_musical': 'The Silly Magic Academy'
+    };
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const projectId = urlParams.get('id');
+    
+    if (!projectId) {
+      document.getElementById('content-area').innerHTML = 
+        '<div class="error-message">No project selected. <a href="projects.html">Return to projects</a></div>';
+    } else {
+      document.getElementById('project-title').textContent = projectNames[projectId] || projectId;
+      initProject();
+    }
+    
+    let projectIndex = null;
+    let currentTab = 'overview';
+    
+    async function loadFile(path) {
+      try {
+        const response = await fetch(`../projects/${projectId}/${path}`);
+        if (!response.ok) return null;
+        return await response.text();
+      } catch (error) {
+        console.error('Error loading file:', path, error);
+        return null;
+      }
+    }
+    
+    async function loadProjectIndex() {
+      try {
+        const response = await fetch('projects-index.json');
+        const data = await response.json();
+        return data.projects[projectId];
+      } catch (error) {
+        console.error('Error loading project index:', error);
+        return null;
+      }
+    }
+    
+    function renderMarkdown(content) {
+      return marked.parse(content);
+    }
+    
+    function formatFileName(filename) {
+      return filename
+        .replace('.md', '')
+        .replace(/_/g, ' ')
+        .replace(/^scenes\//, '')
+        .replace(/^scenes revised\//, '')
+        .replace(/^songs\//, '')
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    }
+    
+    async function showTab(tabName) {
+      currentTab = tabName;
+      const contentArea = document.getElementById('content-area');
+      
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tabName);
+      });
+      
+      contentArea.innerHTML = '<div class="loading">Loading...</div>';
+      
+      if (tabName === 'overview') {
+        let html = '';
+        const files = projectIndex.overview || [];
+        for (const file of files) {
+          const content = await loadFile(file);
+          if (content) {
+            html += `<div class="markdown-content">${renderMarkdown(content)}</div><hr>`;
+          }
+        }
+        contentArea.innerHTML = html || '<p>No overview content found.</p>';
+        
+      } else if (tabName === 'scenes' || tabName === 'scenes_revised' || tabName === 'songs') {
+        const files = projectIndex[tabName] || [];
+        
+        if (files.length > 0) {
+          contentArea.innerHTML = `
+            <div class="two-column">
+              <div>
+                <h3>${tabName.replace('_', ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}</h3>
+                <ul class="file-list" id="file-list"></ul>
+              </div>
+              <div id="file-content">
+                <p>Select an item to view</p>
+              </div>
+            </div>
+          `;
+          
+          const fileList = document.getElementById('file-list');
+          fileList.innerHTML = files.map((file, idx) => 
+            `<li class="file-item" data-idx="${idx}">${formatFileName(file)}</li>`
+          ).join('');
+          
+          fileList.querySelectorAll('.file-item').forEach(item => {
+            item.addEventListener('click', async () => {
+              const idx = item.dataset.idx;
+              const file = files[idx];
+              
+              document.querySelectorAll('.file-item').forEach(i => i.classList.remove('active'));
+              item.classList.add('active');
+              
+              const content = await loadFile(file);
+              if (content) {
+                document.getElementById('file-content').innerHTML = 
+                  `<div class="markdown-content">${renderMarkdown(content)}</div>`;
+              } else {
+                document.getElementById('file-content').innerHTML = 
+                  '<p class="error-message">Failed to load content.</p>';
+              }
+            });
+          });
+        } else {
+          contentArea.innerHTML = '<p>No content found.</p>';
+        }
+      }
+    }
+    
+    async function initProject() {
+      projectIndex = await loadProjectIndex();
+      
+      if (!projectIndex) {
+        document.getElementById('content-area').innerHTML = 
+          '<div class="error-message">Project not found or index not available.</div>';
+        return;
+      }
+      
+      const tabs = [];
+      
+      if (projectIndex.overview && projectIndex.overview.length > 0) {
+        tabs.push({ name: 'overview', label: 'Overview' });
+      }
+      
+      if (projectIndex.scenes && projectIndex.scenes.length > 0) {
+        tabs.push({ name: 'scenes', label: `Scenes (${projectIndex.scenes.length})` });
+      }
+      
+      if (projectIndex.scenes_revised && projectIndex.scenes_revised.length > 0) {
+        tabs.push({ name: 'scenes_revised', label: `Revised (${projectIndex.scenes_revised.length})` });
+      }
+      
+      if (projectIndex.songs && projectIndex.songs.length > 0) {
+        tabs.push({ name: 'songs', label: `Songs (${projectIndex.songs.length})` });
+      }
+      
+      const tabsContainer = document.getElementById('tabs');
+      tabsContainer.innerHTML = tabs.map(tab => 
+        `<button class="tab-btn ${tab.name === 'overview' ? 'active' : ''}" data-tab="${tab.name}">${tab.label}</button>`
+      ).join('');
+      
+      tabsContainer.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => showTab(btn.dataset.tab));
+      });
+      
+      if (tabs.length > 0) {
+        showTab(tabs[0].name);
+      }
+    }
+  </script>
+</body>
+</html>

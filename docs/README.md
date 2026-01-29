@@ -1,22 +1,18 @@
 # Musical Library - GitHub Pages
 
-This directory contains a complete GitHub Pages site for the PlayWright Musical Library, featuring 10 original musicals with full accessibility features, plus an interactive web application for viewing complete scripts, songs, and characters.
+This directory contains a complete GitHub Pages site for the PlayWright Musical Library, featuring 10 original musicals with full accessibility features.
 
 ## Features
 
-### 🎭 Interactive Web Application (NEW!)
+### 📚 Project Browser
 
-A modern React-based web app is now available at `/app/`:
-- **View Complete Scripts**: Read full musical scripts with scene compilation
-- **Browse Songs & Lyrics**: Access all song lyrics with staging notes  
-- **Character Profiles**: Detailed character backgrounds and development
-- **Tabbed Navigation**: Easy access to all project content
-- **Search & Filter**: Find specific projects, scenes, or songs
-- **Responsive Design**: Works on all devices
+Browse complete musical projects including:
+- **Complete Scripts**: Full musical scripts and scene compilations
+- **Song Lyrics**: All songs with staging notes
+- **Character Profiles**: Detailed character backgrounds
+- **Project Overviews**: Story structure and concepts
 
-Access the web app at: `https://<username>.github.io/PlayWright/app/`
-
-For deployment and development instructions, see [web-app/DEPLOYMENT.md](../web-app/DEPLOYMENT.md)
+Access via: `https://<username>.github.io/PlayWright/projects.html`
 
 ### Accessibility
 - **Theme Options**: Light, dark, and system-preferred themes
@@ -51,12 +47,8 @@ For deployment and development instructions, see [web-app/DEPLOYMENT.md](../web-
 docs/
 ├── index.html                  # Main library homepage
 ├── _config.yml                 # GitHub Pages configuration
-├── app/                        # Interactive web application
-│   ├── index.html             # React app entry point
-│   ├── static/                # Built JavaScript and CSS
-│   └── api/                   # Static JSON data for projects
-│       ├── projects.json      # List of all projects
-│       └── projects/          # Individual project data files
+├── projects.html               # Project browser page
+├── project.html                # Project detail page (loads markdown dynamically)
 ├── assets/
 │   ├── css/
 │   │   └── main.css           # Main stylesheet with accessibility features

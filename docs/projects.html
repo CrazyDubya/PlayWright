@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse PlayWright musical projects">
+  <title>Musical Projects - PlayWright</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <style>
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: var(--text-color);
+      display: block;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+    
+    .project-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--link-color);
+    }
+    
+    .project-meta {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .project-meta span {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <header class="site-header" role="banner">
+    <div class="header-content">
+      <a href="index.html" class="site-title">🎭 Musical Projects</a>
+      
+      <nav class="accessibility-controls" role="navigation" aria-label="Accessibility controls">
+        <div class="control-group">
+          <button id="theme-light" class="control-btn" aria-label="Light theme">☀️</button>
+          <button id="theme-dark" class="control-btn" aria-label="Dark theme">🌙</button>
+          <button id="theme-system" class="control-btn active" aria-label="System theme">💻</button>
+        </div>
+        
+        <div class="control-group">
+          <button id="font-decrease" class="control-btn" aria-label="Decrease font size">A-</button>
+          <button id="font-reset" class="control-btn" aria-label="Reset font size">A</button>
+          <button id="font-increase" class="control-btn" aria-label="Increase font size">A+</button>
+        </div>
+        
+        <div class="control-group">
+          <button id="dyslexia-toggle" class="control-btn" aria-label="Toggle dyslexia-friendly font" aria-pressed="false">Dyslexia Font</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="main-content" role="main">
+    <section>
+      <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+        <h1>Musical Projects</h1>
+        <p style="font-size: 1.1rem; margin: 1rem 0 2rem 0;">
+          Explore complete musical projects including scripts, songs, and character profiles.
+        </p>
+      </div>
+      
+      <div id="projects-container" class="projects-grid">
+        <p style="text-align: center; grid-column: 1 / -1;">Loading projects...</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // List of available projects
+    const projects = [
+      { id: 'echo_musical', name: 'Echo: Digital Immortality', genre: 'Sci-Fi Musical Drama' },
+      { id: 'electric_dreams_musical', name: 'Electric Dreams', genre: 'Psychological Musical Thriller' },
+      { id: 'fractured_mirrors_musical', name: 'Fractured Mirrors', genre: 'Psychological Musical Thriller' },
+      { id: 'midnight_at_the_majestic_musical', name: 'Midnight at the Majestic', genre: 'Murder Mystery Musical' },
+      { id: 'neon_hearts_burlesque_musical', name: 'Neon Hearts', genre: 'Burlesque Musical Drama' },
+      { id: 'neon_rebellion_musical', name: 'Neon Rebellion', genre: 'Teen Rock Musical' },
+      { id: 'picket_fence_prison_musical', name: 'Picket Fence Prison', genre: 'Suburban Drama Musical' },
+      { id: 'rainbow_academy_musical', name: 'Rainbow Academy', genre: "Children's Musical Mystery" },
+      { id: 'silly_magic_academy_musical', name: 'The Silly Magic Academy', genre: "Children's Comedy Musical" }
+    ];
+
+    // Render projects
+    const container = document.getElementById('projects-container');
+    container.innerHTML = projects.map(project => `
+      <a href="project.html?id=${project.id}" class="project-card">
+        <h2 class="project-title">${project.name}</h2>
+        <p>${project.genre}</p>
+        <div class="project-meta">
+          <span>📖 View Details</span>
+        </div>
+      </a>
+    `).join('');
+  </script>
+</body>
+</html>
