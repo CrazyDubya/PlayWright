@@ -161,7 +161,40 @@ This is an evolving creative methodology. Contributions welcome:
 
 ## 📄 License
 
-This creative framework is open source. Use it to create art that matters.
+**IMPORTANT: Dual Licensing Structure**
+
+This repository uses a dual licensing approach:
+
+### 🛠️ Framework License (CC BY-NC-SA 4.0)
+The PlayWright framework, tools, templates, documentation, and code are licensed under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License**.
+
+**You CAN:**
+- ✅ Use the framework for non-commercial purposes
+- ✅ Modify and adapt the framework
+- ✅ Share and distribute the framework
+- ✅ Create your own musicals using this framework (you own your works!)
+
+**You CANNOT:**
+- ❌ Use the framework commercially without permission
+- ❌ Remove attribution or license notices
+
+📄 See [LICENSE](LICENSE) for full details.
+
+### 🎭 Musical Content Copyright (All Rights Reserved)
+All musical examples, compositions, songs, characters, and stories in the `/projects/`, `/examples/`, `/songs/`, and related directories are **fully copyrighted and all rights are reserved**.
+
+**These musical works are:**
+- ✅ Provided for educational/demonstration purposes only
+- ❌ NOT available for performance, production, or distribution
+- ❌ NOT available for commercial or non-commercial use without explicit permission
+
+📄 See [MUSICAL_CONTENT_LICENSE](MUSICAL_CONTENT_LICENSE) for full details.
+
+### 💡 Your Original Works
+**Musicals YOU create using this framework are YOUR property.** You retain full copyright and can do whatever you want with your own creative works.
+
+### 💼 Commercial Inquiries
+For commercial licensing of the framework or permission to use the example musical content, please contact the repository owner.
 
 ---
 
