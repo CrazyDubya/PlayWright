@@ -289,6 +289,250 @@ Created: ${new Date().toLocaleDateString()}
   }
 });
 
+// Get project details
+app.get('/api/projects/:id/details', async (req, res) => {
+  try {
+    const projectName = sanitizeProjectName(req.params.id);
+    const projectPath = path.join(PROJECTS_DIR, projectName);
+
+    // Check if project exists
+    const exists = await fs.pathExists(projectPath);
+    if (!exists) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    // Get all relevant files
+    const details = {
+      id: projectName,
+      name: projectName.replace(/_/g, ' ').replace(/musical/i, 'Musical'),
+      path: projectPath,
+    };
+
+    // Check for various overview files
+    const overviewFiles = [
+      'README.md',
+      'concept.md',
+      'COMPLETE_MUSICAL_SUMMARY.md',
+      'story_structure.md',
+      'concept_overview.md'
+    ];
+
+    for (const file of overviewFiles) {
+      const filePath = path.join(projectPath, file);
+      if (await fs.pathExists(filePath)) {
+        const content = await fs.readFile(filePath, 'utf8');
+        details[file] = content;
+      }
+    }
+
+    res.json(details);
+  } catch (error) {
+    console.error('Error fetching project details:', error);
+    res.status(500).json({ error: 'Failed to fetch project details' });
+  }
+});
+
+// Get complete musical script
+app.get('/api/projects/:id/script', async (req, res) => {
+  try {
+    const projectName = sanitizeProjectName(req.params.id);
+    const projectPath = path.join(PROJECTS_DIR, projectName);
+
+    // Check if project exists
+    const exists = await fs.pathExists(projectPath);
+    if (!exists) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    // Look for complete script files
+    const scriptFiles = [
+      'COMPLETE_MUSICAL_FINAL.md',
+      'COMPLETE_MUSICAL_SUMMARY.md',
+      'complete_musical_summary.md',
+      'full_script.md'
+    ];
+
+    for (const file of scriptFiles) {
+      const filePath = path.join(projectPath, file);
+      if (await fs.pathExists(filePath)) {
+        const content = await fs.readFile(filePath, 'utf8');
+        return res.json({ 
+          filename: file,
+          content,
+          found: true 
+        });
+      }
+    }
+
+    // If no complete script found, compile from scenes
+    const scenesDir = path.join(projectPath, 'scenes');
+    if (await fs.pathExists(scenesDir)) {
+      const sceneFiles = await fs.readdir(scenesDir);
+      const mdFiles = sceneFiles.filter(f => f.endsWith('.md')).sort();
+      
+      let compiledScript = `# ${projectName.replace(/_/g, ' ').replace(/musical/i, 'Musical')}\n## Compiled from Individual Scenes\n\n`;
+      
+      for (const sceneFile of mdFiles) {
+        const scenePath = path.join(scenesDir, sceneFile);
+        const sceneContent = await fs.readFile(scenePath, 'utf8');
+        compiledScript += `\n---\n\n${sceneContent}\n\n`;
+      }
+
+      return res.json({ 
+        filename: 'compiled_script',
+        content: compiledScript,
+        found: true,
+        compiled: true
+      });
+    }
+
+    res.json({ 
+      found: false, 
+      message: 'No complete script found for this project' 
+    });
+  } catch (error) {
+    console.error('Error fetching script:', error);
+    res.status(500).json({ error: 'Failed to fetch script' });
+  }
+});
+
+// Get all scenes
+app.get('/api/projects/:id/scenes', async (req, res) => {
+  try {
+    const projectName = sanitizeProjectName(req.params.id);
+    const projectPath = path.join(PROJECTS_DIR, projectName);
+
+    // Check if project exists
+    const exists = await fs.pathExists(projectPath);
+    if (!exists) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    const scenes = [];
+    
+    // Check both scenes and scenes_revised directories
+    const sceneDirs = ['scenes', 'scenes_revised'];
+    
+    for (const dirName of sceneDirs) {
+      const scenesDir = path.join(projectPath, dirName);
+      if (await fs.pathExists(scenesDir)) {
+        const sceneFiles = await fs.readdir(scenesDir);
+        const mdFiles = sceneFiles.filter(f => f.endsWith('.md')).sort();
+        
+        for (const sceneFile of mdFiles) {
+          const scenePath = path.join(scenesDir, sceneFile);
+          const content = await fs.readFile(scenePath, 'utf8');
+          scenes.push({
+            filename: sceneFile,
+            name: sceneFile.replace('.md', '').replace(/_/g, ' '),
+            content,
+            directory: dirName
+          });
+        }
+      }
+    }
+
+    res.json({ scenes, count: scenes.length });
+  } catch (error) {
+    console.error('Error fetching scenes:', error);
+    res.status(500).json({ error: 'Failed to fetch scenes' });
+  }
+});
+
+// Get all songs
+app.get('/api/projects/:id/songs', async (req, res) => {
+  try {
+    const projectName = sanitizeProjectName(req.params.id);
+    const projectPath = path.join(PROJECTS_DIR, projectName);
+
+    // Check if project exists
+    const exists = await fs.pathExists(projectPath);
+    if (!exists) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    const songs = [];
+    
+    // Check songs and songs_transcendent directories
+    const songDirs = ['songs', 'songs_transcendent'];
+    
+    for (const dirName of songDirs) {
+      const songsDir = path.join(projectPath, dirName);
+      if (await fs.pathExists(songsDir)) {
+        const songFiles = await fs.readdir(songsDir);
+        const mdFiles = songFiles.filter(f => f.endsWith('.md')).sort();
+        
+        for (const songFile of mdFiles) {
+          const songPath = path.join(songsDir, songFile);
+          const content = await fs.readFile(songPath, 'utf8');
+          songs.push({
+            filename: songFile,
+            name: songFile.replace('.md', '').replace(/_/g, ' ').replace(/COMPLETE/i, '').trim(),
+            content,
+            directory: dirName
+          });
+        }
+      }
+    }
+
+    res.json({ songs, count: songs.length });
+  } catch (error) {
+    console.error('Error fetching songs:', error);
+    res.status(500).json({ error: 'Failed to fetch songs' });
+  }
+});
+
+// Get all characters
+app.get('/api/projects/:id/characters', async (req, res) => {
+  try {
+    const projectName = sanitizeProjectName(req.params.id);
+    const projectPath = path.join(PROJECTS_DIR, projectName);
+
+    // Check if project exists
+    const exists = await fs.pathExists(projectPath);
+    if (!exists) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    const characters = [];
+    
+    // Check for characters.md file first
+    const charactersFile = path.join(projectPath, 'characters.md');
+    if (await fs.pathExists(charactersFile)) {
+      const content = await fs.readFile(charactersFile, 'utf8');
+      characters.push({
+        filename: 'characters.md',
+        name: 'All Characters',
+        content,
+        isCollection: true
+      });
+    }
+
+    // Then check characters directory
+    const charactersDir = path.join(projectPath, 'characters');
+    if (await fs.pathExists(charactersDir)) {
+      const characterFiles = await fs.readdir(charactersDir);
+      const mdFiles = characterFiles.filter(f => f.endsWith('.md')).sort();
+      
+      for (const characterFile of mdFiles) {
+        const characterPath = path.join(charactersDir, characterFile);
+        const content = await fs.readFile(characterPath, 'utf8');
+        characters.push({
+          filename: characterFile,
+          name: characterFile.replace('.md', '').replace(/_/g, ' '),
+          content,
+          isCollection: false
+        });
+      }
+    }
+
+    res.json({ characters, count: characters.length });
+  } catch (error) {
+    console.error('Error fetching characters:', error);
+    res.status(500).json({ error: 'Failed to fetch characters' });
+  }
+});
+
 // Run validation
 app.post('/api/validation/run', async (req, res) => {
   try {
