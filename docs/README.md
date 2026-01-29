@@ -1,8 +1,22 @@
 # Musical Library - GitHub Pages
 
-This directory contains a complete GitHub Pages site for the PlayWright Musical Library, featuring 10 original musicals with full accessibility features.
+This directory contains a complete GitHub Pages site for the PlayWright Musical Library, featuring 10 original musicals with full accessibility features, plus an interactive web application for viewing complete scripts, songs, and characters.
 
 ## Features
+
+### 🎭 Interactive Web Application (NEW!)
+
+A modern React-based web app is now available at `/app/`:
+- **View Complete Scripts**: Read full musical scripts with scene compilation
+- **Browse Songs & Lyrics**: Access all song lyrics with staging notes  
+- **Character Profiles**: Detailed character backgrounds and development
+- **Tabbed Navigation**: Easy access to all project content
+- **Search & Filter**: Find specific projects, scenes, or songs
+- **Responsive Design**: Works on all devices
+
+Access the web app at: `https://<username>.github.io/PlayWright/app/`
+
+For deployment and development instructions, see [web-app/DEPLOYMENT.md](../web-app/DEPLOYMENT.md)
 
 ### Accessibility
 - **Theme Options**: Light, dark, and system-preferred themes
@@ -37,6 +51,12 @@ This directory contains a complete GitHub Pages site for the PlayWright Musical 
 docs/
 ├── index.html                  # Main library homepage
 ├── _config.yml                 # GitHub Pages configuration
+├── app/                        # Interactive web application
+│   ├── index.html             # React app entry point
+│   ├── static/                # Built JavaScript and CSS
+│   └── api/                   # Static JSON data for projects
+│       ├── projects.json      # List of all projects
+│       └── projects/          # Individual project data files
 ├── assets/
 │   ├── css/
 │   │   └── main.css           # Main stylesheet with accessibility features
