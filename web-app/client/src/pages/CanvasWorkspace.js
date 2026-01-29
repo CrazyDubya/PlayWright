@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   Box,
   Typography,
@@ -13,11 +13,6 @@ import {
   ListItemText,
   ListItemIcon,
   IconButton,
-  TextField,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
   Chip,
   Divider,
 } from '@mui/material';
@@ -25,7 +20,6 @@ import BrushIcon from '@mui/icons-material/Brush';
 import PersonIcon from '@mui/icons-material/Person';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
 import UndoIcon from '@mui/icons-material/Undo';
@@ -36,34 +30,12 @@ import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 export default function CanvasWorkspace() {
   const canvasRef = useRef(null);
   const [activeTab, setActiveTab] = useState(0);
-  const [toolsPanelOpen, setToolsPanelOpen] = useState(true);
+  const [toolsPanelOpen] = useState(true);
   const [selectedTool, setSelectedTool] = useState('select');
   const [elements, setElements] = useState([]);
   const [zoom, setZoom] = useState(1);
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Set up grid
-    drawGrid(ctx, canvas.width, canvas.height);
-
-    // Draw elements
-    elements.forEach(element => {
-      drawElement(ctx, element);
-    });
-  }, [elements, zoom]);
-
-  const drawGrid = (ctx, width, height) => {
+  const drawGrid = useCallback((ctx, width, height) => {
     ctx.strokeStyle = '#e5e7eb';
     ctx.lineWidth = 1;
 
@@ -82,9 +54,56 @@ export default function CanvasWorkspace() {
       ctx.lineTo(width, y);
       ctx.stroke();
     }
-  };
+  }, [zoom]);
 
-  const drawElement = (ctx, element) => {
+  const drawCharacter = useCallback((ctx, element) => {
+    // Draw circle for character
+    ctx.fillStyle = element.color || '#667eea';
+    ctx.beginPath();
+    ctx.arc(element.x, element.y, 30, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Draw text
+    ctx.fillStyle = 'white';
+    ctx.font = '14px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(element.label || 'Character', element.x, element.y);
+  }, []);
+
+  const drawScene = useCallback((ctx, element) => {
+    // Draw rectangle for scene
+    ctx.fillStyle = element.color || '#764ba2';
+    ctx.fillRect(element.x - 40, element.y - 25, 80, 50);
+    
+    // Draw text
+    ctx.fillStyle = 'white';
+    ctx.font = '12px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(element.label || 'Scene', element.x, element.y);
+  }, []);
+
+  const drawRelationship = useCallback((ctx, element) => {
+    // Draw line for relationship
+    ctx.strokeStyle = element.color || '#3b82f6';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(element.x1, element.y1);
+    ctx.lineTo(element.x2, element.y2);
+    ctx.stroke();
+  }, []);
+
+  const drawArc = useCallback((ctx, element) => {
+    // Draw arc for story progression
+    ctx.strokeStyle = element.color || '#10b981';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.arc(element.x, element.y, element.radius || 50, 0, Math.PI * 2);
+    ctx.stroke();
+  }, []);
+
+  const drawElement = useCallback((ctx, element) => {
     ctx.save();
     ctx.scale(zoom, zoom);
 
@@ -106,75 +125,27 @@ export default function CanvasWorkspace() {
     }
 
     ctx.restore();
-  };
+  }, [zoom, drawCharacter, drawScene, drawRelationship, drawArc]);
 
-  const drawCharacter = (ctx, element) => {
-    // Draw circle for character
-    ctx.fillStyle = element.color || '#667eea';
-    ctx.beginPath();
-    ctx.arc(element.x, element.y, 40, 0, Math.PI * 2);
-    ctx.fill();
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    // Draw icon
-    ctx.fillStyle = 'white';
-    ctx.font = '24px Arial';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('👤', element.x, element.y);
+    const ctx = canvas.getContext('2d');
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
 
-    // Draw label
-    ctx.fillStyle = '#1e293b';
-    ctx.font = '14px Arial';
-    ctx.fillText(element.label || 'Character', element.x, element.y + 60);
-  };
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  const drawScene = (ctx, element) => {
-    // Draw rectangle for scene
-    ctx.fillStyle = element.color || '#ec4899';
-    ctx.fillRect(element.x - 60, element.y - 40, 120, 80);
+    // Set up grid
+    drawGrid(ctx, canvas.width, canvas.height);
 
-    // Draw label
-    ctx.fillStyle = 'white';
-    ctx.font = '14px Arial';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(element.label || 'Scene', element.x, element.y);
-  };
-
-  const drawRelationship = (ctx, element) => {
-    // Draw line between two points
-    ctx.strokeStyle = element.color || '#10b981';
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.moveTo(element.x1, element.y1);
-    ctx.lineTo(element.x2, element.y2);
-    ctx.stroke();
-
-    // Draw label at midpoint
-    const midX = (element.x1 + element.x2) / 2;
-    const midY = (element.y1 + element.y2) / 2;
-    ctx.fillStyle = '#1e293b';
-    ctx.font = '12px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText(element.label || '', midX, midY - 10);
-  };
-
-  const drawArc = (ctx, element) => {
-    // Draw curve for character arc
-    ctx.strokeStyle = element.color || '#f59e0b';
-    ctx.lineWidth = 2;
-    ctx.setLineDash([5, 5]);
-    ctx.beginPath();
-    ctx.moveTo(element.x, element.y);
-    ctx.quadraticCurveTo(
-      element.cpX || element.x + 100,
-      element.cpY || element.y - 100,
-      element.endX || element.x + 200,
-      element.endY || element.y
-    );
-    ctx.stroke();
-    ctx.setLineDash([]);
-  };
+    // Draw elements
+    elements.forEach(element => {
+      drawElement(ctx, element);
+    });
+  }, [elements, zoom, drawGrid, drawElement]);
 
   const handleCanvasClick = (e) => {
     const rect = canvasRef.current.getBoundingClientRect();

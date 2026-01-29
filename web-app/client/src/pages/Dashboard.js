@@ -8,7 +8,6 @@ import {
   CardActions,
   Typography,
   Button,
-  Chip,
   Paper,
 } from '@mui/material';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';

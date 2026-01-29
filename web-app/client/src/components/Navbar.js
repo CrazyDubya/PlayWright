@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
-import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 
 export default function Navbar({ toggleSidebar }) {

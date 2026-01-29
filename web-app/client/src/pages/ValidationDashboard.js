@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Typography,
@@ -28,7 +28,7 @@ import axios from 'axios';
 export default function ValidationDashboard() {
   const [validationResults, setValidationResults] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [selectedProject, setSelectedProject] = useState('Echo Musical');
+  const selectedProject = 'Echo Musical';  // Fixed project for demo
 
   const runValidation = async () => {
     setLoading(true);

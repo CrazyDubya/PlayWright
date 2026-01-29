@@ -38,7 +38,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import PersonIcon from '@mui/icons-material/Person';
 import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
-import axios from 'axios';
+import apiClient from '../utils/apiClient';
 
 function ProjectList() {
   const navigate = useNavigate();
@@ -53,8 +53,8 @@ function ProjectList() {
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get('/api/projects');
-      setProjects(response.data);
+      const data = await apiClient.getProjects();
+      setProjects(data);
     } catch (error) {
       console.error('Error fetching projects:', error);
       // Mock data for demo
@@ -95,12 +95,13 @@ function ProjectList() {
 
   const handleCreateProject = async () => {
     try {
-      await axios.post('/api/projects/create', { name: newProjectName });
+      await apiClient.createProject(newProjectName);
       setOpenDialog(false);
       setNewProjectName('');
       fetchProjects();
     } catch (error) {
       console.error('Error creating project:', error);
+      alert(error.message || 'Failed to create project');
     }
   };
 
@@ -272,56 +273,56 @@ function ProjectDetail() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
 
   useEffect(() => {
+    const fetchProjectData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        // Fetch project details
+        const detailsData = await apiClient.getProjectDetails(id);
+        setProjectData(detailsData);
+
+        // Fetch script
+        try {
+          const scriptData = await apiClient.getProjectScript(id);
+          setScript(scriptData);
+        } catch (err) {
+          console.log('No script available');
+        }
+
+        // Fetch scenes
+        try {
+          const scenesData = await apiClient.getProjectScenes(id);
+          setScenes(scenesData.scenes || []);
+        } catch (err) {
+          console.log('No scenes available');
+        }
+
+        // Fetch songs
+        try {
+          const songsData = await apiClient.getProjectSongs(id);
+          setSongs(songsData.songs || []);
+        } catch (err) {
+          console.log('No songs available');
+        }
+
+        // Fetch characters
+        try {
+          const charactersData = await apiClient.getProjectCharacters(id);
+          setCharacters(charactersData.characters || []);
+        } catch (err) {
+          console.log('No characters available');
+        }
+
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching project data:', error);
+        setError('Failed to load project. Please try again.');
+        setLoading(false);
+      }
+    };
+    
     fetchProjectData();
   }, [id]);
-
-  const fetchProjectData = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      // Fetch project details
-      const detailsResponse = await axios.get(`/api/projects/${id}/details`);
-      setProjectData(detailsResponse.data);
-
-      // Fetch script
-      try {
-        const scriptResponse = await axios.get(`/api/projects/${id}/script`);
-        setScript(scriptResponse.data);
-      } catch (err) {
-        console.log('No script available');
-      }
-
-      // Fetch scenes
-      try {
-        const scenesResponse = await axios.get(`/api/projects/${id}/scenes`);
-        setScenes(scenesResponse.data.scenes || []);
-      } catch (err) {
-        console.log('No scenes available');
-      }
-
-      // Fetch songs
-      try {
-        const songsResponse = await axios.get(`/api/projects/${id}/songs`);
-        setSongs(songsResponse.data.songs || []);
-      } catch (err) {
-        console.log('No songs available');
-      }
-
-      // Fetch characters
-      try {
-        const charactersResponse = await axios.get(`/api/projects/${id}/characters`);
-        setCharacters(charactersResponse.data.characters || []);
-      } catch (err) {
-        console.log('No characters available');
-      }
-
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching project data:', error);
-      setError('Failed to load project. Please try again.');
-      setLoading(false);
-    }
-  };
 
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
