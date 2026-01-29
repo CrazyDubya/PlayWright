@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useParams } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 import {
   Box,
   Typography,
@@ -19,12 +20,24 @@ import {
   Tab,
   Tabs,
   Paper,
+  CircularProgress,
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Alert,
 } from '@mui/material';
 import FolderIcon from '@mui/icons-material/Folder';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import DescriptionIcon from '@mui/icons-material/Description';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import PersonIcon from '@mui/icons-material/Person';
+import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
 import axios from 'axios';
 
 function ProjectList() {
@@ -244,10 +257,341 @@ function ProjectList() {
 }
 
 function ProjectDetail() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [projectData, setProjectData] = useState(null);
+  const [script, setScript] = useState(null);
+  const [scenes, setScenes] = useState([]);
+  const [songs, setSongs] = useState([]);
+  const [characters, setCharacters] = useState([]);
+  const [selectedScene, setSelectedScene] = useState(null);
+  const [selectedSong, setSelectedSong] = useState(null);
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
+
+  useEffect(() => {
+    fetchProjectData();
+  }, [id]);
+
+  const fetchProjectData = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      // Fetch project details
+      const detailsResponse = await axios.get(`/api/projects/${id}/details`);
+      setProjectData(detailsResponse.data);
+
+      // Fetch script
+      try {
+        const scriptResponse = await axios.get(`/api/projects/${id}/script`);
+        setScript(scriptResponse.data);
+      } catch (err) {
+        console.log('No script available');
+      }
+
+      // Fetch scenes
+      try {
+        const scenesResponse = await axios.get(`/api/projects/${id}/scenes`);
+        setScenes(scenesResponse.data.scenes || []);
+      } catch (err) {
+        console.log('No scenes available');
+      }
+
+      // Fetch songs
+      try {
+        const songsResponse = await axios.get(`/api/projects/${id}/songs`);
+        setSongs(songsResponse.data.songs || []);
+      } catch (err) {
+        console.log('No songs available');
+      }
+
+      // Fetch characters
+      try {
+        const charactersResponse = await axios.get(`/api/projects/${id}/characters`);
+        setCharacters(charactersResponse.data.characters || []);
+      } catch (err) {
+        console.log('No characters available');
+      }
+
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching project data:', error);
+      setError('Failed to load project. Please try again.');
+      setLoading(false);
+    }
+  };
+
+  const handleTabChange = (event, newValue) => {
+    setActiveTab(newValue);
+    // Reset selections when changing tabs
+    setSelectedScene(null);
+    setSelectedSong(null);
+    setSelectedCharacter(null);
+  };
+
+  if (loading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '400px' }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box>
+        <Button startIcon={<ArrowBackIcon />} onClick={() => navigate('/projects')}>
+          Back to Projects
+        </Button>
+        <Alert severity="error" sx={{ mt: 2 }}>{error}</Alert>
+      </Box>
+    );
+  }
+
   return (
     <Box>
-      <Typography variant="h4">Project Detail View</Typography>
-      <Typography>Detailed project editor will go here</Typography>
+      {/* Header */}
+      <Box sx={{ mb: 4 }}>
+        <Button 
+          startIcon={<ArrowBackIcon />} 
+          onClick={() => navigate('/projects')}
+          sx={{ mb: 2 }}
+        >
+          Back to Projects
+        </Button>
+        <Typography variant="h4" sx={{ fontWeight: 700, color: '#1e293b' }}>
+          <TheaterComedyIcon sx={{ mr: 1, verticalAlign: 'middle', fontSize: 36 }} />
+          {projectData?.name || id}
+        </Typography>
+        <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
+          <Chip icon={<DescriptionIcon />} label={`${scenes.length} Scenes`} />
+          <Chip icon={<MusicNoteIcon />} label={`${songs.length} Songs`} />
+          <Chip icon={<PersonIcon />} label={`${characters.length} Characters`} />
+        </Box>
+      </Box>
+
+      {/* Tabs */}
+      <Paper sx={{ mb: 3 }}>
+        <Tabs value={activeTab} onChange={handleTabChange}>
+          <Tab label="Overview" />
+          {script && script.found && <Tab label="Complete Script" />}
+          {scenes.length > 0 && <Tab label={`Scenes (${scenes.length})`} />}
+          {songs.length > 0 && <Tab label={`Songs (${songs.length})`} />}
+          {characters.length > 0 && <Tab label={`Characters (${characters.length})`} />}
+        </Tabs>
+      </Paper>
+
+      {/* Tab Content */}
+      <Paper sx={{ p: 3 }}>
+        {/* Overview Tab */}
+        {activeTab === 0 && (
+          <Box>
+            <Typography variant="h5" gutterBottom>Project Overview</Typography>
+            <Divider sx={{ my: 2 }} />
+            {projectData?.['COMPLETE_MUSICAL_SUMMARY.md'] && (
+              <Box sx={{ '& h1, & h2, & h3': { mt: 3, mb: 2 }, '& p': { mb: 1 } }}>
+                <ReactMarkdown>{projectData['COMPLETE_MUSICAL_SUMMARY.md']}</ReactMarkdown>
+              </Box>
+            )}
+            {projectData?.['README.md'] && !projectData?.['COMPLETE_MUSICAL_SUMMARY.md'] && (
+              <Box sx={{ '& h1, & h2, & h3': { mt: 3, mb: 2 }, '& p': { mb: 1 } }}>
+                <ReactMarkdown>{projectData['README.md']}</ReactMarkdown>
+              </Box>
+            )}
+            {projectData?.['concept.md'] && (
+              <Box sx={{ mt: 3, '& h1, & h2, & h3': { mt: 3, mb: 2 }, '& p': { mb: 1 } }}>
+                <ReactMarkdown>{projectData['concept.md']}</ReactMarkdown>
+              </Box>
+            )}
+            {!projectData?.['COMPLETE_MUSICAL_SUMMARY.md'] && !projectData?.['README.md'] && !projectData?.['concept.md'] && (
+              <Typography color="text.secondary">No overview content available for this project.</Typography>
+            )}
+          </Box>
+        )}
+
+        {/* Complete Script Tab */}
+        {script && script.found && activeTab === 1 && (
+          <Box>
+            <Typography variant="h5" gutterBottom>
+              Complete Musical Script
+              {script.compiled && <Chip label="Compiled from Scenes" size="small" sx={{ ml: 2 }} />}
+            </Typography>
+            <Divider sx={{ my: 2 }} />
+            <Box sx={{ 
+              '& h1': { fontSize: '2rem', fontWeight: 700, mt: 4, mb: 2 },
+              '& h2': { fontSize: '1.5rem', fontWeight: 600, mt: 3, mb: 2 },
+              '& h3': { fontSize: '1.25rem', fontWeight: 600, mt: 2, mb: 1 },
+              '& p': { mb: 1, lineHeight: 1.7 },
+              '& ul, & ol': { ml: 3, mb: 2 },
+              '& blockquote': { borderLeft: '4px solid #ddd', pl: 2, ml: 0, fontStyle: 'italic' },
+              '& hr': { my: 3 },
+              '& pre': { bgcolor: '#f5f5f5', p: 2, borderRadius: 1, overflow: 'auto' },
+            }}>
+              <ReactMarkdown>{script.content}</ReactMarkdown>
+            </Box>
+          </Box>
+        )}
+
+        {/* Scenes Tab */}
+        {scenes.length > 0 && activeTab === (script && script.found ? 2 : 1) && (
+          <Box>
+            {!selectedScene ? (
+              <Box>
+                <Typography variant="h5" gutterBottom>Individual Scenes</Typography>
+                <Divider sx={{ my: 2 }} />
+                <List>
+                  {scenes.map((scene, index) => (
+                    <ListItem key={index} disablePadding>
+                      <ListItemButton onClick={() => setSelectedScene(scene)}>
+                        <ListItemText 
+                          primary={scene.name}
+                          secondary={`From ${scene.directory}/`}
+                        />
+                        <VisibilityIcon />
+                      </ListItemButton>
+                    </ListItem>
+                  ))}
+                </List>
+              </Box>
+            ) : (
+              <Box>
+                <Button 
+                  startIcon={<ArrowBackIcon />} 
+                  onClick={() => setSelectedScene(null)}
+                  sx={{ mb: 2 }}
+                >
+                  Back to Scenes List
+                </Button>
+                <Typography variant="h5" gutterBottom>{selectedScene.name}</Typography>
+                <Divider sx={{ my: 2 }} />
+                <Box sx={{ 
+                  '& h1, & h2, & h3': { mt: 3, mb: 2 },
+                  '& p': { mb: 1, lineHeight: 1.7 },
+                  '& ul, & ol': { ml: 3, mb: 2 },
+                  '& blockquote': { borderLeft: '4px solid #ddd', pl: 2, ml: 0, fontStyle: 'italic' },
+                  '& hr': { my: 3 },
+                }}>
+                  <ReactMarkdown>{selectedScene.content}</ReactMarkdown>
+                </Box>
+              </Box>
+            )}
+          </Box>
+        )}
+
+        {/* Songs Tab */}
+        {songs.length > 0 && activeTab === (script && script.found ? (scenes.length > 0 ? 3 : 2) : (scenes.length > 0 ? 2 : 1)) && (
+          <Box>
+            {!selectedSong ? (
+              <Box>
+                <Typography variant="h5" gutterBottom>Musical Numbers</Typography>
+                <Divider sx={{ my: 2 }} />
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                  Click on any song to view complete lyrics and staging notes
+                </Typography>
+                <List>
+                  {songs.map((song, index) => (
+                    <ListItem key={index} disablePadding>
+                      <ListItemButton onClick={() => setSelectedSong(song)}>
+                        <MusicNoteIcon sx={{ mr: 2, color: 'primary.main' }} />
+                        <ListItemText 
+                          primary={song.name}
+                          secondary={`From ${song.directory}/`}
+                        />
+                        <VisibilityIcon />
+                      </ListItemButton>
+                    </ListItem>
+                  ))}
+                </List>
+              </Box>
+            ) : (
+              <Box>
+                <Button 
+                  startIcon={<ArrowBackIcon />} 
+                  onClick={() => setSelectedSong(null)}
+                  sx={{ mb: 2 }}
+                >
+                  Back to Songs List
+                </Button>
+                <Typography variant="h5" gutterBottom>
+                  <MusicNoteIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
+                  {selectedSong.name}
+                </Typography>
+                <Divider sx={{ my: 2 }} />
+                <Box sx={{ 
+                  '& h1, & h2, & h3': { mt: 3, mb: 2, color: 'primary.main' },
+                  '& p': { mb: 1, lineHeight: 1.7 },
+                  '& ul, & ol': { ml: 3, mb: 2 },
+                  '& blockquote': { borderLeft: '4px solid #667eea', pl: 2, ml: 0, fontStyle: 'italic' },
+                  '& hr': { my: 3 },
+                  '& em': { fontStyle: 'italic', color: 'text.secondary' },
+                }}>
+                  <ReactMarkdown>{selectedSong.content}</ReactMarkdown>
+                </Box>
+              </Box>
+            )}
+          </Box>
+        )}
+
+        {/* Characters Tab */}
+        {characters.length > 0 && activeTab === (
+          script && script.found 
+            ? (scenes.length > 0 
+              ? (songs.length > 0 ? 4 : 3) 
+              : (songs.length > 0 ? 3 : 2))
+            : (scenes.length > 0 
+              ? (songs.length > 0 ? 3 : 2) 
+              : (songs.length > 0 ? 2 : 1))
+        ) && (
+          <Box>
+            {!selectedCharacter ? (
+              <Box>
+                <Typography variant="h5" gutterBottom>Characters</Typography>
+                <Divider sx={{ my: 2 }} />
+                <List>
+                  {characters.map((character, index) => (
+                    <ListItem key={index} disablePadding>
+                      <ListItemButton onClick={() => setSelectedCharacter(character)}>
+                        <PersonIcon sx={{ mr: 2, color: 'secondary.main' }} />
+                        <ListItemText 
+                          primary={character.name}
+                          secondary={character.isCollection ? 'Character Collection' : 'Individual Character Profile'}
+                        />
+                        <VisibilityIcon />
+                      </ListItemButton>
+                    </ListItem>
+                  ))}
+                </List>
+              </Box>
+            ) : (
+              <Box>
+                <Button 
+                  startIcon={<ArrowBackIcon />} 
+                  onClick={() => setSelectedCharacter(null)}
+                  sx={{ mb: 2 }}
+                >
+                  Back to Characters List
+                </Button>
+                <Typography variant="h5" gutterBottom>
+                  <PersonIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
+                  {selectedCharacter.name}
+                </Typography>
+                <Divider sx={{ my: 2 }} />
+                <Box sx={{ 
+                  '& h1, & h2, & h3': { mt: 3, mb: 2 },
+                  '& p': { mb: 1, lineHeight: 1.7 },
+                  '& ul, & ol': { ml: 3, mb: 2 },
+                  '& blockquote': { borderLeft: '4px solid #ddd', pl: 2, ml: 0, fontStyle: 'italic' },
+                  '& hr': { my: 3 },
+                }}>
+                  <ReactMarkdown>{selectedCharacter.content}</ReactMarkdown>
+                </Box>
+              </Box>
+            )}
+          </Box>
+        )}
+      </Paper>
     </Box>
   );
 }

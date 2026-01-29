@@ -55,4 +55,4 @@ Thumbs.db
 # Project-specific temp files
 **/drafts/temp_*
 **/projects/*/personal_*
-**/projects/*/private_*
+**/projects/*/private_*package-lock.json
