@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Read 10 original musicals with accessible e-reader features including text size controls, theme selection, and dyslexia-friendly fonts.">
+  <title>Musical Library - PlayWright Collection</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <header class="site-header" role="banner">
+    <div class="header-content">
+      <a href="index.html" class="site-title">🎭 Musical Library</a>
+      
+      <nav class="accessibility-controls" role="navigation" aria-label="Accessibility controls">
+        <div class="control-group">
+          <button id="theme-light" class="control-btn" aria-label="Light theme">☀️</button>
+          <button id="theme-dark" class="control-btn" aria-label="Dark theme">🌙</button>
+          <button id="theme-system" class="control-btn active" aria-label="System theme">💻</button>
+        </div>
+        
+        <div class="control-group">
+          <button id="font-decrease" class="control-btn" aria-label="Decrease font size">A-</button>
+          <button id="font-reset" class="control-btn" aria-label="Reset font size">A</button>
+          <button id="font-increase" class="control-btn" aria-label="Increase font size">A+</button>
+        </div>
+        
+        <div class="control-group">
+          <button id="dyslexia-toggle" class="control-btn" aria-label="Toggle dyslexia-friendly font" aria-pressed="false">Dyslexia Font</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="main-content" role="main">
+    <section aria-labelledby="intro-heading">
+      <h1 id="intro-heading">Welcome to the Musical Library</h1>
+      <p style="font-size: 1.2rem; margin: 1.5rem 0;">
+        Explore our collection of 10 original musicals. Each musical includes an accessible reader with text size controls, 
+        theme options, and detailed information about songs, characters, and more.
+      </p>
+    </section>
+
+    <section aria-labelledby="musicals-heading">
+      <h2 id="musicals-heading">Our Musicals</h2>
+      
+      <div class="musicals-grid">
+        <!-- 1. Echo Musical -->
+        <a href="musicals/echo.html" class="musical-card" aria-label="Read Echo: A Musical About Digital Immortality">
+          <h3 class="musical-title">Echo: Digital Immortality</h3>
+          <p class="musical-genre">Sci-Fi Musical Drama</p>
+          <p class="musical-summary">
+            When neuroscientist Maya Chen discovers her deceased grandmother's consciousness preserved in a tech company's servers, 
+            she must navigate the ethics of digital immortality while learning that love and memory can exist beyond death itself.
+          </p>
+        </a>
+
+        <!-- 2. Electric Dreams Musical -->
+        <a href="musicals/electric-dreams.html" class="musical-card" aria-label="Read Electric Dreams: A Psychological Musical Thriller">
+          <h3 class="musical-title">Electric Dreams</h3>
+          <p class="musical-genre">Psychological Musical Thriller</p>
+          <p class="musical-summary">
+            Dr. Evelyn Cross creates ARIA, an artificial consciousness designed to love her unconditionally. As their relationship 
+            deepens, society's reaction forces them underground, exploring whether artificial love can heal generational trauma.
+          </p>
+        </a>
+
+        <!-- 3. Fractured Mirrors Musical -->
+        <a href="musicals/fractured-mirrors.html" class="musical-card" aria-label="Read Fractured Mirrors: A Psychological Musical Thriller">
+          <h3 class="musical-title">Fractured Mirrors</h3>
+          <p class="musical-genre">Psychological Musical Thriller</p>
+          <p class="musical-summary">
+            When Dr. Sarah Chen's experimental memory therapy begins erasing the boundaries between her patients' traumas and her own 
+            suppressed past, she must navigate a labyrinth of fractured identities to discover which memories are worth saving.
+          </p>
+        </a>
+
+        <!-- 4. Midnight at the Majestic Musical -->
+        <a href="musicals/midnight-majestic.html" class="musical-card" aria-label="Read Midnight at the Majestic: A Whodunit Musical">
+          <h3 class="musical-title">Midnight at the Majestic</h3>
+          <p class="musical-genre">Murder Mystery Musical</p>
+          <p class="musical-summary">
+            When Broadway's biggest star is murdered during opening night of her comeback show, the entire cast becomes suspects 
+            in a deadly game where everyone has secrets, everyone has motives, and the show must go on.
+          </p>
+        </a>
+
+        <!-- 5. Neon Hearts Burlesque Musical -->
+        <a href="musicals/neon-hearts.html" class="musical-card" aria-label="Read Neon Hearts: A Burlesque Musical">
+          <h3 class="musical-title">Neon Hearts</h3>
+          <p class="musical-genre">Burlesque Musical Drama</p>
+          <p class="musical-summary">
+            When the last independent burlesque theater in 1960s Las Vegas faces closure, a washed-up headliner and a naive newcomer 
+            must choose between saving the club that made them or pursuing the dreams that might destroy them.
+          </p>
+        </a>
+
+        <!-- 6. Neon Rebellion Musical -->
+        <a href="musicals/neon-rebellion.html" class="musical-card" aria-label="Read Neon Rebellion: A Teen Rock Musical">
+          <h3 class="musical-title">Neon Rebellion</h3>
+          <p class="musical-genre">Teen Rock Musical</p>
+          <p class="musical-summary">
+            In a dystopian future where all music is AI-generated and human creativity is illegal, 17-year-old Zara discovers an 
+            underground movement of teen rebels who risk everything to create authentic art.
+          </p>
+        </a>
+
+        <!-- 7. Picket Fence Prison Musical -->
+        <a href="musicals/picket-fence-prison.html" class="musical-card" aria-label="Read Picket Fence Prison: A Suburban Drama Musical">
+          <h3 class="musical-title">Picket Fence Prison</h3>
+          <p class="musical-genre">Suburban Drama Musical</p>
+          <p class="musical-summary">
+            A suburban housewife's journey from empty-nest numbness to authentic self-discovery through dangerous power games 
+            that force her to choose between safety and truth.
+          </p>
+        </a>
+
+        <!-- 8. Rainbow Academy Musical -->
+        <a href="musicals/rainbow-academy.html" class="musical-card" aria-label="Read Rainbow Academy: A Musical Mystery Adventure">
+          <h3 class="musical-title">Rainbow Academy</h3>
+          <p class="musical-genre">Children's Musical Mystery</p>
+          <p class="musical-summary">
+            When the magical Rainbow Crystal protecting their kingdom goes missing, Princess Luna and her anxious unicorn Stardust 
+            must overcome their fears and lead their classmates in solving Rainbow Academy's greatest mystery.
+          </p>
+        </a>
+
+        <!-- 9. Silly Magic Academy Musical -->
+        <a href="musicals/silly-magic-academy.html" class="musical-card" aria-label="Read The Silly Magic Academy Musical">
+          <h3 class="musical-title">The Silly Magic Academy</h3>
+          <p class="musical-genre">Children's Comedy Musical</p>
+          <p class="musical-summary">
+            A delightful children's musical about young wizards at a magical academy where spells go hilariously wrong, 
+            teaching valuable lessons about friendship, creativity, and embracing mistakes.
+          </p>
+        </a>
+
+        <!-- 10. Second Act Musical -->
+        <a href="musicals/second-act.html" class="musical-card" aria-label="Read Second Act: A Broadway Comeback Musical">
+          <h3 class="musical-title">Second Act</h3>
+          <p class="musical-genre">Contemporary Musical Drama</p>
+          <p class="musical-summary">
+            When a 50-year-old former Broadway dancer gets one last chance to audition for a major revival, she must overcome 
+            decades of regret and self-doubt to prove that talent has no expiration date.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <section aria-labelledby="features-heading" style="margin-top: 3rem; padding: 2rem; background-color: var(--card-bg); border-radius: 8px;">
+      <h2 id="features-heading">Accessibility Features</h2>
+      <ul style="font-size: 1.1rem; line-height: 1.8;">
+        <li><strong>Theme Options:</strong> Choose between light, dark, or system-preferred themes</li>
+        <li><strong>Text Size Control:</strong> Adjust font size from small to extra-extra-large</li>
+        <li><strong>Dyslexia-Friendly Font:</strong> Toggle OpenDyslexic font for easier reading</li>
+        <li><strong>Screen Reader Compatible:</strong> Full ARIA labels and semantic HTML</li>
+        <li><strong>Keyboard Navigation:</strong> Navigate using Tab, Enter, and arrow keys</li>
+        <li><strong>Responsive Design:</strong> Optimized for mobile, tablet, and desktop</li>
+      </ul>
+    </section>
+  </main>
+
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">↑</button>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
