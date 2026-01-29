@@ -1,0 +1,447 @@
+/* Musical Reader - Main Styles with Accessibility Features */
+
+/* CSS Variables for theming */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --link-color: #0066cc;
+  --link-hover: #004499;
+  --card-bg: #f5f5f5;
+  --card-border: #ddd;
+  --header-bg: #2c3e50;
+  --header-text: #ffffff;
+  --button-bg: #3498db;
+  --button-text: #ffffff;
+  --button-hover: #2980b9;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --font-size: 16px;
+  --line-height: 1.6;
+  --max-width: 1200px;
+  --reader-max-width: 800px;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: #e0e0e0;
+  --link-color: #6db3f2;
+  --link-hover: #9cc9f7;
+  --card-bg: #2a2a2a;
+  --card-border: #444;
+  --header-bg: #1c2833;
+  --shadow: rgba(255, 255, 255, 0.1);
+}
+
+/* System theme preference */
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --link-color: #6db3f2;
+    --link-hover: #9cc9f7;
+    --card-bg: #2a2a2a;
+    --card-border: #444;
+    --header-bg: #1c2833;
+    --shadow: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Dyslexia-friendly font */
+.dyslexia-font {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', Arial, sans-serif;
+  letter-spacing: 0.05em;
+  word-spacing: 0.1em;
+}
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Typography scale */
+.text-size-small { --font-size: 14px; }
+.text-size-normal { --font-size: 16px; }
+.text-size-large { --font-size: 18px; }
+.text-size-xlarge { --font-size: 20px; }
+.text-size-xxlarge { --font-size: 24px; }
+
+/* Header */
+.site-header {
+  background-color: var(--header-bg);
+  color: var(--header-text);
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 8px var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.site-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--header-text);
+  text-decoration: none;
+}
+
+.site-title:hover {
+  opacity: 0.9;
+}
+
+/* Accessibility controls */
+.accessibility-controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.control-group {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.control-btn {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.control-btn:hover {
+  background-color: var(--button-hover);
+}
+
+.control-btn:focus {
+  outline: 3px solid #ffd700;
+  outline-offset: 2px;
+}
+
+.control-btn.active {
+  background-color: #27ae60;
+}
+
+/* Main content */
+.main-content {
+  max-width: var(--max-width);
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.reader-content {
+  max-width: var(--reader-max-width);
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+/* Musicals grid */
+.musicals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.musical-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text-color);
+  display: block;
+}
+
+.musical-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px var(--shadow);
+}
+
+.musical-card:focus {
+  outline: 3px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+.musical-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--link-color);
+}
+
+.musical-genre {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+[data-theme="dark"] .musical-genre {
+  color: #999;
+}
+
+.musical-summary {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Reader page */
+.reader-header {
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--card-border);
+  padding-bottom: 1rem;
+}
+
+.musical-meta {
+  display: flex;
+  gap: 2rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+[data-theme="dark"] .musical-meta {
+  color: #999;
+}
+
+.reader-nav {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  display: inline-block;
+}
+
+.nav-btn:hover {
+  background-color: var(--button-hover);
+}
+
+.nav-btn:focus {
+  outline: 3px solid #ffd700;
+  outline-offset: 2px;
+}
+
+.nav-btn.secondary {
+  background-color: #95a5a6;
+}
+
+.nav-btn.secondary:hover {
+  background-color: #7f8c8d;
+}
+
+/* Content sections */
+.content-section {
+  margin: 2rem 0;
+}
+
+.content-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--link-color);
+}
+
+.content-section h3 {
+  font-size: 1.4rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.content-section p {
+  margin-bottom: 1rem;
+}
+
+.content-section ul,
+.content-section ol {
+  margin: 1rem 0 1rem 2rem;
+}
+
+.content-section li {
+  margin-bottom: 0.5rem;
+}
+
+/* Character and song lists */
+.character-list,
+.song-list {
+  display: grid;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.character-item,
+.song-item {
+  background-color: var(--bg-color);
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  padding: 1.5rem;
+}
+
+.character-name,
+.song-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--link-color);
+  margin-bottom: 0.5rem;
+}
+
+.character-role,
+.song-singer {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+[data-theme="dark"] .character-role,
+[data-theme="dark"] .song-singer {
+  color: #999;
+}
+
+/* Links */
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: 3px solid #ffd700;
+  outline-offset: 2px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .site-header {
+    padding: 1rem;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .main-content {
+    padding: 0 1rem;
+  }
+  
+  .reader-content {
+    padding: 1.5rem;
+  }
+  
+  .musicals-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Print styles */
+@media print {
+  .site-header,
+  .accessibility-controls,
+  .reader-nav {
+    display: none;
+  }
+  
+  body {
+    background-color: white;
+    color: black;
+  }
+  
+  .reader-content {
+    box-shadow: none;
+    border: none;
+  }
+}
+
+/* Skip to content link for keyboard navigation */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--header-bg);
+  color: var(--header-text);
+  padding: 8px;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Loading state */
+.loading {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 12px var(--shadow);
+  transition: background-color 0.2s ease;
+}
+
+.back-to-top:hover {
+  background-color: var(--button-hover);
+}
+
+.back-to-top.visible {
+  display: flex;
+}
