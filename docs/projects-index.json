@@ -1,0 +1,292 @@
+{
+  "projects": {
+    "echo_musical": {
+      "overview": [
+        "COMPLETE_MUSICAL_SUMMARY.md",
+        "characters.md",
+        "concept.md",
+        "concept_overview.md",
+        "production_roadmap.md",
+        "story_structure.md"
+      ],
+      "scenes": [
+        "scenes/act1_scene1.md",
+        "scenes/act1_scene2.md",
+        "scenes/act1_scene3.md",
+        "scenes/act1_scene4.md",
+        "scenes/act1_scene5.md",
+        "scenes/act1_scene6.md",
+        "scenes/act2_scene1.md",
+        "scenes/act2_scene2.md",
+        "scenes/act2_scene3.md",
+        "scenes/act2_scene4.md",
+        "scenes/act2_scene5.md",
+        "scenes/act2_scene6.md"
+      ],
+      "scenes_revised": [
+        "scenes_revised/act1_scene1_revised.md",
+        "scenes_revised/act1_scene2_revised.md",
+        "scenes_revised/act1_scene3_revised.md",
+        "scenes_revised/act1_scene4_revised.md",
+        "scenes_revised/act2_scene1_revised.md"
+      ],
+      "songs": [
+        "songs/01_we_are_the_echo.md",
+        "songs/beyond_the_code.md",
+        "songs/data_points.md",
+        "songs/ghost_in_the_machine.md",
+        "songs/system_error.md",
+        "songs/the_future_is_now.md",
+        "songs/the_pandora_protocol.md",
+        "songs/the_pattern_continues.md",
+        "songs/the_upload.md",
+        "songs/threads_of_memory.md"
+      ]
+    },
+    "electric_dreams_musical": {
+      "overview": [
+        "COMPLETE_ACT1_CRITICAL_ANALYSIS.md",
+        "ELECTRIC_DREAMS_REVISION_PLAN.md",
+        "FINAL_CRITICAL_ANALYSIS_PART1.md",
+        "FINAL_CRITICAL_ANALYSIS_PART2.md",
+        "FINAL_CRITICAL_ANALYSIS_PART3.md",
+        "REVISION_COMPLETION_SUMMARY.md",
+        "REVISION_PROGRESS_TRACKER.md",
+        "SUCCESSOR_HANDOFF_NOTES.md",
+        "TECHNICAL_CONTENT_ANALYSIS.md",
+        "THOUSAND_CRITICS_ACT1_ANALYSIS.md",
+        "TRANSCENDENT_BREAKTHROUGH_LOG.md",
+        "complete_script_outline.md",
+        "concept.md"
+      ],
+      "scenes": [
+        "scenes/act1_finale_convergence.md",
+        "scenes/act1_finale_the_choice.md",
+        "scenes/act1_scene1_laboratory_of_desire.md",
+        "scenes/act1_scene1_raw_rewrite.md",
+        "scenes/act1_scene2_digital_wasteland.md",
+        "scenes/act1_scene2_morning_after_resurrection.md",
+        "scenes/act1_scene3_sacred_submission_rewrite.md",
+        "scenes/act1_scene3_the_dance_begins.md",
+        "scenes/act1_scene4_hidden_control.md",
+        "scenes/act1_scene4_the_inquisition.md",
+        "scenes/act1_scene5_the_world_outside.md",
+        "scenes/act1_scene5_what_i_couldnt_give.md",
+        "scenes/act2_finale_electric_dreams.md",
+        "scenes/act2_finale_electric_dreams_complete.md",
+        "scenes/act2_scene1_the_morning_after_revelation.md",
+        "scenes/act2_scene1_the_revelation.md",
+        "scenes/act2_scene2_the_reckoning.md",
+        "scenes/act2_scene2_the_storm.md",
+        "scenes/act2_scene3_the_choice_of_worlds.md",
+        "scenes/act2_scene3_the_test.md"
+      ],
+      "scenes_revised": [],
+      "songs": [
+        "songs/after_the_fall_transcendent.md",
+        "songs/afterglow_soliloquy.md",
+        "songs/blueprints_of_desire_REVISED.md",
+        "songs/blueprints_of_desire_transcendent.md",
+        "songs/correction_protocol.md",
+        "songs/digital_wasteland_REVISED.md",
+        "songs/electric_dreams_finale_TRIMMED.md",
+        "songs/resurrection_TIGHTENED.md",
+        "songs/sacred_submission_REFINED.md",
+        "songs/sacred_submission_transcendent.md",
+        "songs/the_awakening_STREAMLINED.md",
+        "songs/the_convergence_TRIMMED.md",
+        "songs/the_weight_of_change_REWRITTEN.md",
+        "songs/what_have_i_done_REWRITTEN.md",
+        "songs/what_have_i_done_transcendent.md"
+      ]
+    },
+    "fractured_mirrors_musical": {
+      "overview": [
+        "concept.md"
+      ],
+      "scenes": [],
+      "scenes_revised": [],
+      "songs": []
+    },
+    "midnight_at_the_majestic_musical": {
+      "overview": [
+        "COMPLETE_DEVELOPMENT_PLAN.md",
+        "CREATIVE_PERSONALITY_SUMMARY.md",
+        "character_development_scaffolding.md",
+        "concept.md",
+        "phase3_breaking_protocol.md",
+        "systematic_creation_phase2.md"
+      ],
+      "scenes": [
+        "scenes/act1_scene1_opening_night.md",
+        "scenes/act1_scene2_midnight_serenade.md",
+        "scenes/act1_scene3_intermission_murder.md",
+        "scenes/act2_scene1_the_interrogation.md",
+        "scenes/act2_scene2_mother_and_daughter.md",
+        "scenes/act2_scene3_the_reckoning.md"
+      ],
+      "scenes_revised": [],
+      "songs": [
+        "songs/midnight_reprise.md",
+        "songs/mother_and_daughter.md",
+        "songs/secrets_and_lies.md",
+        "songs/the_choice.md",
+        "songs/the_investigation_begins.md",
+        "songs/voices_of_the_displaced.md",
+        "songs/what_i_couldnt_tell_you.md"
+      ]
+    },
+    "neon_hearts_burlesque_musical": {
+      "overview": [
+        "TRANSCENDENT_REVISION_PLAN.md",
+        "character_elevation_analysis.md",
+        "concept.md"
+      ],
+      "scenes": [
+        "scenes/act1_scene1_opening_night.md",
+        "scenes/act1_scene2_after_hours.md"
+      ],
+      "scenes_revised": [
+        "scenes_revised/act1_scene1_opening_night_TRANSCENDENT.md"
+      ],
+      "songs": [
+        "songs/candy_dreams.md",
+        "songs/last_dance.md",
+        "songs/neon_hearts_reprise.md",
+        "songs/stellas_story.md",
+        "songs/strip_it_down.md",
+        "songs/the_business.md",
+        "songs/we_are_the_night.md",
+        "songs/what_we_leave_behind.md"
+      ]
+    },
+    "neon_rebellion_musical": {
+      "overview": [
+        "complete_musical_summary.md",
+        "concept.md",
+        "thousand_critics_comprehensive_analysis.md"
+      ],
+      "scenes": [
+        "scenes/act1_scene1_algorithm_paradise.md",
+        "scenes/act1_scene2_somethings_missing.md",
+        "scenes/act1_scene3_welcome_to_the_static.md",
+        "scenes/act2_scene4_this_is_our_voice.md"
+      ],
+      "scenes_revised": [],
+      "songs": [
+        "songs/safe_or_sorry.md"
+      ]
+    },
+    "picket_fence_prison_musical": {
+      "overview": [
+        "COMPLETE_MUSICAL_FINAL.md",
+        "READTHISFIRST.md",
+        "SCENE_1_COMPLETE.md",
+        "SCENE_1_COMPLETE_SCRIPT.md",
+        "TEN_ENGINES_ANALYSIS.md",
+        "complete_musical_final_critical_analysis.md",
+        "complete_story_arc.md",
+        "complex_reality_version.md",
+        "concept.md",
+        "critical_analysis_comprehensive.md",
+        "detailed_timeline.md",
+        "final_outline.md",
+        "integrated_rosa_structure.md",
+        "moral_voice_character.md",
+        "path_explorations.md",
+        "path_explorations_complete.md",
+        "psychiatric_sessions.md",
+        "revised_brutal_characters.md",
+        "revised_darker_concept.md",
+        "rosa_claire_duel_critical_analysis.md",
+        "scene1_critical_analysis.md",
+        "scene1_revised_critical_analysis.md",
+        "scene1_revised_with_backstory.md",
+        "song_development_options.md",
+        "story_structure.md",
+        "transcendent_characters.md"
+      ],
+      "scenes": [
+        "scenes/act1_scene2_the_established_game.md",
+        "scenes/act1_scene3_the_block_party.md",
+        "scenes/act1_scene4_the_morning_after.md",
+        "scenes/act1_scene5_the_escalation.md",
+        "scenes/act1_scene6_finale_both_of_you.md",
+        "scenes/act2_scene1_the_realization.md",
+        "scenes/act2_scene2_the_exposure.md",
+        "scenes/act2_scene3_the_community.md",
+        "scenes/act2_scene4_the_degradation.md",
+        "scenes/act2_scene5_the_choice.md",
+        "scenes/act2_scene6_finale_six_months_later.md"
+      ],
+      "scenes_revised": [],
+      "songs": [
+        "songs/both_are_true.md",
+        "songs/couples_puppy.md",
+        "songs/customer_247.md",
+        "songs/finest_things.md",
+        "songs/i_choose.md",
+        "songs/marionette.md",
+        "songs/no_panties_tomorrow.md",
+        "songs/picket_fence_prison.md",
+        "songs/picket_fence_prison_COMPOSED.md",
+        "songs/premium_content.md",
+        "songs/puppet_master.md",
+        "songs/ring_doorbell_gossip.md",
+        "songs/supermarket_seduction.md",
+        "songs/swipe_right_for_danger.md",
+        "songs/the_choice.md",
+        "songs/the_reckoning_rosa.md",
+        "songs/the_rescue.md",
+        "songs/this_is_where_i_belong.md",
+        "songs/toy_and_prize.md",
+        "songs/what_we_choose_duet.md"
+      ]
+    },
+    "rainbow_academy_musical": {
+      "overview": [
+        "clue_discovery_system.md",
+        "complete_critical_analysis.md",
+        "complete_story_structure.md",
+        "concept.md",
+        "dozen_critics_analysis.md",
+        "mystery_structure.md",
+        "thousand_critics_act1_analysis.md"
+      ],
+      "scenes": [
+        "scenes/act1_scene1_welcome_to_rainbow_academy.md",
+        "scenes/act1_scene2_library_of_mysteries.md",
+        "scenes/act1_scene3_everything_must_be_perfect.md",
+        "scenes/act1_scene4_the_crystal_disappears.md",
+        "scenes/act1_scene5_the_secret_investigation.md",
+        "scenes/act1_scene6_the_first_clue.md",
+        "scenes/act2_scene1_facing_fears.md",
+        "scenes/act2_scene2_the_shadow_revealed.md",
+        "scenes/act2_scene3_working_together.md",
+        "scenes/act2_scene4_light_conquers_darkness.md",
+        "scenes/act2_scene5_we_are_rainbow_academy.md"
+      ],
+      "scenes_revised": [],
+      "songs": []
+    },
+    "silly_magic_academy_musical": {
+      "overview": [
+        "characters.md",
+        "concept.md",
+        "story_structure.md"
+      ],
+      "scenes": [],
+      "scenes_revised": [],
+      "songs": [
+        "songs/01_welcome_to_the_academy.md",
+        "songs/01_welcome_to_the_academy_COMPOSED.md",
+        "songs/02_i_want_to_belong.md",
+        "songs/03_magic_goes_wrong.md",
+        "songs/04_sparkles_the_disco_ball.md",
+        "songs/05_act1_finale_everythings_wrong.md",
+        "songs/06_the_most_beautiful_magic.md",
+        "songs/07_we_are_the_magic.md"
+      ]
+    }
+  }
+}

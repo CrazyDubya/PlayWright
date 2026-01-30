@@ -4,6 +4,16 @@ This directory contains a complete GitHub Pages site for the PlayWright Musical 
 
 ## Features
 
+### 📚 Project Browser
+
+Browse complete musical projects including:
+- **Complete Scripts**: Full musical scripts and scene compilations
+- **Song Lyrics**: All songs with staging notes
+- **Character Profiles**: Detailed character backgrounds
+- **Project Overviews**: Story structure and concepts
+
+Access via: `https://<username>.github.io/PlayWright/projects.html`
+
 ### Accessibility
 - **Theme Options**: Light, dark, and system-preferred themes
 - **Text Size Control**: 5 levels from small to extra-extra-large
@@ -37,6 +47,8 @@ This directory contains a complete GitHub Pages site for the PlayWright Musical 
 docs/
 ├── index.html                  # Main library homepage
 ├── _config.yml                 # GitHub Pages configuration
+├── projects.html               # Project browser page
+├── project.html                # Project detail page (loads markdown dynamically)
 ├── assets/
 │   ├── css/
 │   │   └── main.css           # Main stylesheet with accessibility features
