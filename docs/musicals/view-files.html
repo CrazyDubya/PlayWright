@@ -170,7 +170,7 @@
     
     async function loadFile(path) {
       try {
-        const response = await fetch(`../../projects/${projectId}/${path}`);
+        const response = await fetch(`../projects/${projectId}/${path}`);
         if (!response.ok) return null;
         return await response.text();
       } catch (error) {
